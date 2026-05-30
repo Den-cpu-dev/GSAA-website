@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — GSAA | Ghana Journal of Sociology & Anthropology</title>
+<meta name="description" content="Official information for the Ghana Journal of Sociology & Anthropology, published by GSAA in collaboration with the Department of Sociology, University of Ghana.">
+<meta property="og:title" content="Ghana Journal of Sociology & Anthropology">
+<meta property="og:description" content="Submission notes, contacts, and previous issues of the GSAA journal.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://gsaa.org.gh/journal.html">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav-footer.css">
+<style>
+/* ── JOURNAL INFO BAR ── */
+.journal-meta-bar {
+  background: var(--gold);
+  padding: 1.2rem 4rem;
+  display: flex; align-items: center; justify-content: space-around;
+  gap: 2rem; flex-wrap: wrap;
+}
+.journal-meta-item {
+  text-align: center;
+}
+.journal-meta-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--green-deep);
+}
+.journal-meta-label {
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(15,30,21,0.6);
+}
+
+/* ── PUBLISHER CONTACT PANEL ── */
+.publisher-panel {
+  background: var(--green-deep);
+  border-top: 1px solid rgba(201,168,76,0.2);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.publisher-panel-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.publisher-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.6);
+  margin-bottom: 0.7rem;
+}
+.publisher-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--cream);
+  margin-bottom: 0.8rem;
+}
+.publisher-text {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(245,239,224,0.75);
+  margin: 0;
+}
+.publisher-contacts {
+  background: rgba(245,239,224,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 4px;
+  padding: 1.25rem;
+}
+.publisher-contacts dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 1rem;
+}
+.publisher-contacts dt {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.58);
+}
+.publisher-contacts dd {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--cream);
+}
+.publisher-contacts a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.publisher-contacts a:hover { text-decoration: underline; }
+
+/* ── ABOUT JOURNAL ── */
+.journal-about {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+}
+.journal-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-style: italic;
+  font-weight: 300; color: var(--green-mid);
+  line-height: 1.6; border-left: 3px solid var(--gold);
+  padding-left: 1.5rem; margin: 2rem 0;
+}
+.journal-scope-list {
+  list-style: none; padding: 0; margin-top: 1.5rem;
+}
+.journal-scope-list li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.6rem 0;
+  font-size: 0.88rem; line-height: 1.6; color: var(--text-mid);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.journal-scope-list li:last-child { border-bottom: none; }
+.scope-bullet {
+  width: 6px; height: 6px; background: var(--gold);
+  border-radius: 50%; flex-shrink: 0; margin-top: 0.5rem;
+}
+
+/* ── CURRENT ISSUE ── */
+.issue-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 3rem;
+}
+.articles-list { display: flex; flex-direction: column; gap: 1rem; }
+.article-card {
+  display: grid; grid-template-columns: 60px 1fr auto;
+  gap: 1.5rem; align-items: start;
+  padding: 1.5rem 2rem;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px; transition: all 0.3s;
+}
+.article-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md); border-color: transparent;
+}
+.article-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900;
+  color: rgba(44,95,63,0.1); line-height: 1;
+  text-align: center;
+}
+.article-type {
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  font-weight: 600; margin-bottom: 0.3rem;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.article-authors {
+  font-size: 0.8rem; color: var(--text-light);
+  margin-bottom: 0.4rem;
+}
+.article-abstract {
+  font-size: 0.82rem; line-height: 1.7;
+  color: var(--text-light);
+}
+.article-action {
+  flex-shrink: 0; align-self: center;
+}
+
+/* ── ARCHIVE ── */
+.archive-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
+}
+.archive-filter {
+  margin-top: 2rem; max-width: 400px;
+}
+.archive-card {
+  background: var(--green-deep); border-radius: 4px;
+  padding: 2rem; border: 1px solid rgba(201,168,76,0.15);
+  text-align: center; cursor: pointer;
+  transition: all 0.3s; text-decoration: none; display: block;
+}
+.archive-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,168,76,0.4);
+}
+.archive-vol {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900;
+  color: var(--gold); margin-bottom: 0.3rem;
+}
+.archive-year {
+  font-size: 0.72rem; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.5);
+}
+.archive-count {
+  font-size: 0.7rem; color: rgba(245,239,224,0.3);
+  margin-top: 0.75rem;
+}
+
+/* ── EDITORIAL BOARD ── */
+.board-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
+}
+.board-card {
+  background: var(--white); border-radius: 4px;
+  padding: 1.5rem; border: 1px solid rgba(0,0,0,0.06);
+  text-align: center; transition: all 0.3s;
+}
+.board-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.board-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 900;
+  background: var(--green-mid); color: var(--gold);
+  border: 2px solid rgba(201,168,76,0.3);
+  margin: 0 auto 1rem;
+}
+.board-role {
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.board-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 0.3rem;
+}
+.board-affil {
+  font-size: 0.78rem; color: var(--text-light);
+}
+
+/* ── SUBMISSION GUIDELINES ── */
+.guidelines-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+}
+.step-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+.step-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+}
+.step-num {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--green-mid); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem; font-weight: 700; color: var(--gold);
+}
+.step-title {
+  font-weight: 600; font-size: 0.88rem;
+  color: var(--text-dark); margin-bottom: 0.25rem;
+}
+.step-text {
+  font-size: 0.82rem; line-height: 1.7;
+  color: var(--text-light);
+}
+.guidelines-info {
+  padding: 2rem; background: var(--cream);
+  border-radius: 4px; border-left: 4px solid var(--gold);
+}
+.guidelines-info-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 1rem;
+}
+.guidelines-info dl {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.5rem;
+}
+.guidelines-info dt {
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--text-mid); text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.guidelines-info dd {
+  font-size: 0.85rem; color: var(--text-light);
+  margin: 0;
+}
+
+/* ── CFP BANNER ── */
+.cfp-banner {
+  background: var(--green-deep); border-radius: 4px;
+  padding: 4rem; margin-top: 3rem;
+  position: relative; overflow: hidden;
+}
+.cfp-banner::before {
+  content: ''; position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px; border-radius: 50%;
+  border: 60px solid rgba(201,168,76,0.06);
+}
+.cfp-banner-inner { position: relative; z-index: 1; max-width: 700px; }
+.cfp-banner h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 900; color: var(--cream);
+  line-height: 1.15; margin-bottom: 1rem;
+}
+.cfp-banner h3 em { font-style: italic; color: var(--gold); }
+.cfp-banner p {
+  font-size: 0.92rem; line-height: 1.8;
+  color: rgba(245,239,224,0.55); margin-bottom: 2rem;
+  max-width: 560px;
+}
+
+/* ── WORKING PAPERS ── */
+.wp-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.wp-card {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.5rem 2rem; background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08); border-radius: 4px;
+  transition: all 0.3s; text-decoration: none; color: inherit;
+}
+.wp-card:hover {
+  transform: translateX(6px);
+  border-color: var(--gold); box-shadow: var(--shadow-md);
+}
+.wp-icon {
+  width: 48px; height: 48px; background: var(--green-mid);
+  border-radius: 4px; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.wp-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 0.2rem;
+}
+.wp-meta {
+  font-size: 0.78rem; color: var(--text-light);
+}
+
+/* ── CTA ── */
+.journal-cta {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-deep) 60%);
+  text-align: center; position: relative; overflow: hidden;
+}
+.journal-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(201,168,76,0.05) 0px, rgba(201,168,76,0.05) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(201,168,76,0.05) 0px, rgba(201,168,76,0.05) 1px, transparent 1px, transparent 80px);
+}
+.journal-cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.journal-cta .section-title { color: var(--cream); margin-bottom: 1.5rem; }
+.journal-cta .section-label { justify-content: center; margin-bottom: 1.5rem; }
+.journal-cta-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-style: italic;
+  color: rgba(245,239,224,0.65); line-height: 1.8;
+  margin-bottom: 3rem;
+}
+.journal-cta-actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+
+/* ── SECTION OVERRIDES ── */
+.section-title--tight { margin-bottom: 0.5rem; }
+.board-header { max-width: 700px; margin: 0 auto 1rem; }
+.board-header .section-label { justify-content: center; }
+.board-intro { margin-top: 1rem; font-size: 0.92rem; color: var(--text-light); line-height: 1.8; }
+.board-avatar--gold { background: rgba(201,168,76,0.1); color: var(--gold); border-color: rgba(201,168,76,0.3); }
+.board-avatar--red { background: rgba(176,58,46,0.08); color: var(--red-kente); border-color: rgba(176,58,46,0.2); }
+.board-avatar--green { background: rgba(61,139,94,0.08); color: var(--green-accent); border-color: rgba(61,139,94,0.2); }
+.board-avatar--deep { background: rgba(26,58,42,0.08); color: var(--green-deep); border-color: rgba(26,58,42,0.2); }
+.cfp-banner--spaced { margin-top: 2rem; }
+.cfp-deadline { font-size: 0.82rem; color: rgba(245,239,224,0.45); margin-bottom: 1.5rem; }
+.cfp-deadline strong { color: var(--gold); }
+.cfp-btn { font-size: 0.82rem; padding: 0.7rem 1.5rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .journal-about { grid-template-columns: 1fr; gap: 3rem; }
+  .journal-meta-bar { padding: 1.2rem 2rem; }
+  .publisher-panel-inner { grid-template-columns: 1fr; padding: 1.75rem 2rem; }
+  .article-card { grid-template-columns: 1fr; gap: 0.75rem; }
+  .article-num { display: none; }
+  .article-action { align-self: flex-start; }
+  .archive-grid { grid-template-columns: repeat(2, 1fr); }
+  .board-grid { grid-template-columns: 1fr 1fr; }
+  .guidelines-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .cfp-banner { padding: 2.5rem 1.5rem; }
+}
+@media (max-width: 560px) {
+  .archive-grid { grid-template-columns: 1fr 1fr; }
+  .board-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Journal</span>
+    </nav>
+    <div class="page-hero-label">Publication</div>
+    <h1>Ghana Journal of Sociology &amp; <em>Anthropology</em></h1>
+    <p>The official GSAA journal platform for publication information, contributor notes, and previous issues hosted with the Department of Sociology, University of Ghana.</p>
+  </div>
+</section>
+
+<!-- JOURNAL META BAR -->
+<div class="journal-meta-bar">
+  <div class="journal-meta-item">
+    <div class="journal-meta-value">GSAA Journal</div>
+    <div class="journal-meta-label">Publication</div>
+  </div>
+  <div class="journal-meta-item">
+    <div class="journal-meta-value">University of Ghana</div>
+    <div class="journal-meta-label">Institutional Host</div>
+  </div>
+  <div class="journal-meta-item">
+    <div class="journal-meta-value">Peer-Reviewed</div>
+    <div class="journal-meta-label">Editorial Process</div>
+  </div>
+  <div class="journal-meta-item">
+    <div class="journal-meta-value">Email Submission</div>
+    <div class="journal-meta-label">Manuscripts</div>
+  </div>
+  <div class="journal-meta-item">
+    <div class="journal-meta-value">Original Work Only</div>
+    <div class="journal-meta-label">Policy</div>
+  </div>
+</div>
+
+<!-- PUBLISHER IDENTITY & CONTACT -->
+<section class="publisher-panel" aria-label="Publisher identity and contact details">
+  <div class="publisher-panel-inner">
+    <div>
+      <div class="publisher-kicker">Publisher Identity</div>
+      <h2 class="publisher-title">Ghana Sociological &amp; Anthropological Association (GSAA)</h2>
+      <p class="publisher-text">Published by GSAA, c/o Department of Sociology, University of Ghana, P.O. Box LG65, Legon, Accra, Ghana.</p>
+    </div>
+    <aside class="publisher-contacts" aria-label="Publisher contact details">
+      <dl>
+        <dt>Telephone</dt>
+        <dd><a href="tel:+233558602303">+233-(0)558602303</a></dd>
+        <dt>Office Email</dt>
+        <dd><a href="mailto:gsaaoffice@gmail.com">gsaaoffice@gmail.com</a></dd>
+        <dt>Journal Email</dt>
+        <dd><a href="mailto:gsaagroup@gmail.com">gsaagroup@gmail.com</a></dd>
+        <dt>Editor Email</dt>
+        <dd><a href="mailto:gjsa.editor@ug.edu.gh">gjsa.editor@ug.edu.gh</a></dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="bg-cream">
+  <div class="journal-about reveal">
+    <div>
+      <div class="section-label">About the Journal</div>
+      <h2 class="section-title">Official <em>Journal Profile</em></h2>
+      <blockquote class="journal-quote">"Published by the Ghana Sociological and Anthropological Association (GSAA), c/o Department of Sociology, University of Ghana, Legon."</blockquote>
+      <p class="body-text body-text--mb">The Ghana Journal of Sociology &amp; Anthropology (GJSA), formerly the Legon Journal of Sociology, is the flagship journal of GSAA. It is managed under GSAA with institutional support from the Department of Sociology, University of Ghana.</p>
+      <p class="body-text">The journal publishes twice annually and features peer-reviewed work in sociology, anthropology, and related social science disciplines, alongside contributor guidance and issue archives.</p>
+    </div>
+    <div>
+      <div class="section-label">Scope</div>
+      <h2 class="section-title section-title--tight">Key <em>Information</em></h2>
+      <ul class="journal-scope-list">
+        <li><span class="scope-bullet"></span> Contributions must be original and not under consideration elsewhere.</li>
+        <li><span class="scope-bullet"></span> Accepted contributions are reserved to the journal.</li>
+        <li><span class="scope-bullet"></span> Articles should not exceed 8,000 words (including figures, notes, and references).</li>
+        <li><span class="scope-bullet"></span> Research reports should not exceed 5,000 words.</li>
+        <li><span class="scope-bullet"></span> Use footnotes (not endnotes), numbered consecutively.</li>
+        <li><span class="scope-bullet"></span> Keep footnotes to an absolute minimum.</li>
+        <li><span class="scope-bullet"></span> References should be listed alphabetically using the journal's examples.</li>
+        <li><span class="scope-bullet"></span> In-text citations should follow the format (Author Year:Page).</li>
+        <li><span class="scope-bullet"></span> Manuscripts should be sent as Word attachments by email.</li>
+        <li><span class="scope-bullet"></span> Manuscripts are not returned to authors; submit copies only.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT ISSUE -->
+<section id="current-issue">
+  <div class="issue-header reveal">
+    <div>
+      <div class="section-label">Current Listing</div>
+      <h2 class="section-title">Latest Referenced Issue — <em>Vol. 8 (Sept 2023)</em></h2>
+    </div>
+  </div>
+
+  <div class="articles-list">
+    <div class="article-card reveal">
+      <div class="article-num">1</div>
+      <div>
+        <div class="article-type">Current Issue Reference</div>
+        <div class="article-title">Ghana Journal of Sociology &amp; Anthropology (GJSA) — Volume 8 (September 2023)</div>
+        <div class="article-authors">Published by GSAA · Department of Sociology, University of Ghana</div>
+        <div class="article-abstract">This is the most recent issue listed on the University of Ghana Department of Sociology journals page.</div>
+      </div>
+      <div class="article-action">
+        <a class="btn-ghost btn-xs" href="https://www.ug.edu.gh/sociology/journals" target="_blank" rel="noopener">View Source</a>
+      </div>
+    </div>
+
+    <div class="article-card reveal reveal-delay-1">
+      <div class="article-num">2</div>
+      <div>
+        <div class="article-type">Editorial Note</div>
+        <div class="article-title">Production Editing Note</div>
+        <div class="article-authors">Production editing of the listed issue was undertaken by Daniel Yaw Fiaveh.</div>
+        <div class="article-abstract">The published note states that views expressed in papers are those of the authors and do not necessarily reflect those of the editor or the association.</div>
+      </div>
+      <div class="article-action">
+        <a class="btn-ghost btn-xs" href="https://www.ug.edu.gh/sociology/journals" target="_blank" rel="noopener">Verify</a>
+      </div>
+    </div>
+
+    <div class="article-card reveal reveal-delay-2">
+      <div class="article-num">3</div>
+      <div>
+        <div class="article-type">Editorial Contact</div>
+        <div class="article-title">Manuscript Submission Email</div>
+        <div class="article-authors">gjsa.editor@ug.edu.gh</div>
+        <div class="article-abstract">Contributors are directed to send manuscripts by email attachment in Word format.</div>
+      </div>
+      <div class="article-action">
+        <a class="btn-ghost btn-xs" href="mailto:gjsa.editor@ug.edu.gh">Email Editor</a>
+      </div>
+    </div>
+
+    <div class="article-card reveal reveal-delay-3">
+      <div class="article-num">4</div>
+      <div>
+        <div class="article-type">Association Contact</div>
+        <div class="article-title">GSAA Office Contact Details</div>
+        <div class="article-authors">+233-(0)558602303 · gsaaoffice@gmail.com · gsaagroup@gmail.com</div>
+        <div class="article-abstract">Publisher correspondence is listed under GSAA, c/o Department of Sociology, University of Ghana, P.O. Box LG65, Legon, Accra, Ghana.</div>
+      </div>
+      <div class="article-action">
+        <a class="btn-ghost btn-xs" href="mailto:gsaaoffice@gmail.com">Contact Office</a>
+      </div>
+    </div>
+
+    <div class="article-card reveal">
+      <div class="article-num">5</div>
+      <div>
+        <div class="article-type">Citation Guidance</div>
+        <div class="article-title">References and In-Text Citation Format</div>
+        <div class="article-authors">Bibliography in alphabetical order · in-text format (Amoako 1999:235)</div>
+        <div class="article-abstract">Examples are provided for journal articles, books, and chapters in edited books under the Notes to Contributors section.</div>
+      </div>
+      <div class="article-action">
+        <a class="btn-ghost btn-xs" href="#submissions">See Guidelines</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVE -->
+<section class="bg-cream" id="archive">
+  <div class="reveal section-intro section-intro--gap-sm">
+    <div class="section-label">Archive</div>
+    <p class="body-text">Issue references below follow the listing currently available on the University of Ghana Department of Sociology journals page.</p>
+    <div class="archive-filter">
+      <input type="text" id="archiveSearch" class="form-input" placeholder="Search volumes, years, or titles…" aria-label="Search archive">
+    </div>
+  </div>
+
+  <div class="archive-grid" id="archiveGrid">
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EbnQftuGzA9HmTgnCtCmAJMBP_BgOVzIugCkZH-OkMnzpw?e=xMhtV2" target="_blank" rel="noopener" class="archive-card reveal">
+      <div class="archive-vol">Vol 8</div>
+      <div class="archive-year">2023</div>
+      <div class="archive-count">GJSA · September 2023</div>
+    </a>
+    <a href="https://drive.google.com/file/d/1uJ0_9_lkEIhyGDodcf5qCTN9HunAmNPi/view?usp=sharing" target="_blank" rel="noopener" class="archive-card reveal reveal-delay-1">
+      <div class="archive-vol">Vol 7</div>
+      <div class="archive-year">2021</div>
+      <div class="archive-count">GJSA · June 2021</div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EacO9p4GFCZFhHqFy8vX7zABIIh7CMSwEvgsf0CjC1n6NQ?e=iTwGm5" target="_blank" rel="noopener" class="archive-card reveal reveal-delay-2">
+      <div class="archive-vol">Vol 6</div>
+      <div class="archive-year">2018</div>
+      <div class="archive-count">LJS · No. 1</div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EYAtOraZO49FkkQ1hNlsRc4BDxVILio__zQm-VeQFwER5w?e=ox35RC" target="_blank" rel="noopener" class="archive-card reveal reveal-delay-3">
+      <div class="archive-vol">Vol 5</div>
+      <div class="archive-year">2015</div>
+      <div class="archive-count">LJS · No. 2</div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EVyBs8W6V3BOgOce-0AU5bIBGNytKpIoj0R6kBAuYWW8Pw?e=KskiJU" target="_blank" rel="noopener" class="archive-card reveal">
+      <div class="archive-vol">Vol 5</div>
+      <div class="archive-year">2013</div>
+      <div class="archive-count">LJS · No. 1</div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EQussrSQgz1FoP_hRPuiqlABkosjXgKrNGXVzqqOoyxsgA?e=gSB7eG" target="_blank" rel="noopener" class="archive-card reveal reveal-delay-1">
+      <div class="archive-vol">Vol 4</div>
+      <div class="archive-year">2011</div>
+      <div class="archive-count">LJS · No. 2</div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EWUUoCzjAbVGkeIIfkBkygIBlqI88OcQFIkRjMhAF9sBdA?e=diXvJU" target="_blank" rel="noopener" class="archive-card reveal reveal-delay-2">
+      <div class="archive-vol">Vol 4</div>
+      <div class="archive-year">2010</div>
+      <div class="archive-count">LJS · No. 1</div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EVsI4oamu1NNs5LPthQNvwMBN2dTFFjXw3a_QWZniUgBRQ?e=wPGERg" target="_blank" rel="noopener" class="archive-card reveal reveal-delay-3">
+      <div class="archive-vol">Vol 3</div>
+      <div class="archive-year">2009</div>
+      <div class="archive-count">LJS · No. 2</div>
+    </a>
+  </div>
+</section>
+
+<!-- EDITORIAL BOARD -->
+<section id="editorial-board">
+  <div class="reveal text-center board-header">
+    <div class="section-label">Governance</div>
+    <h2 class="section-title">Editorial <em>Board</em></h2>
+    <p class="board-intro">The journals page currently emphasizes publisher and advisory information, while full board membership details are not publicly expanded in the visible listing.</p>
+  </div>
+
+  <div class="board-grid">
+    <div class="board-card reveal">
+      <div class="board-avatar board-avatar--gold">KA</div>
+      <div class="board-role">Publisher</div>
+      <div class="board-name">Ghana Sociological &amp; Anthropological Association (GSAA)</div>
+      <div class="board-affil">c/o Department of Sociology, University of Ghana</div>
+    </div>
+    <div class="board-card reveal reveal-delay-1">
+      <div class="board-avatar board-avatar--red">AA</div>
+      <div class="board-role">Office Email</div>
+      <div class="board-name">gsaaoffice@gmail.com</div>
+      <div class="board-affil">Publisher contact</div>
+    </div>
+    <div class="board-card reveal reveal-delay-2">
+      <div class="board-avatar board-avatar--green">SC</div>
+      <div class="board-role">Journal Email</div>
+      <div class="board-name">gsaagroup@gmail.com</div>
+      <div class="board-affil">Journal correspondence</div>
+    </div>
+    <div class="board-card reveal">
+      <div class="board-avatar">WB</div>
+      <div class="board-role">Manuscript Email</div>
+      <div class="board-name">gjsa.editor@ug.edu.gh</div>
+      <div class="board-affil">Notes to Contributors</div>
+    </div>
+    <div class="board-card reveal reveal-delay-1">
+      <div class="board-avatar board-avatar--deep">EO</div>
+      <div class="board-role">Telephone</div>
+      <div class="board-name">+233-(0)558602303</div>
+      <div class="board-affil">GSAA office line</div>
+    </div>
+    <div class="board-card reveal reveal-delay-2">
+      <div class="board-avatar board-avatar--red">YD</div>
+      <div class="board-role">Address</div>
+      <div class="board-name">P.O. Box LG65, Legon, Accra</div>
+      <div class="board-affil">University of Ghana</div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMISSION GUIDELINES & CFP -->
+<section class="bg-cream" id="submissions">
+  <div class="reveal section-intro section-intro--gap-md">
+    <div class="section-label">For Authors</div>
+    <h2 class="section-title">Submission <em>Guidelines</em></h2>
+  </div>
+
+  <div class="guidelines-grid">
+    <div>
+      <p class="body-text body-text--mb">The Notes to Contributors specify submission requirements for original manuscripts, reference formatting, citation style, and document handling expectations.</p>
+      <div class="step-list">
+        <div class="step-item reveal">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Ensure Originality</div>
+            <div class="step-text">All contributions should be original and must not be under consideration elsewhere.</div>
+          </div>
+        </div>
+        <div class="step-item reveal reveal-delay-1">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Apply Word Limits</div>
+            <div class="step-text">Articles should not exceed 8,000 words, while research reports should not exceed 5,000 words (including figures, notes, and references).</div>
+          </div>
+        </div>
+        <div class="step-item reveal reveal-delay-2">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Use Required Referencing</div>
+            <div class="step-text">Provide bibliographical references in alphabetical order and use in-text citations in the form (Author Year:Page).</div>
+          </div>
+        </div>
+        <div class="step-item reveal reveal-delay-3">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Submit by Email Attachment</div>
+            <div class="step-text">Submit the manuscript as a Word document via email to gjsa.editor@ug.edu.gh. Use footnotes (not endnotes) and keep them minimal.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="guidelines-info reveal">
+        <div class="guidelines-info-title">Submission Details</div>
+        <dl>
+          <dt>Article limit</dt>
+          <dd>8,000 words maximum</dd>
+          <dt>Report limit</dt>
+          <dd>5,000 words maximum</dd>
+          <dt>Citation</dt>
+          <dd>Author-year-page format (e.g. Amoako 1999:235)</dd>
+          <dt>Language</dt>
+          <dd>English</dd>
+          <dt>References</dt>
+          <dd>Alphabetical bibliography with journal examples</dd>
+          <dt>Notes</dt>
+          <dd>Footnotes only (not endnotes), minimal use</dd>
+          <dt>Format</dt>
+          <dd>Microsoft Word (.docx)</dd>
+          <dt>Artwork</dt>
+          <dd>Camera-ready maps, figures, and diagrams required</dd>
+          <dt>Returns</dt>
+          <dd>Manuscripts are not returned; submit copies only</dd>
+          <dt>Contact</dt>
+          <dd>gjsa.editor@ug.edu.gh</dd>
+        </dl>
+      </div>
+
+      <!-- CFP -->
+      <div class="cfp-banner cfp-banner--spaced reveal" id="cfp">
+        <div class="cfp-banner-inner">
+          <div class="section-label">Submission Channel</div>
+          <h3>Send manuscripts to:<br><em>gjsa.editor@ug.edu.gh</em></h3>
+          <p>Submit your manuscript as a Word attachment and follow the Notes to Contributors for formatting, referencing, and citation conventions.</p>
+          <p class="cfp-deadline"><strong>Publisher office:</strong> gsaaoffice@gmail.com</p>
+          <a href="mailto:gjsa.editor@ug.edu.gh" class="btn-primary cfp-btn">Email the Editor →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKING PAPERS -->
+<section id="working-papers">
+  <div class="reveal section-intro section-intro--gap-sm">
+    <div class="section-label">Archive Extension</div>
+    <h2 class="section-title">Earlier <em>Issue References</em></h2>
+    <p class="body-text">Additional issue references listed on the UG journals page are included below for quick navigation planning.</p>
+  </div>
+
+  <div class="wp-list">
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EaR0nCJrvmJMk8OXT9RQ82QBpIpZxkquJRpvN2x1PE0SPA?e=s9et5I" target="_blank" rel="noopener" class="wp-card reveal">
+      <div class="wp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div>
+        <div class="wp-title">Legon Journal of Sociology (LJS) Volume 3 No 1 (2006)</div>
+        <div class="wp-meta">Previous issue reference</div>
+      </div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/Ed-x-giqpM1PoAcn9r8BQgwBXXH_aT9791sk0QGLyOV9JA?e=FwwQFd" target="_blank" rel="noopener" class="wp-card reveal reveal-delay-1">
+      <div class="wp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div>
+        <div class="wp-title">Legon Journal of Sociology (LJS) Volume 2 No 1 (2005)</div>
+        <div class="wp-meta">Previous issue reference</div>
+      </div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EcFDDQYRU9tJuz5kHLuR6ysBWO8T0ifMB6BjHVFQ8GfyMA?e=MZwqFn" target="_blank" rel="noopener" class="wp-card reveal reveal-delay-2">
+      <div class="wp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div>
+        <div class="wp-title">Legon Journal of Sociology (LJS) Volume 1 No 2 (2004)</div>
+        <div class="wp-meta">Previous issue reference</div>
+      </div>
+    </a>
+    <a href="https://ugedugh-my.sharepoint.com/:b:/g/personal/rkbasante_ug_edu_gh/EZUnd1QbkwVJn0KrazyqqWEBMJGoUTwE3PRDg1-TuXuHtw?e=aWCQYj" target="_blank" rel="noopener" class="wp-card reveal reveal-delay-3">
+      <div class="wp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div>
+        <div class="wp-title">Legon Journal of Sociology (LJS) Volume 1 No 1 (2004)</div>
+        <div class="wp-meta">Previous issue reference</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="journal-cta">
+  <div class="journal-cta-inner">
+    <div class="section-label section-label--center reveal">Contribute</div>
+    <h2 class="section-title reveal">
+      Submit Your <em class="text-gold">Manuscript</em>
+    </h2>
+    <p class="journal-cta-text reveal">
+      Follow the Notes to Contributors, format references correctly, and submit your original manuscript by email attachment for editorial consideration.
+    </p>
+    <div class="journal-cta-actions reveal">
+      <a href="mailto:gjsa.editor@ug.edu.gh" class="btn-primary">Submit to Editor →</a>
+      <a href="https://www.ug.edu.gh/sociology/journals" target="_blank" rel="noopener" class="btn-outline btn-outline--light">View UG Journals Page</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/components.js"></script>
+<script>
+  GSAA.init({ page: 'journal.html' });
+
+  // Archive Search/Filter
+  const archiveSearch = document.getElementById('archiveSearch');
+  const archiveGrid = document.getElementById('archiveGrid');
+  if (archiveSearch && archiveGrid) {
+    const archiveCards = archiveGrid.querySelectorAll('.archive-card');
+
+    archiveSearch.addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase().trim();
+      archiveCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const match = text.includes(q);
+        card.style.display = match ? 'block' : 'none';
+      });
+      
+      const visible = Array.from(archiveCards).filter(c => c.style.display !== 'none').length;
+      if (visible === 0 && q) {
+        if (!document.getElementById('archiveNoResults')) {
+          const msg = document.createElement('div');
+          msg.id = 'archiveNoResults';
+          msg.className = 'body-text text-center';
+          msg.style.gridColumn = '1 / -1';
+          msg.style.padding = '3rem 0';
+          msg.textContent = 'No matching issues found.';
+          archiveGrid.appendChild(msg);
+        }
+      } else {
+        document.getElementById('archiveNoResults')?.remove();
+      }
+    });
+  }
+</script>
+</body>
+</html>

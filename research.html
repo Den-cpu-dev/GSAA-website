@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — GSAA | Ghana Sociological & Anthropological Association</title>
+<meta name="description" content="Explore GSAA's six core research areas — from chieftaincy and governance to identity and nationhood — driving sociological and anthropological inquiry in Ghana.">
+<meta property="og:title" content="GSAA Research — Scholarly Focus Areas">
+<meta property="og:description" content="Advancing understanding of Ghanaian society through six core research clusters.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://gsaa.org.gh/research.html">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav-footer.css">
+<style>
+/* ── RESEARCH AREAS GRID ── */
+.research-areas { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.research-card {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 2rem; align-items: start;
+  padding: 2.5rem; background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08); border-radius: 4px;
+  transition: all 0.3s;
+}
+.research-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg); border-color: transparent;
+}
+
+.research-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 900;
+  color: rgba(44,95,63,0.08); line-height: 1;
+}
+
+.research-icon {
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-accent));
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.research-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.research-text {
+  font-size: 0.88rem; line-height: 1.8;
+  color: var(--text-light); margin-bottom: 1.2rem;
+}
+
+.research-themes {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+
+.research-theme {
+  padding: 0.3rem 0.8rem;
+  background: var(--cream); border-radius: 20px;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-mid);
+}
+
+/* ── FEATURED PROJECTS ── */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
+}
+
+.project-card {
+  padding: 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.project-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-4px);
+}
+
+.project-status {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.68rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.project-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+}
+.project-status-dot.completed { background: var(--green-accent); }
+
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--cream); margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.project-pi {
+  font-size: 0.78rem; color: rgba(245,239,224,0.5);
+  margin-bottom: 0.75rem;
+}
+
+.project-text {
+  font-size: 0.82rem; line-height: 1.7;
+  color: rgba(245,239,224,0.45);
+}
+
+.project-tags {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.project-tag {
+  padding: 0.2rem 0.7rem;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px; font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── METHODOLOGY ── */
+.methods-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
+}
+
+.method-card {
+  padding: 2rem; background: var(--cream);
+  border-radius: 4px; border-left: 4px solid var(--gold);
+  transition: all 0.3s;
+}
+.method-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+
+.method-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 0.5rem;
+}
+
+.method-text {
+  font-size: 0.84rem; line-height: 1.7;
+  color: var(--text-light);
+}
+
+/* ── RESEARCH PROJECTS SECTION ── */
+.research-projects {
+  background: var(--green-deep); position: relative; overflow: hidden;
+}
+.research-projects-circle {
+  position: absolute; top: -100px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  border: 80px solid rgba(201,168,76,0.05);
+}
+.research-projects .section-title { color: var(--cream); }
+
+/* ── CTA SECTION ── */
+.research-cta {
+  background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-deep) 60%);
+  text-align: center; position: relative; overflow: hidden;
+}
+.research-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(201,168,76,0.05) 0px, rgba(201,168,76,0.05) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg, rgba(201,168,76,0.05) 0px, rgba(201,168,76,0.05) 1px, transparent 1px, transparent 80px);
+}
+.research-cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.research-cta .section-title { color: var(--cream); margin-bottom: 1.5rem; }
+.research-cta .section-label { justify-content: center; margin-bottom: 1.5rem; }
+.research-cta-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-style: italic;
+  color: rgba(245,239,224,0.65); line-height: 1.8;
+  margin-bottom: 3rem;
+}
+.research-cta-actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .research-card { grid-template-columns: 1fr; gap: 1rem; }
+  .research-num { font-size: 2.5rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .methods-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Research</span>
+    </nav>
+    <div class="page-hero-label">Scholarly Focus</div>
+    <h1>Areas of <em>Research</em></h1>
+    <p>Six interconnected research clusters driving sociological and anthropological inquiry across Ghana and the broader African continent.</p>
+  </div>
+</section>
+
+<!-- RESEARCH AREAS -->
+<section class="bg-cream">
+  <div class="reveal section-intro section-intro--gap">
+    <div class="section-label">Research Clusters</div>
+    <h2 class="section-title">Understanding <em>Ghanaian Society</em></h2>
+    <p class="body-text">GSAA members contribute to six core research domains that reflect the most pressing questions in Ghanaian and African social science. Each cluster brings together scholars, postgraduates, and practitioners working on shared themes.</p>
+  </div>
+
+  <div class="research-areas">
+    <div class="research-card reveal">
+      <div class="research-num">01</div>
+      <div>
+        <div class="research-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4"/></svg></div>
+        <div class="research-title">Chieftaincy & Traditional Governance</div>
+        <div class="research-text">Examining the evolving role of traditional authority in contemporary Ghanaian governance, law, and community life. Research explores how traditional rulers navigate constitutional roles, mediate land disputes, and serve as custodians of cultural identity across Ghana's 16 regions.</div>
+        <div class="research-themes">
+          <span class="research-theme">Land tenure</span>
+          <span class="research-theme">Customary law</span>
+          <span class="research-theme">Palace politics</span>
+          <span class="research-theme">Cultural preservation</span>
+          <span class="research-theme">Succession disputes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-card reveal reveal-delay-1">
+      <div class="research-num">02</div>
+      <div>
+        <div class="research-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="research-title">Kinship, Family & Social Structure</div>
+        <div class="research-text">Exploring matrilineal and patrilineal systems, gender roles, and the transformation of family in urbanising Ghana. Studies examine how lineage systems shape inheritance, childcare, and marriage — and how urbanisation is reshaping these age-old structures.</div>
+        <div class="research-themes">
+          <span class="research-theme">Matriliny</span>
+          <span class="research-theme">Marriage practices</span>
+          <span class="research-theme">Gender dynamics</span>
+          <span class="research-theme">Childcare systems</span>
+          <span class="research-theme">Inheritance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-card reveal reveal-delay-2">
+      <div class="research-num">03</div>
+      <div>
+        <div class="research-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <div class="research-title">Religion, Belief & Social Life</div>
+        <div class="research-text">Investigating how Christianity, Islam, and indigenous spiritual practices shape identity and community cohesion. Scholars examine how pluralistic religious landscapes co-exist and compete in shaping public morality and political participation in Ghana.</div>
+        <div class="research-themes">
+          <span class="research-theme">Pentecostalism</span>
+          <span class="research-theme">Islamic communities</span>
+          <span class="research-theme">Indigenous belief</span>
+          <span class="research-theme">Religious pluralism</span>
+          <span class="research-theme">Faith & politics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-card reveal">
+      <div class="research-num">04</div>
+      <div>
+        <div class="research-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M3 21h18M9 21V3l6 4v14M15 21V7"/><rect x="3" y="9" width="6" height="12"/></svg></div>
+        <div class="research-title">Urbanisation & Migration</div>
+        <div class="research-text">Understanding the social consequences of rapid urban growth, internal migration, and diaspora formations. Research tracks rural-urban migration patterns, informal settlements, and the social capital networks migrants build in Ghanaian cities.</div>
+        <div class="research-themes">
+          <span class="research-theme">Rural-urban migration</span>
+          <span class="research-theme">Informal economy</span>
+          <span class="research-theme">Diaspora</span>
+          <span class="research-theme">Slum studies</span>
+          <span class="research-theme">Social networks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-card reveal reveal-delay-1">
+      <div class="research-num">05</div>
+      <div>
+        <div class="research-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+        <div class="research-title">Development & Social Policy</div>
+        <div class="research-text">Bridging social science research with policy to address poverty, inequality, health, and education in Ghana. Work bridges ethnography with policy analysis to assess the social impact of national programmes including LEAP, NHIS, and Free SHS.</div>
+        <div class="research-themes">
+          <span class="research-theme">Social protection</span>
+          <span class="research-theme">Health systems</span>
+          <span class="research-theme">Education policy</span>
+          <span class="research-theme">Poverty analysis</span>
+          <span class="research-theme">Programme evaluation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-card reveal reveal-delay-2">
+      <div class="research-num">06</div>
+      <div>
+        <div class="research-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="research-title">Identity, Ethnicity & Nationhood</div>
+        <div class="research-text">Tracing how ethnic identities, pan-Africanism, and national consciousness shape social relations across Ghana. Studies interrogate how ethnic identities are mobilised in politics, how diaspora communities negotiate belonging, and pan-African solidarity today.</div>
+        <div class="research-themes">
+          <span class="research-theme">Ethnic politics</span>
+          <span class="research-theme">Pan-Africanism</span>
+          <span class="research-theme">National identity</span>
+          <span class="research-theme">Diaspora belonging</span>
+          <span class="research-theme">Cultural citizenship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED RESEARCH PROJECTS -->
+<section class="research-projects">
+  <div class="research-projects-circle"></div>
+  <div class="reveal section-intro section-intro--gap-sm pos-relative z-1">
+    <div class="section-label">Current Work</div>
+    <h2 class="section-title">Featured <em class="text-gold">Research Projects</em></h2>
+    <p class="body-text--light">Selected ongoing and recently completed studies by GSAA members, demonstrating the breadth and depth of sociological and anthropological research in Ghana.</p>
+  </div>
+
+  <div class="projects-grid pos-relative z-1">
+    <div class="project-card reveal">
+      <div class="project-status"><span class="project-status-dot"></span> Ongoing</div>
+      <div class="project-title">Land Rights, Chiefly Authority & Community Belonging in Northern Ghana</div>
+      <div class="project-pi">PI: Prof. Alhassan S. Anamzoya · University of Ghana</div>
+      <div class="project-text">A three-year ethnographic study examining how land disputes intersect with traditional governance and identity in the Upper East and Upper West regions.</div>
+      <div class="project-tags">
+        <span class="project-tag">Chieftaincy</span>
+        <span class="project-tag">Land tenure</span>
+        <span class="project-tag">Ethnography</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-status"><span class="project-status-dot"></span> Ongoing</div>
+      <div class="project-title">Digital Pentecostalism: Social Media & Religious Authority in Urban Accra</div>
+      <div class="project-pi">PI: Dr. Sarah Commey · KNUST</div>
+      <div class="project-text">Investigating how new-generation Pentecostal leaders use social media platforms to build religious authority and community among young urban Ghanaians.</div>
+      <div class="project-tags">
+        <span class="project-tag">Religion</span>
+        <span class="project-tag">Digital culture</span>
+        <span class="project-tag">Urban youth</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-status"><span class="project-status-dot completed"></span> Completed 2025</div>
+      <div class="project-title">NHIS & Social Equity: A Mixed-Methods Assessment in Rural Ghana</div>
+      <div class="project-pi">PI: Prof. William Boateng · University of Cape Coast</div>
+      <div class="project-text">Evaluated the equity impact of Ghana's National Health Insurance Scheme across five rural districts, combining household surveys with in-depth community narratives.</div>
+      <div class="project-tags">
+        <span class="project-tag">Health policy</span>
+        <span class="project-tag">Mixed methods</span>
+        <span class="project-tag">Social equity</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-3">
+      <div class="project-status"><span class="project-status-dot"></span> Ongoing</div>
+      <div class="project-title">Matrilineal Succession & Gender in Contemporary Akan Society</div>
+      <div class="project-pi">PI: Dr. Efua Owusu · University of Cape Coast</div>
+      <div class="project-text">Exploring how matrilineal inheritance practices among the Akan are being contested and renegotiated in the context of constitutional law, urbanisation, and changing gender expectations.</div>
+      <div class="project-tags">
+        <span class="project-tag">Kinship</span>
+        <span class="project-tag">Gender</span>
+        <span class="project-tag">Akan studies</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGICAL APPROACHES -->
+<section>
+  <div class="reveal section-intro section-intro--gap-sm">
+    <div class="section-label">Methodology</div>
+    <h2 class="section-title">Research <em>Approaches</em></h2>
+    <p class="body-text">GSAA scholars employ a wide range of methodologies rooted in both global social science traditions and African epistemological frameworks.</p>
+  </div>
+
+  <div class="methods-grid">
+    <div class="method-card reveal">
+      <div class="method-title">Ethnography & Fieldwork</div>
+      <div class="method-text">Long-term participant observation, community immersion, and thick description remain central to our anthropological tradition. GSAA members conduct fieldwork in every region of Ghana.</div>
+    </div>
+    <div class="method-card reveal reveal-delay-1">
+      <div class="method-title">Survey & Quantitative Analysis</div>
+      <div class="method-text">Large- and small-scale surveys, statistical modelling, and demographic analysis are used to identify patterns and test hypotheses across populations.</div>
+    </div>
+    <div class="method-card reveal reveal-delay-2">
+      <div class="method-title">Mixed Methods</div>
+      <div class="method-text">Combining qualitative depth with quantitative breadth, many GSAA projects use sequential or concurrent mixed-methods designs to address complex social questions.</div>
+    </div>
+    <div class="method-card reveal">
+      <div class="method-title">Oral History & Narrative</div>
+      <div class="method-text">Collecting and interpreting oral traditions, life histories, and narrative accounts — particularly valuable for researching communities with rich oral traditions.</div>
+    </div>
+    <div class="method-card reveal reveal-delay-1">
+      <div class="method-title">Participatory Action Research</div>
+      <div class="method-text">Community-engaged research where participants co-design studies and apply findings. Increasingly used in policy-oriented work on health, education, and development.</div>
+    </div>
+    <div class="method-card reveal reveal-delay-2">
+      <div class="method-title">Digital & Computational Methods</div>
+      <div class="method-text">Emerging approaches including digital ethnography, social media analysis, GIS mapping, and computational text analysis of archival and media sources.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="research-cta">
+  <div class="research-cta-inner">
+    <div class="section-label section-label--center reveal">Collaborate</div>
+    <h2 class="section-title reveal">
+      Contribute to <em class="text-gold">GSAA Research</em>
+    </h2>
+    <p class="research-cta-text reveal">
+      Whether you're a seasoned scholar or an early-career researcher, GSAA offers platforms to present your work, join research clusters, and collaborate across disciplines and institutions.
+    </p>
+    <div class="research-cta-actions reveal">
+      <a href="journal.html" class="btn-primary">Submit to the Journal →</a>
+      <a href="membership.html" class="btn-outline btn-outline--light">Join GSAA</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/components.js"></script>
+<script>
+  GSAA.init({ page: 'research.html' });
+</script>
+</body>
+</html>
