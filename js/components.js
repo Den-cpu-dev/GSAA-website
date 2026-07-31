@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   GSAA — Shared Components
+   GSAA - Shared Components
    Navigation, Footer, Modals, Search
 ══════════════════════════════════════════ */
 
@@ -22,6 +22,7 @@ const GSAA = (function () {
       <li><a href="journal.html">Journal</a></li>
       <li><a href="membership.html">Membership</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li><a href="portal.html">Portal</a></li>
       <li>
         <button class="nav-theme-btn" id="navThemeBtn" aria-label="Toggle theme">
           <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -50,6 +51,7 @@ const GSAA = (function () {
       <li><a href="journal.html" class="mobile-nav-link">Journal</a></li>
       <li><a href="membership.html" class="mobile-nav-link">Membership</a></li>
       <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      <li><a href="portal.html" class="mobile-nav-link">Portal</a></li>
       <li><a href="membership.html" class="mobile-nav-link mobile-nav-cta">Join GSAA</a></li>
     </ul>
   </div>`;
@@ -64,7 +66,7 @@ const GSAA = (function () {
           <img src="images/logo.jpg" alt="GSAA logo" class="footer-logo-img">
           <div class="footer-name">GSAA<small>Ghana Sociological &amp; Anthropological Association</small></div>
         </div>
-        <p class="footer-tagline">Advancing the understanding of Ghanaian society through scholarly inquiry, community engagement, and academic excellence since 1974.</p>
+        <p class="footer-tagline">Advancing the understanding of Ghanaian society through scholarly inquiry, community engagement, and academic excellence since 1963.</p>
         <div class="footer-social">
           <a href="#" aria-label="Twitter" class="social-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -155,6 +157,818 @@ const GSAA = (function () {
     </div>
   </div>`;
 
+  /* ─── SUCCESS MODAL HTML ─── */
+  /* ─── SUCCESS MODAL HTML ─── */
+  const SUCCESS_MODAL_HTML = `
+  <div id="gsaaSuccessModal" class="gsaa-success-modal-overlay" style="display: none;">
+    <div class="gsaa-success-modal-box">
+      <!-- Loading State -->
+      <div id="gsaaModalLoading" class="gsaa-modal-loading-state">
+        <div class="gsaa-modal-spinner"></div>
+        <p id="gsaaModalLoadingText">Processing request...</p>
+      </div>
+      
+      <!-- Success State -->
+      <div id="gsaaModalSuccess" class="gsaa-modal-success-state" style="display: none;">
+        <div class="gsaa-checkmark-container">
+          <svg class="gsaa-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="gsaa-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="gsaa-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h3 id="gsaaModalTitle">Submission Successful</h3>
+        <p id="gsaaModalMessage">Thank you for your submission.</p>
+        
+        <!-- Receipt container -->
+        <div id="gsaaReceiptContainer" style="display: none; margin-top: 1.5rem; margin-bottom: 1.5rem;"></div>
+        
+        <div class="gsaa-modal-actions">
+          <button id="gsaaReceiptDownloadBtn" class="btn-outline" style="display: none; margin-bottom: 0.8rem; width: 100%; font-size: 0.85rem; padding: 0.6rem;">Download Invoice Receipt</button>
+          <button id="gsaaPayDuesBtn" class="btn-primary" style="display: none; margin-bottom: 0.8rem; width: 100%; font-size: 0.85rem; padding: 0.6rem; background: #3fb58e; border-color: #3fb58e;">Pay Dues Online (Paystack)</button>
+          <button id="gsaaCloseModalBtn" class="btn-primary" onclick="GSAA.closeSuccessModal()" style="width: 100%; font-size: 0.85rem; padding: 0.6rem;">Close Window</button>
+        </div>
+      </div>
+      
+      <!-- Password Setup State -->
+      <div id="gsaaModalPasswordSetup" class="gsaa-modal-password-setup-state" style="display: none; text-align: left;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.5rem;text-align:center;color:var(--text-dark)">Set Account Password</h3>
+        <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:1.5rem;text-align:center">Create a password to secure your GSAA Member Portal credentials.</p>
+        <form id="gsaaPasswordSetupForm" onsubmit="GSAA.savePortalPassword(event)">
+          <div class="form-group" style="margin-bottom:1rem">
+            <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:var(--text-dark)">Choose Password *</label>
+            <input type="password" class="form-input" id="setupPassword" required placeholder="Min 6 characters" style="padding:0.6rem;font-size:0.85rem;width:100%">
+          </div>
+          <div class="form-group" style="margin-bottom:1.5rem">
+            <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:var(--text-dark)">Confirm Password *</label>
+            <input type="password" class="form-input" id="setupConfirmPassword" required placeholder="Re-enter password" style="padding:0.6rem;font-size:0.85rem;width:100%">
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;padding:0.75rem;font-size:0.88rem">Save Password &amp; Activate Account</button>
+        </form>
+      </div>
+    </div>
+  </div>`;
+
+  /* ─── PAYSTACK CHECKOUT HTML ─── */
+  const PAYSTACK_HTML = `
+  <div id="paystackModal" class="paystack-overlay" style="display: none;">
+    <div class="paystack-box">
+      <div class="paystack-header">
+        <div class="paystack-brand">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="transform:rotate(45deg)"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+          <span>paystack</span>
+        </div>
+        <button class="paystack-close" onclick="GSAA.closeCheckout()">&times;</button>
+      </div>
+      
+      <div class="paystack-body">
+        <div class="paystack-amount-strip">
+          <span id="paystackEmail" style="color:var(--text-light)">member@gsaa.org</span>
+          <span id="paystackAmount">GHS 200.00</span>
+        </div>
+        
+        <div id="paystackMainFlow">
+          <p class="paystack-instruction">Select your payment method:</p>
+          <div class="paystack-method-selector">
+            <button class="paystack-method-btn active" id="paystackMomoBtn" onclick="GSAA.setPayMethod('momo')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+              Mobile Money
+            </button>
+            <button class="paystack-method-btn" id="paystackCardBtn" onclick="GSAA.setPayMethod('card')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              Card Payment
+            </button>
+          </div>
+          
+          <!-- Momo Form -->
+          <div id="paystackMomoForm" class="paystack-form">
+            <div class="form-group" style="margin-bottom:1rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:#475569">Choose Network</label>
+              <select class="form-input form-select" id="paystackNetwork" style="padding:0.6rem;font-size:0.85rem;width:100%">
+                <option>MTN Mobile Money</option>
+                <option>Telecel Cash</option>
+                <option>AT Money</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:1.5rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:#475569">Phone Number</label>
+              <input type="tel" class="form-input" id="paystackPhone" placeholder="e.g. 024 123 4567" required style="padding:0.6rem;font-size:0.85rem;width:100%">
+            </div>
+          </div>
+          
+          <!-- Card Form -->
+          <div id="paystackCardForm" class="paystack-form" style="display: none;">
+            <div class="form-group" style="margin-bottom:1rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:#475569">Card Number</label>
+              <input type="text" class="form-input" placeholder="4000 1234 5678 9010" required style="padding:0.6rem;font-size:0.85rem;width:100%">
+            </div>
+            <div style="display:flex;gap:1rem;margin-bottom:1.5rem">
+              <div class="form-group" style="flex:1">
+                <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:#475569">Expiry Date</label>
+                <input type="text" class="form-input" placeholder="MM / YY" required style="padding:0.6rem;font-size:0.85rem;width:100%">
+              </div>
+              <div class="form-group" style="flex:1">
+                <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem;color:#475569">CVV</label>
+                <input type="password" class="form-input" placeholder="123" required style="padding:0.6rem;font-size:0.85rem;width:100%">
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn-primary paystack-submit" onclick="GSAA.processCheckoutPayment()">Pay Now</button>
+        </div>
+        
+        <!-- Processing State -->
+        <div id="paystackLoader" class="paystack-loader-state" style="display: none;">
+          <div class="paystack-spinner"></div>
+          <p id="paystackLoaderText" style="font-weight:600;font-size:0.9rem;color:#3fb58e">Sending payment prompt to phone...</p>
+        </div>
+        
+        <!-- Success Check -->
+        <div id="paystackSuccess" class="paystack-success-state" style="display: none;">
+          <div class="paystack-success-icon">&#10004;</div>
+          <h3>Payment Successful</h3>
+          <p style="font-size:0.88rem;color:#475569;margin-bottom:1.5rem">Your dues payment of <span id="paystackDuesPaid" style="font-weight:700">GHS 200.00</span> has been processed successfully.</p>
+          <button class="btn-primary" onclick="GSAA.completeCheckout()" style="width:100%;padding:0.75rem;font-size:0.88rem">Setup Portal Account</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+  /* ─── SUCCESS MODAL STYLES ─── */
+  const SUCCESS_MODAL_STYLES = `
+  .gsaa-success-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7, 21, 38, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 11000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+  .gsaa-success-modal-box {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 450px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+    position: relative;
+    text-align: center;
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  [data-theme="dark"] .gsaa-success-modal-box {
+    background: #0A1C2E;
+    border-color: rgba(255,255,255,0.06);
+  }
+  @keyframes modalPop {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .gsaa-modal-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+  }
+  .gsaa-modal-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(0,0,0,0.05);
+    border-left-color: var(--green-mid);
+    border-radius: 50%;
+    animation: modalSpin 1s linear infinite;
+    margin-bottom: 1.5rem;
+  }
+  [data-theme="dark"] .gsaa-modal-spinner {
+    border-color: rgba(255,255,255,0.05);
+    border-left-color: var(--gold);
+  }
+  @keyframes modalSpin {
+    100% { transform: rotate(360deg); }
+  }
+  #gsaaModalLoadingText {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  .gsaa-checkmark-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem auto;
+  }
+  .gsaa-checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #22c55e;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #22c55e;
+    animation: fillCircle .4s ease-in-out .4s forwards, scaleCheckmark .3s ease-in-out .9s cubic-bezier(0.19, 1, 0.22, 1) both;
+  }
+  .gsaa-checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #22c55e;
+    fill: none;
+    animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+  .gsaa-checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke: #22c55e;
+    animation: strokeCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  }
+  @keyframes strokeCircle {
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes strokeCheck {
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes fillCircle {
+    100% { box-shadow: inset 0px 0px 0px 40px rgba(34, 197, 94, 0.1); }
+  }
+  #gsaaModalTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.8rem;
+  }
+  #gsaaModalMessage {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--text-light);
+    margin-bottom: 1.8rem;
+  }
+  .gsaa-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .gsaa-receipt-invoice {
+    background: rgba(0,0,0,0.015);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px;
+    padding: 1.2rem;
+    text-align: left;
+    font-size: 0.82rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+  [data-theme="dark"] .gsaa-receipt-invoice {
+    background: rgba(255,255,255,0.015);
+    border-color: rgba(255,255,255,0.06);
+  }
+  .gsaa-receipt-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  [data-theme="dark"] .gsaa-receipt-header {
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+  .gsaa-receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+  .gsaa-receipt-row:last-child {
+    margin-bottom: 0;
+  }
+  .gsaa-receipt-row span:first-child {
+    color: var(--text-light);
+  }
+  .gsaa-receipt-row span:last-child {
+    font-weight: 600;
+  }
+  
+  /* Search overlays highlighting & selections */
+  .search-result-item {
+    cursor: pointer;
+    transition: background 0.15s ease, border-left 0.15s ease;
+  }
+  .search-result-item.selected,
+  .search-result-item:hover {
+    background: rgba(229, 184, 76, 0.08) !important;
+    border-left: 4px solid var(--gold) !important;
+  }
+  .search-result-item mark {
+    background: rgba(229, 184, 76, 0.25);
+    color: inherit;
+    font-weight: 700;
+    padding: 0 0.1rem;
+    border-radius: 2px;
+  }
+  [data-theme="dark"] .search-result-item.selected {
+    background: rgba(229, 184, 76, 0.12) !important;
+  }
+  
+  /* Paystack Checkout Styles */
+  .paystack-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7, 21, 38, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 12000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+  .paystack-box {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 25px 55px rgba(0,0,0,0.22);
+    overflow: hidden;
+    color: #334155;
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  [data-theme="dark"] .paystack-box {
+    background: #0d1e31;
+    border-color: rgba(255,255,255,0.06);
+    color: #cbd5e1;
+  }
+  .paystack-header {
+    background: #fafafb;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  [data-theme="dark"] .paystack-header {
+    background: #091523;
+    border-bottom-color: rgba(255,255,255,0.05);
+  }
+  .paystack-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    color: #3fb58e;
+  }
+  .paystack-close {
+    background: none; border: none; font-size: 1.5rem; color: #94a3b8; cursor: pointer;
+    line-height: 1;
+  }
+  .paystack-close:hover { color: #ef4444; }
+  .paystack-body { padding: 1.5rem; }
+  .paystack-amount-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(63, 181, 142, 0.05);
+    border: 1px solid rgba(63, 181, 142, 0.15);
+    border-radius: 6px;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .paystack-amount-strip span:last-child {
+    font-size: 1.1rem;
+    color: #3fb58e;
+    font-weight: 700;
+  }
+  .paystack-instruction {
+    font-size: 0.82rem; color: #64748b; margin-bottom: 0.8rem;
+  }
+  [data-theme="dark"] .paystack-instruction {
+    color: #94a3b8;
+  }
+  .paystack-method-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .paystack-method-btn {
+    border: 1px solid #e2e8f0;
+    background: none;
+    border-radius: 6px;
+    padding: 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: #475569;
+    transition: all 0.2s;
+  }
+  [data-theme="dark"] .paystack-method-btn {
+    border-color: rgba(255,255,255,0.06);
+    color: #94a3b8;
+  }
+  .paystack-method-btn.active {
+    border-color: #3fb58e;
+    background: rgba(63, 181, 142, 0.04);
+    color: #3fb58e;
+  }
+  .paystack-form {
+    margin-bottom: 1.8rem;
+    animation: fadeIn 0.25s ease forwards;
+  }
+  .paystack-submit {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: #3fb58e !important;
+    color: #ffffff !important;
+    border-color: #3fb58e !important;
+  }
+  .paystack-submit:hover { background: #359f7c !important; }
+  
+  .paystack-loader-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0;
+  }
+  .paystack-spinner {
+    width: 44px;
+    height: 44px;
+    border: 3.5px solid rgba(63, 181, 142, 0.1);
+    border-left-color: #3fb58e;
+    border-radius: 50%;
+    animation: modalSpin 0.9s linear infinite;
+    margin-bottom: 1.5rem;
+  }
+  .paystack-success-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+    text-align: center;
+    animation: scaleCheckmark 0.3s ease-out forwards;
+  }
+  .paystack-success-icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(63, 181, 142, 0.1);
+    color: #3fb58e;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .paystack-success-state h3 {
+    font-size: 1.3rem; margin-bottom: 0.6rem; color: #3fb58e;
+  }
+  `;
+
+  /* ─── LEADER MODAL HTML ─── */
+  const LEADER_MODAL_HTML = `
+  <div id="leaderProfileModal" class="leader-modal-overlay" aria-hidden="true">
+    <div class="leader-modal-box">
+      <button class="leader-modal-close" id="leaderModalCloseBtn" aria-label="Close profile">&times;</button>
+      <div class="leader-modal-content">
+        <div class="leader-modal-photo-col">
+          <div class="leader-modal-photo-wrap" id="leaderModalPhotoContainer" title="Click to view photo full size">
+            <img id="leaderModalImg" src="" alt="" style="display: none;">
+            <div id="leaderModalFallback" class="leader-modal-fallback" style="display: none;"></div>
+          </div>
+          <div class="leader-modal-badge" id="leaderModalBadge">GSAA Leadership</div>
+        </div>
+        <div class="leader-modal-info-col">
+          <div class="leader-modal-role" id="leaderModalRole">Role Title</div>
+          <h2 class="leader-modal-name" id="leaderModalName">Leader Name</h2>
+          <div class="leader-modal-institution" id="leaderModalInstitution" style="display:none;"></div>
+          <div class="leader-modal-divider"></div>
+          <div class="leader-modal-bio" id="leaderModalBio">
+            Biography text...
+          </div>
+          <div class="leader-modal-actions">
+            <a href="contact.html" class="btn-primary" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">Contact Secretariat</a>
+            <button class="btn-outline" id="leaderModalZoomBtn" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">Enlarge Photo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="imageLightboxModal" class="lightbox-overlay" aria-hidden="true">
+    <div class="lightbox-box">
+      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close enlarged photo">&times;</button>
+      <img id="lightboxImg" src="" alt="Leader Photo Enlarged">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>`;
+
+  /* ─── LEADER MODAL & LIGHTBOX STYLES ─── */
+  const LEADER_MODAL_STYLES = `
+  .leader-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7, 21, 38, 0.78);
+    backdrop-filter: blur(8px);
+    z-index: 13000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .leader-modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .leader-modal-box {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid rgba(229, 184, 76, 0.3);
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-dark);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 2.2rem;
+  }
+  [data-theme="dark"] .leader-modal-box {
+    background: #0f172a;
+    border-color: rgba(229, 184, 76, 0.35);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
+    color: #f8fafc;
+  }
+  .leader-modal-overlay.open .leader-modal-box {
+    transform: translateY(0) scale(1);
+  }
+  .leader-modal-close {
+    position: absolute;
+    top: 1.2rem; right: 1.2rem;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+  }
+  [data-theme="dark"] .leader-modal-close {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+  }
+  .leader-modal-close:hover {
+    background: var(--gold);
+    color: #000;
+    transform: rotate(90deg);
+  }
+  .leader-modal-content {
+    display: flex;
+    gap: 1.8rem;
+    align-items: flex-start;
+  }
+  @media (max-width: 640px) {
+    .leader-modal-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  .leader-modal-photo-col {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .leader-modal-photo-wrap {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--gold);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .leader-modal-photo-wrap:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(229, 184, 76, 0.4);
+  }
+  .leader-modal-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .leader-modal-fallback {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--navy-dark), var(--green-mid));
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .leader-modal-badge {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(229, 184, 76, 0.15);
+    color: var(--gold);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(229, 184, 76, 0.3);
+  }
+  .leader-modal-info-col {
+    flex-grow: 1;
+  }
+  .leader-modal-role {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green-accent);
+    margin-bottom: 0.3rem;
+  }
+  .leader-modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+    line-height: 1.25;
+  }
+  [data-theme="dark"] .leader-modal-name {
+    color: #f8fafc;
+  }
+  .leader-modal-institution {
+    font-size: 0.88rem;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .leader-modal-divider {
+    height: 2px;
+    width: 50px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 640px) {
+    .leader-modal-divider { margin: 0.8rem auto; }
+  }
+  .leader-modal-bio {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  .leader-modal-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 640px) {
+    .leader-modal-actions { justify-content: center; }
+  }
+
+  /* Lightbox Overlay */
+  .lightbox-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(12px);
+    z-index: 14000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .lightbox-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lightbox-box {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lightbox-box img {
+    max-width: 100%;
+    max-height: 75vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    border: 3px solid var(--gold);
+    object-fit: contain;
+  }
+  .lightbox-caption {
+    margin-top: 1rem;
+    color: #f8fafc;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    text-align: center;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -2.8rem; right: -1rem;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+  .lightbox-close:hover {
+    background: var(--gold);
+    color: #000;
+  }
+
+  /* Interactive card indicator */
+  .leader-card,
+  .profile-card,
+  .institution-member {
+    cursor: pointer !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+  }
+  .leader-card:hover,
+  .profile-card:hover,
+  .institution-member:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
+  }
+  .profile-photo-wrap,
+  .leader-photo-wrap,
+  .about-photo-wrap,
+  .member-photo-wrap {
+    position: relative;
+  }
+  .profile-photo-wrap::after,
+  .leader-photo-wrap::after,
+  .about-photo-wrap::after,
+  .member-photo-wrap::after {
+    content: '🔍';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7, 21, 38, 0.45);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    backdrop-filter: blur(2px);
+  }
+  .profile-card:hover .profile-photo-wrap::after,
+  .leader-card:hover .leader-photo-wrap::after,
+  .leader-card:hover .about-photo-wrap::after,
+  .institution-member:hover .member-photo-wrap::after {
+    opacity: 1;
+  }
+  `;
+
   /* ─── SEARCH INDEX ─── */
   let searchIndex = [];
   async function loadSearchIndex() {
@@ -163,7 +977,7 @@ const GSAA = (function () {
       searchIndex = await res.json();
     } catch (e) {
       console.warn('GSAA: Search index failed to load. Falling back to basics.');
-      searchIndex = [{ section: 'Home', title: 'GSAA — Home', url: 'index.html' }];
+      searchIndex = [{ section: 'Home', title: 'GSAA - Home', url: 'index.html' }];
     }
   }
 
@@ -203,6 +1017,29 @@ const GSAA = (function () {
       }
     });
 
+    // Inject success modal & paystack checkout if not present
+    if (!document.getElementById('gsaaSuccessModal')) {
+      document.body.insertAdjacentHTML('beforeend', SUCCESS_MODAL_HTML);
+      document.body.insertAdjacentHTML('beforeend', PAYSTACK_HTML);
+      if (!document.getElementById('gsaaSuccessModalStyles')) {
+        const style = document.createElement('style');
+        style.id = 'gsaaSuccessModalStyles';
+        style.innerHTML = SUCCESS_MODAL_STYLES;
+        document.head.appendChild(style);
+      }
+    }
+
+    // Inject leader modal & lightbox if not present
+    if (!document.getElementById('leaderProfileModal')) {
+      document.body.insertAdjacentHTML('beforeend', LEADER_MODAL_HTML);
+      if (!document.getElementById('gsaaLeaderModalStyles')) {
+        const style = document.createElement('style');
+        style.id = 'gsaaLeaderModalStyles';
+        style.innerHTML = LEADER_MODAL_STYLES;
+        document.head.appendChild(style);
+      }
+    }
+
     // Boot all functionality
     loadSearchIndex();
     initTheme();
@@ -214,6 +1051,8 @@ const GSAA = (function () {
     initBackToTop();
     initCookieBanner();
     initSmoothScroll();
+    initFormInterceptors();
+    initLeaderCardModals();
   }
 
   function initTheme() {
@@ -297,12 +1136,15 @@ const GSAA = (function () {
     const navBtn = document.getElementById('navSearchBtn');
     if (!overlay) return;
 
+    let selectedIndex = -1;
+    let currentMatches = [];
+
     const open = () => { 
       overlay.classList.add('open'); 
       document.body.style.overflow = 'hidden'; 
       setTimeout(() => input?.focus(), 100);
-      // Accessibility: Trap focus or at least set initial focus
       input.setAttribute('aria-expanded', 'true');
+      selectedIndex = -1;
     };
     const close = () => { 
       overlay.classList.remove('open'); 
@@ -312,7 +1154,9 @@ const GSAA = (function () {
         input.setAttribute('aria-expanded', 'false');
       }
       if (results) results.innerHTML = ''; 
-      navBtn?.focus(); // Return focus to the button that opened it
+      currentMatches = [];
+      selectedIndex = -1;
+      navBtn?.focus();
     };
 
     navBtn?.addEventListener('click', open);
@@ -326,17 +1170,74 @@ const GSAA = (function () {
     input?.addEventListener('input', () => {
       const q = input.value.toLowerCase().trim();
       results.innerHTML = '';
-      if (!q) return;
-      const matches = searchIndex.filter(i => i.title.toLowerCase().includes(q) || i.section.toLowerCase().includes(q));
-      if (!matches.length) { results.innerHTML = '<div class="search-no-results">No results found.</div>'; return; }
-      matches.slice(0, 8).forEach(item => {
+      selectedIndex = -1;
+      
+      if (!q) {
+        currentMatches = [];
+        return;
+      }
+      
+      currentMatches = searchIndex.filter(i => i.title.toLowerCase().includes(q) || i.section.toLowerCase().includes(q));
+      
+      if (!currentMatches.length) {
+        results.innerHTML = '<div class="search-no-results">No results found.</div>';
+        return;
+      }
+      
+      currentMatches.slice(0, 8).forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'search-result-item';
-        div.innerHTML = `<div class="search-result-section">${item.section}</div><div class="search-result-title">${item.title}</div>`;
+        div.setAttribute('data-index', index);
+        
+        // Highlight query match in title and section using regex
+        const regex = new RegExp(`(${q})`, 'gi');
+        const highlightedTitle = item.title.replace(regex, '<mark>$1</mark>');
+        const highlightedSection = item.section.replace(regex, '<mark>$1</mark>');
+        
+        div.innerHTML = `<div class="search-result-section">${highlightedSection}</div><div class="search-result-title">${highlightedTitle}</div>`;
         div.addEventListener('click', () => { close(); window.location.href = item.url; });
         results.appendChild(div);
       });
     });
+
+    input?.addEventListener('keydown', e => {
+      const items = results.querySelectorAll('.search-result-item');
+      if (!items.length) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % items.length;
+        updateSelection(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        updateSelection(items);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex < items.length) {
+          const matchItem = currentMatches[selectedIndex];
+          if (matchItem) {
+            close();
+            window.location.href = matchItem.url;
+          }
+        } else if (items.length > 0) {
+          const matchItem = currentMatches[0];
+          if (matchItem) {
+            close();
+            window.location.href = matchItem.url;
+          }
+        }
+      }
+    });
+
+    function updateSelection(items) {
+      items.forEach(item => item.classList.remove('selected'));
+      if (selectedIndex >= 0 && selectedIndex < items.length) {
+        const activeItem = items[selectedIndex];
+        activeItem.classList.add('selected');
+        activeItem.scrollIntoView({ block: 'nearest' });
+      }
+    }
   }
 
   function initBackToTop() {
@@ -423,5 +1324,476 @@ const GSAA = (function () {
     toastTimer = setTimeout(() => el.classList.remove('show'), 3500);
   }
 
-  return { init, initCounters, validateForm, showToast };
+  /* ─── SUCCESS MODAL UTILITY ─── */
+  function showSuccessModal(title, message, receiptHTML = '') {
+    const overlay = document.getElementById('gsaaSuccessModal');
+    if (!overlay) return;
+    
+    document.getElementById('gsaaModalLoading').style.display = 'flex';
+    document.getElementById('gsaaModalSuccess').style.display = 'none';
+    document.getElementById('gsaaReceiptContainer').style.display = 'none';
+    document.getElementById('gsaaReceiptDownloadBtn').style.display = 'none';
+    
+    overlay.style.display = 'flex';
+    
+    setTimeout(() => {
+      document.getElementById('gsaaModalLoading').style.display = 'none';
+      document.getElementById('gsaaModalSuccess').style.display = 'block';
+      document.getElementById('gsaaModalTitle').textContent = title;
+      document.getElementById('gsaaModalMessage').textContent = message;
+      
+      if (receiptHTML) {
+        const rc = document.getElementById('gsaaReceiptContainer');
+        rc.innerHTML = receiptHTML;
+        rc.style.display = 'block';
+        
+        const dlBtn = document.getElementById('gsaaReceiptDownloadBtn');
+        dlBtn.style.display = 'block';
+        dlBtn.onclick = () => {
+          printReceipt(receiptHTML);
+        };
+      }
+    }, 1500);
+  }
+
+  function closeSuccessModal() {
+    const overlay = document.getElementById('gsaaSuccessModal');
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  function printReceipt(receiptHTML) {
+    const win = window.open('', '_blank');
+    win.document.write(`
+      <html>
+      <head>
+        <title>GSAA Payment Receipt</title>
+        <style>
+          body { font-family: 'Inter', sans-serif; padding: 2rem; color: #334155; }
+          .receipt { border: 1px solid #e2e8f0; padding: 2rem; border-radius: 8px; max-width: 500px; margin: 0 auto; }
+          .header { text-align: center; border-bottom: 2px solid #E5B84C; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+          .row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.9rem; }
+          .row span:first-child { color: #64748b; }
+          .row span:last-child { font-weight: bold; }
+          .footer { text-align: center; font-size: 0.75rem; color: #94a3b8; margin-top: 2rem; border-top: 1px solid #f1f5f9; padding-top: 1rem; }
+        </style>
+      </head>
+      <body>
+        <div class="receipt">
+          <div class="header">
+            <h2 style="margin:0;font-family:'Playfair Display',serif">GSAA Receipt</h2>
+            <small style="color:#64748b">Ghana Sociological & Anthropological Association</small>
+          </div>
+          ${receiptHTML}
+          <div class="footer">
+            Thank you for supporting the GSAA academic community.<br>
+            Secretariat &copy; ${new Date().getFullYear()} GSAA. All rights reserved.
+          </div>
+        </div>
+        <script>window.print();</script>
+      </body>
+      </html>
+    `);
+    win.document.close();
+  }
+
+  /* ─── FORM SUBMISSION INTERCEPTORS ─── */
+  function initFormInterceptors() {
+    const mForm = document.getElementById('memberForm');
+    if (mForm) {
+      mForm.addEventListener('submit', e => {
+        e.preventDefault();
+        if (validateForm(mForm)) {
+          const title = mForm.querySelector('select[name="title"]')?.value || '';
+          const firstName = mForm.querySelector('input[name="firstName"]')?.value || '';
+          const lastName = mForm.querySelector('input[name="lastName"]')?.value || '';
+          const email = mForm.querySelector('input[name="email"]')?.value || '';
+          const institution = mForm.querySelector('input[name="institution"]')?.value || '';
+          const role = mForm.querySelector('input[name="role"]')?.value || 'Member';
+          const discipline = mForm.querySelector('select[name="discipline"]')?.value || '';
+          
+          const sel = document.getElementById('memberTypeSelect');
+          const tier = sel ? sel.options[sel.selectedIndex].text.split(' - ')[0] : 'Academic Member';
+          const tierVal = sel ? sel.value : 'academic';
+          
+          let amount = 'GHS 200';
+          if (tierVal === 'graduate-student') amount = 'GHS 100';
+          else if (tierVal === 'non-academic') amount = 'GHS 300';
+          else if (tierVal === 'honorary') amount = 'GHS 400';
+          else if (tierVal === 'external') amount = 'USD 50';
+          
+          const receiptHTML = `
+            <div class="gsaa-receipt-invoice">
+              <div class="gsaa-receipt-header">
+                <span>INVOICE RECEIPT</span>
+                <span>#GSAA-IN-${Math.floor(100000 + Math.random() * 900000)}</span>
+              </div>
+              <div class="gsaa-receipt-row">
+                <span>Applicant</span>
+                <span>${title} ${firstName} ${lastName}</span>
+              </div>
+              <div class="gsaa-receipt-row">
+                <span>Email Address</span>
+                <span>${email}</span>
+              </div>
+              <div class="gsaa-receipt-row">
+                <span>Membership Tier</span>
+                <span>${tier}</span>
+              </div>
+              <div class="gsaa-receipt-row">
+                <span>Status</span>
+                <span style="color:#e5b84c;font-weight:700">Dues Unpaid</span>
+              </div>
+              <div class="gsaa-receipt-row" style="border-top:1px dashed rgba(0,0,0,0.1);padding-top:0.5rem;margin-top:0.5rem;font-weight:bold">
+                <span>Fee Amount</span>
+                <span>${amount}</span>
+              </div>
+            </div>
+          `;
+          
+          // Save details in localStorage
+          const pendingUser = {
+            title,
+            firstName,
+            lastName,
+            email,
+            institution,
+            role,
+            discipline,
+            tier,
+            amount,
+            status: 'pending_payment'
+          };
+          localStorage.setItem('gsaa_pending_user', JSON.stringify(pendingUser));
+          
+          showSuccessModal(
+            'Application Received',
+            `Thank you, ${firstName}! Your GSAA membership application has been registered. To activate your credentials and set up your portal password, please proceed to pay your dues.`,
+            receiptHTML
+          );
+          
+          // Show Pay button, hide standard close button initially
+          const payBtn = document.getElementById('gsaaPayDuesBtn');
+          if (payBtn) {
+            payBtn.style.display = 'block';
+            payBtn.onclick = () => {
+              openCheckout(amount, email, `${firstName} ${lastName}`);
+            };
+          }
+          const closeBtn = document.getElementById('gsaaCloseModalBtn');
+          if (closeBtn) closeBtn.style.display = 'none'; // force payment before close
+          
+          mForm.reset();
+        } else {
+          showToast('Please correct the highlighted validation errors.', 'error');
+        }
+      });
+    }
+
+    const cForm = document.getElementById('contactForm');
+    if (cForm) {
+      cForm.addEventListener('submit', e => {
+        e.preventDefault();
+        if (validateForm(cForm)) {
+          const name = document.getElementById('contactName')?.value || 'Inquirer';
+          const email = document.getElementById('contactEmail')?.value || '';
+          
+          showSuccessModal(
+            'Message Dispatched',
+            `Thank you, ${name}. Your message has been routed to the GSAA secretariat. A copy of this confirmation has been sent to ${email}. We will respond to your inquiry within 48 hours.`
+          );
+          // For contact, make sure close is visible, pay is hidden
+          const payBtn = document.getElementById('gsaaPayDuesBtn');
+          if (payBtn) payBtn.style.display = 'none';
+          const closeBtn = document.getElementById('gsaaCloseModalBtn');
+          if (closeBtn) {
+            closeBtn.style.display = 'block';
+            closeBtn.textContent = 'Close Window';
+            closeBtn.onclick = () => closeSuccessModal();
+          }
+          cForm.reset();
+        } else {
+          showToast('Please fill out all required fields.', 'error');
+        }
+      });
+    }
+  }
+
+  /* ─── PAYSTACK CHECKOUT OVERLAY LOGIC ─── */
+  let currentCheckoutData = {};
+
+  function openCheckout(amount, email, name) {
+    const modal = document.getElementById('paystackModal');
+    if (!modal) return;
+    
+    currentCheckoutData = { amount, email, name };
+    
+    document.getElementById('paystackEmail').textContent = email;
+    document.getElementById('paystackAmount').textContent = amount;
+    
+    // Reset modal state
+    document.getElementById('paystackMainFlow').style.display = 'block';
+    document.getElementById('paystackLoader').style.display = 'none';
+    document.getElementById('paystackSuccess').style.display = 'none';
+    
+    modal.style.display = 'flex';
+  }
+
+  function closeCheckout() {
+    const modal = document.getElementById('paystackModal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function setPayMethod(method) {
+    const momoBtn = document.getElementById('paystackMomoBtn');
+    const cardBtn = document.getElementById('paystackCardBtn');
+    const momoForm = document.getElementById('paystackMomoForm');
+    const cardForm = document.getElementById('paystackCardForm');
+    
+    if (method === 'momo') {
+      momoBtn.classList.add('active');
+      cardBtn.classList.remove('active');
+      momoForm.style.display = 'block';
+      cardForm.style.display = 'none';
+    } else {
+      momoBtn.classList.remove('active');
+      cardBtn.classList.add('active');
+      momoForm.style.display = 'none';
+      cardForm.style.display = 'block';
+    }
+  }
+
+  function processCheckoutPayment() {
+    const isMomo = document.getElementById('paystackMomoBtn').classList.contains('active');
+    if (isMomo) {
+      const phone = document.getElementById('paystackPhone').value.trim();
+      if (!phone) {
+        showToast('Please enter your Mobile Money phone number.', 'error');
+        return;
+      }
+    }
+    
+    document.getElementById('paystackMainFlow').style.display = 'none';
+    document.getElementById('paystackLoader').style.display = 'flex';
+    document.getElementById('paystackLoaderText').textContent = isMomo 
+      ? 'Sending Mobile Money payment authorization prompt...' 
+      : 'Authorizing card payment with bank secure portal...';
+      
+    setTimeout(() => {
+      document.getElementById('paystackLoaderText').textContent = 'Confirming transaction authorization code...';
+      
+      setTimeout(() => {
+        document.getElementById('paystackLoader').style.display = 'none';
+        document.getElementById('paystackSuccess').style.display = 'flex';
+        document.getElementById('paystackDuesPaid').textContent = currentCheckoutData.amount;
+        
+        showToast('Dues Paid Successfully!', 'success');
+      }, 1500);
+    }, 2000);
+  }
+
+  function completeCheckout() {
+    closeCheckout();
+    
+    // Hide standard GSAA success layout
+    document.getElementById('gsaaModalSuccess').style.display = 'none';
+    
+    // Show Password setup
+    document.getElementById('gsaaModalPasswordSetup').style.display = 'block';
+  }
+
+  function savePortalPassword(event) {
+    event.preventDefault();
+    const p1 = document.getElementById('setupPassword').value;
+    const p2 = document.getElementById('setupConfirmPassword').value;
+    
+    if (p1.length < 6) {
+      showToast('Password must be at least 6 characters long.', 'error');
+      return;
+    }
+    if (p1 !== p2) {
+      showToast('Passwords do not match. Please verify.', 'error');
+      return;
+    }
+    
+    const pendingDataStr = localStorage.getItem('gsaa_pending_user');
+    if (!pendingDataStr) {
+      showToast('Error: No registration session found.', 'error');
+      return;
+    }
+    
+    const pendingData = JSON.parse(pendingDataStr);
+    pendingData.password = p1;
+    pendingData.status = 'active'; // Account activated!
+    pendingData.memberId = `GSAA-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    pendingData.joinedDate = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    
+    // Save to localStorage under user's email
+    localStorage.setItem(`gsaa_user_${pendingData.email.toLowerCase().trim()}`, JSON.stringify(pendingData));
+    localStorage.removeItem('gsaa_pending_user');
+    
+    // Switch GSAA Success modal state to final completion
+    document.getElementById('gsaaModalPasswordSetup').style.display = 'none';
+    document.getElementById('gsaaModalSuccess').style.display = 'block';
+    
+    // Re-render success message
+    document.getElementById('gsaaModalTitle').textContent = 'Account Activated!';
+    document.getElementById('gsaaModalMessage').innerHTML = `
+      Welcome, ${pendingData.title || ''} ${pendingData.firstName} ${pendingData.lastName}!<br>
+      Your credentials have been generated. You can now log into the GSAA Member Portal using your email: <strong>${pendingData.email}</strong>.
+    `;
+    
+    // Change actions buttons
+    const payBtn = document.getElementById('gsaaPayDuesBtn');
+    if (payBtn) payBtn.style.display = 'none';
+    
+    const closeBtn = document.getElementById('gsaaCloseModalBtn');
+    if (closeBtn) {
+      closeBtn.style.display = 'block';
+      closeBtn.textContent = 'Proceed to Member Login';
+      closeBtn.onclick = () => {
+        closeSuccessModal();
+        window.location.href = 'portal.html';
+      };
+    }
+  }
+
+  function initLeaderCardModals() {
+    const cards = document.querySelectorAll('.leader-card, .profile-card, .institution-member');
+    if (!cards.length) return;
+
+    const modalOverlay = document.getElementById('leaderProfileModal');
+    const lightboxOverlay = document.getElementById('imageLightboxModal');
+    if (!modalOverlay || !lightboxOverlay) return;
+
+    const closeBtn = document.getElementById('leaderModalCloseBtn');
+    const zoomBtn = document.getElementById('leaderModalZoomBtn');
+    const photoContainer = document.getElementById('leaderModalPhotoContainer');
+    const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+
+    let currentPhotoSrc = '';
+    let currentLeaderName = '';
+
+    const openLeaderModal = (card) => {
+      const img = card.querySelector('img');
+      const fallback = card.querySelector('.leader-photo-fallback, .profile-photo-fallback, .about-photo-fallback, .member-photo-fallback');
+      
+      const roleEl = card.querySelector('.leader-role, .profile-role, .member-role');
+      const nameEl = card.querySelector('.leader-name, .profile-name, .member-name');
+      const bioEl = card.querySelector('.leader-bio, .profile-bio');
+      
+      const instCard = card.closest('.institution-card');
+      const instNameEl = instCard ? instCard.querySelector('.institution-name') : null;
+
+      const name = nameEl ? nameEl.textContent.trim() : 'GSAA Executive Member';
+      const role = roleEl ? roleEl.textContent.trim() : 'Leadership Committee';
+      const inst = instNameEl ? instNameEl.textContent.trim() : '';
+      
+      let bio = bioEl ? bioEl.textContent.trim() : '';
+      if (!bio) {
+        bio = `${name} serves as ${role}${inst ? ' at ' + inst : ''}, contributing to the governance, academic research, and institutional leadership of the Ghana Sociological and Anthropological Association (GSAA).`;
+      }
+
+      currentLeaderName = name;
+      
+      const modalImg = document.getElementById('leaderModalImg');
+      const modalFallback = document.getElementById('leaderModalFallback');
+
+      if (img && img.complete && img.naturalWidth > 0 && img.style.display !== 'none') {
+        currentPhotoSrc = img.src;
+        modalImg.src = img.src;
+        modalImg.alt = name;
+        modalImg.style.display = 'block';
+        modalFallback.style.display = 'none';
+        zoomBtn.style.display = 'inline-block';
+      } else {
+        currentPhotoSrc = '';
+        modalImg.style.display = 'none';
+        modalFallback.textContent = fallback ? fallback.textContent.trim() : name.split(' ').map(n=>n[0]).join('').slice(0,2);
+        modalFallback.style.display = 'flex';
+        zoomBtn.style.display = 'none';
+      }
+
+      document.getElementById('leaderModalRole').textContent = role;
+      document.getElementById('leaderModalName').textContent = name;
+      
+      const instEl = document.getElementById('leaderModalInstitution');
+      if (inst) {
+        instEl.textContent = inst;
+        instEl.style.display = 'block';
+      } else {
+        instEl.style.display = 'none';
+      }
+
+      document.getElementById('leaderModalBio').textContent = bio;
+
+      modalOverlay.classList.add('open');
+      modalOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeLeaderModal = () => {
+      modalOverlay.classList.remove('open');
+      modalOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    const openLightbox = () => {
+      if (!currentPhotoSrc) return;
+      document.getElementById('lightboxImg').src = currentPhotoSrc;
+      document.getElementById('lightboxCaption').textContent = currentLeaderName;
+      lightboxOverlay.classList.add('open');
+      lightboxOverlay.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeLightbox = () => {
+      lightboxOverlay.classList.remove('open');
+      lightboxOverlay.setAttribute('aria-hidden', 'true');
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a, button')) return;
+        openLeaderModal(card);
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeLeaderModal);
+    modalOverlay?.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeLeaderModal();
+    });
+
+    zoomBtn?.addEventListener('click', openLightbox);
+    photoContainer?.addEventListener('click', openLightbox);
+
+    lightboxCloseBtn?.addEventListener('click', closeLightbox);
+    lightboxOverlay?.addEventListener('click', (e) => {
+      if (e.target === lightboxOverlay) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (lightboxOverlay.classList.contains('open')) {
+          closeLightbox();
+        } else if (modalOverlay.classList.contains('open')) {
+          closeLeaderModal();
+        }
+      }
+    });
+  }
+
+  return { 
+    init, 
+    initCounters, 
+    validateForm, 
+    showToast, 
+    showSuccessModal, 
+    closeSuccessModal,
+    openCheckout,
+    closeCheckout,
+    setPayMethod,
+    processCheckoutPayment,
+    completeCheckout,
+    savePortalPassword,
+    initLeaderCardModals
+  };
 })();

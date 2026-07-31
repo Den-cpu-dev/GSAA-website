@@ -1,0 +1,1077 @@
+/* ══════════════════════════════════════════
+   GSAA - Member Portal Stylesheet
+   Authentication, Dashboard, and ID Card layouts
+   ══════════════════════════════════════════ */
+
+/* Portal Theme Variables */
+:root {
+  --portal-bg: #f8fafc;
+  --portal-card-bg: var(--white);
+  --portal-border: rgba(0, 0, 0, 0.08);
+  --portal-text-dark: var(--text-dark);
+  --portal-text-light: var(--text-light);
+  --portal-sidebar-bg: var(--green-deep);
+  --portal-sidebar-text: rgba(255, 255, 255, 0.85);
+  --portal-sidebar-active: var(--gold);
+}
+
+[data-theme="dark"] {
+  --portal-bg: #071526;
+  --portal-card-bg: #0A1C2E;
+  --portal-border: rgba(255, 255, 255, 0.06);
+  --portal-text-dark: var(--white);
+  --portal-text-light: var(--text-mid);
+  --portal-sidebar-bg: #05101C;
+  --portal-sidebar-text: rgba(255, 255, 255, 0.7);
+  --portal-sidebar-active: var(--gold);
+}
+
+/* Page Layout */
+.portal-body {
+  background: var(--portal-bg);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Split Login Container */
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.login-left {
+  flex: 1.2;
+  background: linear-gradient(135deg, var(--green-deep) 0%, #03080F 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  padding: 3rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Watermark Adinkra symbols */
+.login-left::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image: url('../images/adinkra_symbols.png');
+  background-size: cover;
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+.login-left-content {
+  position: relative;
+  max-width: 460px;
+  z-index: 2;
+}
+
+.login-left-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.login-left-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+}
+
+.login-left-title em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.login-left-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.5rem;
+}
+
+/* Login Right Side Form */
+.login-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  background: var(--portal-bg);
+}
+
+.login-form-box {
+  width: 100%;
+  max-width: 400px;
+  background: var(--portal-card-bg);
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--portal-border);
+}
+
+.login-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.login-header p {
+  font-size: 0.88rem;
+  color: var(--portal-text-light);
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.78rem 1rem;
+  border: 1px solid var(--portal-border);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background: var(--portal-bg);
+  color: var(--portal-text-dark);
+  transition: border-color 0.25s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--green-mid);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.demo-credentials-box {
+  background: var(--cream);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(229, 184, 76, 0.35);
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .demo-credentials-box {
+  background: rgba(229, 184, 76, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(229, 184, 76, 0.2);
+}
+
+.demo-credentials-box code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .demo-credentials-box code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Authentication Overlay Spinner */
+.auth-loading-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(7, 21, 38, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.auth-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left-color: var(--gold);
+  border-radius: 50%;
+  animation: authSpin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes authSpin {
+  100% { transform: rotate(360deg); }
+}
+
+.auth-loading-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* ──────────────────────────────────────────
+   DASHBOARD PANELS
+   ────────────────────────────────────────── */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar Navigation */
+.dashboard-sidebar {
+  width: 260px;
+  background: var(--portal-sidebar-bg);
+  color: var(--white);
+  padding: 2.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--portal-border);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 3.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+}
+
+.sidebar-wordmark {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.sidebar-wordmark span {
+  display: block;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  margin-top: 0.2rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar-item button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: var(--portal-sidebar-text);
+  padding: 0.95rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-weight: 550;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-item button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+}
+
+.sidebar-item.active button {
+  background: rgba(229, 184, 76, 0.15);
+  color: var(--gold);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.signout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.85rem 1.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.signout-btn:hover {
+  color: #ef4444;
+}
+
+/* Dashboard Content Area */
+.dashboard-main {
+  flex: 1;
+  padding: 3rem 4rem;
+  overflow-y: auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--portal-border);
+}
+
+.user-welcome h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.user-welcome p {
+  font-size: 0.9rem;
+  color: var(--portal-text-light);
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--portal-card-bg);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  border: 1px solid var(--portal-border);
+}
+
+.user-avatar-badge {
+  width: 32px;
+  height: 32px;
+  background: var(--green-mid);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.user-name-badge {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--portal-text-dark);
+}
+
+/* Tab Sections */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ──────────────────────────────────────────
+   TAB 1: DIGITAL GSAA ID CARD
+   ────────────────────────────────────────── */
+.id-card-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* Card Mockup Construction */
+.id-card-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  border: 1px dashed var(--portal-border);
+}
+
+.gsaa-id-card {
+  width: 420px;
+  height: 250px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--green-deep) 0%, #030a14 100%);
+  border: 2px solid var(--gold);
+  color: var(--white);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Adinkra Background details */
+.gsaa-id-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image: url('../images/adinkra_symbols.png');
+  background-size: cover;
+  opacity: 0.065;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gsaa-id-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-bottom: 1.5px solid rgba(229, 184, 76, 0.25);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
+  z-index: 2;
+}
+
+.gsaa-id-card-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+}
+
+.gsaa-id-card-org {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.gsaa-id-card-org small {
+  display: block;
+  font-size: 0.52rem;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-top: 0.1rem;
+}
+
+.gsaa-id-card-body {
+  display: flex;
+  gap: 1.5rem;
+  flex-grow: 1;
+  z-index: 2;
+}
+
+.gsaa-id-card-photo-box {
+  width: 85px;
+  height: 105px;
+  border-radius: 6px;
+  border: 1.5px solid var(--gold);
+  background: var(--portal-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.gsaa-id-card-photo-placeholder {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--green-deep);
+}
+
+.gsaa-id-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.gsaa-id-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+}
+
+.gsaa-id-card-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.gsaa-id-card-label {
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.gsaa-id-card-value {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.gsaa-id-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  z-index: 2;
+}
+
+.gsaa-id-card-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.gsaa-id-card-status-dot {
+  width: 5px;
+  height: 5px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+.gsaa-id-card-barcode-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.gsaa-id-card-barcode {
+  height: 22px;
+  opacity: 0.85;
+}
+
+.gsaa-id-card-idnum {
+  font-size: 0.52rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.50);
+}
+
+/* Card Control Panel */
+.id-card-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.id-card-controls h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--portal-text-dark);
+}
+
+.id-card-controls p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--portal-text-light);
+}
+
+.id-card-meta-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.id-card-meta-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--portal-border);
+  font-size: 0.9rem;
+}
+
+.id-card-meta-list span:first-child {
+  color: var(--portal-text-light);
+}
+
+.id-card-meta-list span:last-child {
+  font-weight: 600;
+  color: var(--portal-text-dark);
+}
+
+.print-card-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  padding: 0.78rem 1.4rem;
+}
+
+/* ──────────────────────────────────────────
+   TAB 2: MEMBER DIRECTORY
+   ────────────────────────────────────────── */
+.directory-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.directory-search-input {
+  max-width: 320px;
+}
+
+.directory-table-container {
+  background: var(--portal-card-bg);
+  border: 1px solid var(--portal-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.directory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.directory-table th {
+  background: rgba(0, 0, 0, 0.02);
+  padding: 1rem 1.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--portal-text-light);
+  border-bottom: 1.5px solid var(--portal-border);
+}
+
+[data-theme="dark"] .directory-table th {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.directory-table td {
+  padding: 1.1rem 1.5rem;
+  font-size: 0.88rem;
+  color: var(--portal-text-dark);
+  border-bottom: 1px solid var(--portal-border);
+}
+
+.directory-table tr:last-child td {
+  border-bottom: none;
+}
+
+.directory-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--green-mid);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.directory-row-name {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.directory-tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background: var(--gold-pale);
+  color: var(--gold);
+}
+
+/* ──────────────────────────────────────────
+   TAB 3: ACADEMIC DOWNLOADS
+   ────────────────────────────────────────── */
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.download-portal-card {
+  background: var(--portal-card-bg);
+  border: 1px solid var(--portal-border);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.download-portal-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--green-mid);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.download-portal-icon--red {
+  background: #ef4444;
+}
+
+.download-portal-icon--gold {
+  background: var(--gold);
+}
+
+.download-portal-info {
+  flex-grow: 1;
+}
+
+.download-portal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.download-portal-desc {
+  font-size: 0.85rem;
+  color: var(--portal-text-light);
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.download-portal-action {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--green-mid);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.download-portal-action:hover {
+  color: var(--gold);
+}
+
+/* ─── MEDIA QUERY BREAKPOINTS ─── */
+@media (max-width: 960px) {
+  .login-container {
+    flex-direction: column;
+  }
+  .login-left {
+    flex: none;
+    padding: 4rem 2rem;
+  }
+  .login-right {
+    flex: none;
+    padding: 3rem 1.5rem;
+  }
+  .id-card-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .gsaa-id-card {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .dashboard-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--portal-border);
+    padding: 1.5rem;
+  }
+  .sidebar-brand {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  .sidebar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sidebar-item button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+  .dashboard-main {
+    padding: 2rem 1.5rem;
+  }
+  .downloads-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .gsaa-id-card {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 420/250;
+    padding: 1rem;
+  }
+  .gsaa-id-card-header {
+    margin-bottom: 0.8rem;
+  }
+  .gsaa-id-card-photo-box {
+    width: 65px;
+    height: 80px;
+  }
+  .gsaa-id-card-name {
+    font-size: 0.85rem;
+  }
+  .gsaa-id-card-value {
+    font-size: 0.65rem;
+  }
+  .directory-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .directory-search-input {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* ──────────────────────────────────────────
+   PRINT MEDIA STYLES
+   ────────────────────────────────────────── */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .gsaa-id-card, .gsaa-id-card * {
+    visibility: visible;
+  }
+  .gsaa-id-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 420px;
+    height: 250px;
+    border: 2px solid #E5B84C !important;
+    background: #071526 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .gsaa-id-card::before {
+    opacity: 0.08 !important;
+  }
+}
+
+/* ──────────────────────────────────────────
+   TAB 4: RESEARCH FORUM STYLES
+   ────────────────────────────────────────── */
+.forum-header {
+  margin-bottom: 2rem;
+}
+.forum-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.5rem;
+}
+.forum-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.forum-card {
+  background: var(--portal-bg-card);
+  border: 1px solid var(--portal-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.forum-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.forum-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.78rem;
+  color: var(--portal-text-light);
+  margin-bottom: 0.8rem;
+}
+.forum-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.badge-announcement {
+  background: rgba(229, 184, 76, 0.15);
+  color: var(--gold-dark);
+}
+.badge-collab {
+  background: rgba(13, 148, 136, 0.12);
+  color: #0d9488;
+}
+.badge-fellowship {
+  background: rgba(79, 70, 229, 0.12);
+  color: #4f46e5;
+}
+.forum-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.6rem;
+}
+.forum-card-text {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--portal-text-mid);
+  margin-bottom: 1.2rem;
+}
+.forum-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--portal-border);
+  padding-top: 1rem;
+}
+.forum-deadline {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--portal-text-light);
+}
+
+/* ──────────────────────────────────────────
+   TAB 5: MY PUBLICATIONS STYLES
+   ────────────────────────────────────────── */
+.publications-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .publications-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+.pub-form-container {
+  background: var(--portal-bg-card);
+  border: 1px solid var(--portal-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.pub-form-container h3, .pub-list-container h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.5rem;
+}
+.section-desc {
+  font-size: 0.82rem;
+  color: var(--portal-text-light);
+  margin-bottom: 1.5rem;
+}
+.form-textarea--statement {
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* ──────────────────────────────────────────
+   TAB 6: BILLING & DUES STYLES
+   ────────────────────────────────────────── */
+.billing-header {
+  margin-bottom: 2rem;
+}
+.billing-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--portal-text-dark);
+  margin-bottom: 0.5rem;
+}
+.font-small {
+  font-size: 0.78rem !important;
+  padding: 0.4rem 0.8rem !important;
+}
+.billing-unpaid-alert {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.billing-unpaid-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ef4444;
+}

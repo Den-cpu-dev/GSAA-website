@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Portal - Ghana Sociological &amp; Anthropological Association</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav-footer.css">
+  <link rel="stylesheet" href="css/portal.css">
+  
+  <style>
+    /* Always hide standard header/footer for authentic app experience */
+    #mainNav, footer, #backToTop, .scroll-progress-container, .kente-footer {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="portal-body">
+
+  <!-- ─── AUTHENTICATION / LOGIN SCREEN ─── -->
+  <div id="loginScreen" class="login-container">
+    <div class="login-left">
+      <div class="login-left-content">
+        <img src="images/logo.jpg" alt="GSAA Crest" class="login-left-logo">
+        <h1 class="login-left-title">GSAA <em>Member Portal</em></h1>
+        <p class="login-left-desc">Access academic resources, network with registered sociologists and anthropologists, and view your digital membership credentials.</p>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-form-box">
+        <div class="login-header">
+          <h2>Welcome Back</h2>
+          <p>Please sign in with your member credentials.</p>
+        </div>
+        
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="member@gsaa.org" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn-primary login-btn">Sign In to Dashboard</button>
+        </form>
+        
+        <div class="demo-credentials-box">
+          <strong>Demo Access Credentials:</strong><br>
+          Email: <code>member@gsaa.org</code><br>
+          Password: <code>gsaa2026</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MEMBER DASHBOARD SCREEN ─── -->
+  <div id="dashboardScreen" class="dashboard-container" style="display: none;">
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-brand">
+        <img src="images/logo.jpg" alt="GSAA Crest" class="sidebar-logo">
+        <div class="sidebar-wordmark">GSAA <span>Member Portal</span></div>
+      </div>
+      
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active" id="menuCard" onclick="switchTab('card')">
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="4"/><line x1="8" y1="2" x2="8" y2="4"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Membership ID Card
+          </button>
+        </li>
+        <li class="sidebar-item" id="menuDirectory" onclick="switchTab('directory')">
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Member Directory
+          </button>
+        </li>
+        <li class="sidebar-item" id="menuForum" onclick="switchTab('forum')">
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Research Forum
+          </button>
+        </li>
+        <li class="sidebar-item" id="menuPublications" onclick="switchTab('publications')">
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            My Publications
+          </button>
+        </li>
+        <li class="sidebar-item" id="menuBilling" onclick="switchTab('billing')">
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><line x1="12" y1="17" x2="12" y2="17.01"/><line x1="17" y1="17" x2="17" y2="17.01"/><line x1="7" y1="17" x2="7" y2="17.01"/><path d="M2 10h20"/></svg>
+            Billing &amp; Dues
+          </button>
+        </li>
+        <li class="sidebar-item" id="menuDownloads" onclick="switchTab('downloads')">
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Academic Downloads
+          </button>
+        </li>
+      </ul>
+      
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn-outline" style="color:var(--white);border-color:rgba(255,255,255,0.2);display:block;text-align:center;text-decoration:none;font-size:0.82rem;margin-bottom:1rem">Return to Home</a>
+        <button class="signout-btn" onclick="handleLogout()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <div class="user-welcome">
+          <h1 id="welcomeGreeting">Welcome, Prof. Ama Pokuaa</h1>
+          <p>GSAA Member Dashboard - Current session active</p>
+        </div>
+        <div class="user-profile-badge">
+          <div class="user-avatar-badge" id="avatarInitials">AP</div>
+          <div class="user-name-badge" id="badgeName">Prof. Ama Pokuaa</div>
+        </div>
+      </header>
+
+      <!-- ─── TAB 1: MEMBERSHIP ID CARD ─── -->
+      <section id="tabCard" class="tab-content active">
+        <div class="id-card-layout">
+          <!-- Card Render -->
+          <div class="id-card-preview-container">
+            <div class="gsaa-id-card" id="printableIdCard">
+              <div class="gsaa-id-card-header">
+                <img src="images/logo.jpg" alt="GSAA logo" class="gsaa-id-card-logo">
+                <div class="gsaa-id-card-org">
+                  GSAA
+                  <small>Ghana Sociological &amp; Anthropological Association</small>
+                </div>
+              </div>
+              <div class="gsaa-id-card-body">
+                <div class="gsaa-id-card-photo-box">
+                  <!-- Simulated initials / photo -->
+                  <div class="gsaa-id-card-photo-placeholder" id="cardInitials">AP</div>
+                </div>
+                <div class="gsaa-id-card-info">
+                  <div class="gsaa-id-card-name" id="cardName">Prof. Ama Pokuaa</div>
+                  
+                  <div class="gsaa-id-card-field">
+                    <span class="gsaa-id-card-label">Institution</span>
+                    <span class="gsaa-id-card-value" id="cardInst">University of Ghana</span>
+                  </div>
+                  
+                  <div class="gsaa-id-card-field">
+                    <span class="gsaa-id-card-label">Membership Tier</span>
+                    <span class="gsaa-id-card-value" id="cardTier">Academic Member</span>
+                  </div>
+                </div>
+              </div>
+              <div class="gsaa-id-card-footer">
+                <div class="gsaa-id-card-status">
+                  <div class="gsaa-id-card-status-dot"></div>
+                  Dues Paid
+                </div>
+                <div class="gsaa-id-card-barcode-box">
+                  <svg class="gsaa-id-card-barcode" viewBox="0 0 100 20" preserveAspectRatio="none">
+                    <!-- Simple svg lines representing a barcode -->
+                    <rect x="0" y="0" width="3" height="20" fill="white"/>
+                    <rect x="5" y="0" width="1" height="20" fill="white"/>
+                    <rect x="8" y="0" width="2" height="20" fill="white"/>
+                    <rect x="12" y="0" width="4" height="20" fill="white"/>
+                    <rect x="18" y="0" width="1" height="20" fill="white"/>
+                    <rect x="22" y="0" width="3" height="20" fill="white"/>
+                    <rect x="27" y="0" width="2" height="20" fill="white"/>
+                    <rect x="31" y="0" width="1" height="20" fill="white"/>
+                    <rect x="35" y="0" width="5" height="20" fill="white"/>
+                    <rect x="42" y="0" width="2" height="20" fill="white"/>
+                    <rect x="46" y="0" width="1" height="20" fill="white"/>
+                    <rect x="50" y="0" width="4" height="20" fill="white"/>
+                    <rect x="56" y="0" width="2" height="20" fill="white"/>
+                    <rect x="60" y="0" width="3" height="20" fill="white"/>
+                    <rect x="65" y="0" width="1" height="20" fill="white"/>
+                    <rect x="68" y="0" width="2" height="20" fill="white"/>
+                    <rect x="72" y="0" width="4" height="20" fill="white"/>
+                    <rect x="78" y="0" width="1" height="20" fill="white"/>
+                    <rect x="82" y="0" width="3" height="20" fill="white"/>
+                    <rect x="87" y="0" width="2" height="20" fill="white"/>
+                    <rect x="91" y="0" width="1" height="20" fill="white"/>
+                    <rect x="95" y="0" width="5" height="20" fill="white"/>
+                  </svg>
+                  <span class="gsaa-id-card-idnum">GSAA-2026-0842</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Controls -->
+          <div class="id-card-controls">
+            <h2>Digital Credentials</h2>
+            <p>Your GSAA digital membership card validates your active status with the national secretariat. You can present this card at registration desks during annual national conferences to claim member booklets and benefits.</p>
+            
+            <ul class="id-card-meta-list">
+              <li>
+                <span>Member ID</span>
+                <span style="font-family: monospace;">GSAA-2026-0842</span>
+              </li>
+              <li>
+                <span>Status</span>
+                <span style="color: #22c55e">Active</span>
+              </li>
+              <li>
+                <span>Expiry Date</span>
+                <span>December 31, 2026</span>
+              </li>
+            </ul>
+            
+            <button class="btn-primary print-card-btn" onclick="window.print()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print Membership Card
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── TAB 2: MEMBER DIRECTORY ─── -->
+      <section id="tabDirectory" class="tab-content">
+        <div class="directory-actions">
+          <input type="text" id="dirSearch" class="form-input directory-search-input" placeholder="Search members, departments, or universities…" oninput="filterDirectory()">
+          <span style="font-size:0.85rem;color:var(--portal-text-light)" id="dirCount">Showing 5 members</span>
+        </div>
+        
+        <div class="directory-table-container">
+          <table class="directory-table">
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Institution</th>
+                <th>Department</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody id="directoryBody">
+              <tr>
+                <td>
+                  <div class="directory-row-name">
+                    <div class="directory-avatar" style="background-color:#0d9488">WB</div>
+                    Prof. William Boateng
+                  </div>
+                </td>
+                <td>University of Cape Coast</td>
+                <td>Sociology and Anthropology</td>
+                <td><span class="directory-tag">National Coordinator</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="directory-row-name">
+                    <div class="directory-avatar" style="background-color:#4f46e5">AA</div>
+                    Prof. Alhassan Anamzoya
+                  </div>
+                </td>
+                <td>University of Ghana</td>
+                <td>Sociology</td>
+                <td><span class="directory-tag">Committee Member</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="directory-row-name">
+                    <div class="directory-avatar" style="background-color:#0891b2">SC</div>
+                    Dr. Sarah Commey
+                  </div>
+                </td>
+                <td>KNUST, Kumasi</td>
+                <td>Sociology and Social Work</td>
+                <td><span class="directory-tag">Committee Member</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="directory-row-name">
+                    <div class="directory-avatar" style="background-color:#db2777">DF</div>
+                    Prof. Daniel Yaw Fiaveh
+                  </div>
+                </td>
+                <td>University of Ghana</td>
+                <td>Sociology</td>
+                <td><span class="directory-tag">GJSA Editor</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="directory-row-name">
+                    <div class="directory-avatar" style="background-color:#ea580c">KA</div>
+                    Dr. Kodzovi Akpabli
+                  </div>
+                </td>
+                <td>UDS, Tamale</td>
+                <td>Social Sciences</td>
+                <td><span class="directory-tag">Institutional Rep</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ─── TAB 3: ACADEMIC DOWNLOADS ─── -->
+      <section id="tabDownloads" class="tab-content">
+        <div class="downloads-grid">
+          
+          <div class="download-portal-card">
+            <div class="download-portal-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="download-portal-info">
+              <h4 class="download-portal-title">10th Conference Abstract Template</h4>
+              <p class="download-portal-desc">Format guidelines, word counts, and metadata tags required for submitting abstracts to the UCC 2026 conference committee.</p>
+              <a href="#" class="download-portal-action" onclick="GSAA.showToast('Template PDF downloading started...'); return false;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Abstract-Format.docx
+              </a>
+            </div>
+          </div>
+
+          <div class="download-portal-card">
+            <div class="download-portal-icon download-portal-icon--red">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="download-portal-info">
+              <h4 class="download-portal-title">GSAA Interim Constitution</h4>
+              <p class="download-portal-desc">Official guidelines concerning governance structure, institutional anchor obligations, and rotational meeting protocols.</p>
+              <a href="#" class="download-portal-action" onclick="GSAA.showToast('Constitution PDF downloading started...'); return false;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Interim-Constitution.pdf
+              </a>
+            </div>
+          </div>
+
+          <div class="download-portal-card">
+            <div class="download-portal-icon download-portal-icon--gold">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div class="download-portal-info">
+              <h4 class="download-portal-title">GJSA Manuscript Guidelines</h4>
+              <p class="download-portal-desc">Notes for contributors regarding bibliography arrangements, formatting text headings, and in-text citation styles (e.g. Amaoko 1999:235).</p>
+              <a href="#" class="download-portal-action" onclick="GSAA.showToast('Manuscript Guidelines downloading started...'); return false;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download GJSA-Guidelines.pdf
+              </a>
+            </div>
+          </div>
+
+          <div class="download-portal-card">
+            <div class="download-portal-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="download-portal-info">
+              <h4 class="download-portal-title">GSAA Membership Verification Certificate</h4>
+              <p class="download-portal-desc">Digital clearance certificate showing active standing with GSAA, useful for inclusion in institutional files.</p>
+              <a href="#" class="download-portal-action" onclick="GSAA.showToast('Certificate PDF downloading started...'); return false;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Verification-Certificate.pdf
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── TAB 4: RESEARCH FORUM ─── -->
+      <section id="tabForum" class="tab-content">
+        <div class="forum-header">
+          <h2>Academic Forum &amp; Announcements</h2>
+          <p>Stay updated on the latest research collaborations, academic vacancies, and calls for papers within the GSAA community.</p>
+        </div>
+        
+        <div class="forum-feed">
+          <div class="forum-card">
+            <div class="forum-card-meta">
+              <span class="forum-badge badge-announcement">Call For Papers</span>
+              <span>Posted 2 days ago • GJSA Secretariat</span>
+            </div>
+            <h3 class="forum-card-title">Special Issue Call: "Digital Transformation &amp; Socio-Cultural Rhythms in Modern Ghana"</h3>
+            <p class="forum-card-text">The Ghana Journal of Sociology and Anthropology (GJSA) is requesting papers for the special edition of Volume 9, Issue 1. Scholars are encouraged to investigate how digitization influences local custom systems, gender networks, and urban sociology.</p>
+            <div class="forum-card-footer">
+              <span class="forum-deadline">Deadline: 15th October 2026</span>
+              <a href="#" class="btn-outline font-small" onclick="GSAA.showToast('Details and submission guidelines sent to email.'); return false;">View Submission Details</a>
+            </div>
+          </div>
+          
+          <div class="forum-card">
+            <div class="forum-card-meta">
+              <span class="forum-badge badge-collab">Research Collaboration</span>
+              <span>Posted 5 days ago • Dr. Kodzovi Akpabli (UDS)</span>
+            </div>
+            <h3 class="forum-card-title">Co-Authorship Opportunity: Anthropological Mapping of Artisanal Fisheries in Volta Region</h3>
+            <p class="forum-card-text">Looking for a sociologist co-author with quantitative survey analysis capabilities to collaborate on a funded project mapping the economic and ritual dependencies of artisanal fishing communities along the Keta lagoon.</p>
+            <div class="forum-card-footer">
+              <span class="forum-deadline">Status: Active Recruitment</span>
+              <a href="mailto:k.akpabli@uds.edu.gh?subject=GSAA Collaboration Inquiry" class="btn-outline font-small">Contact Scholar</a>
+            </div>
+          </div>
+
+          <div class="forum-card">
+            <div class="forum-card-meta">
+              <span class="forum-badge badge-fellowship">Fellowship</span>
+              <span>Posted 1 week ago • CODESRIA Secretariat</span>
+            </div>
+            <h3 class="forum-card-title">2026 Academic Writing &amp; Research Fellowships for African Scholars</h3>
+            <p class="forum-card-text">CODESRIA is offering research grants up to $10,000 for early-career sociology faculty in West African universities focusing on climate change adaptability and rural sociology dynamics. GSAA members in active standing are prioritized.</p>
+            <div class="forum-card-footer">
+              <span class="forum-deadline">Deadline: 1st September 2026</span>
+              <a href="#" class="btn-outline font-small" onclick="GSAA.showToast('Redirecting to CODESRIA fellowship portal...'); return false;">Apply via CODESRIA</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── TAB 5: MY PUBLICATIONS ─── -->
+      <section id="tabPublications" class="tab-content">
+        <div class="publications-layout">
+          <!-- Submission Form -->
+          <div class="pub-form-container">
+            <h3>Submit Working Paper / Manuscript</h3>
+            <p class="section-desc">Share your latest preprint or research document with GSAA members to receive feedback and citations.</p>
+            
+            <form id="pubSubmissionForm" onsubmit="handlePaperSubmit(event)">
+              <div class="form-group" style="margin-bottom:1rem">
+                <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem">Paper Title *</label>
+                <input type="text" id="pubTitle" required placeholder="e.g., Household Structure in Northern Ghana" style="padding:0.6rem;font-size:0.85rem;width:100%">
+              </div>
+              <div class="form-group" style="margin-bottom:1rem">
+                <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem">Abstract (Min 50 words) *</label>
+                <textarea id="pubAbstract" required placeholder="Describe research methodology, sociological framing, data findings..." style="height:100px;padding:0.6rem;font-size:0.85rem;width:100%"></textarea>
+              </div>
+              <div style="display:flex;gap:1rem;margin-bottom:1.5rem">
+                <div class="form-group" style="flex:1">
+                  <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem">Keywords *</label>
+                  <input type="text" id="pubKeywords" required placeholder="e.g., Household, Rural" style="padding:0.6rem;font-size:0.85rem;width:100%">
+                </div>
+                <div class="form-group" style="flex:1">
+                  <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.4rem">Select PDF Manuscript *</label>
+                  <input type="file" id="pubFile" required style="padding:0.4rem;font-size:0.85rem;width:100%">
+                </div>
+              </div>
+              <button type="submit" class="btn-primary" style="width:100%;padding:0.75rem">Upload Preprint</button>
+            </form>
+          </div>
+          
+          <!-- Publications List -->
+          <div class="pub-list-container">
+            <h3>My Uploaded Documents</h3>
+            <div class="table-container" style="overflow-x:auto">
+              <table class="directory-table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Date Uploaded</th>
+                    <th>Keywords</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="publicationsBody">
+                  <tr>
+                    <td>
+                      <strong>Sociology of Birthday Celebrations in Accra</strong><br>
+                      <small style="color:var(--portal-text-light)">Preprint • 140 reads</small>
+                    </td>
+                    <td>19 Jul 2026</td>
+                    <td><span class="directory-tag">Culture</span> <span class="directory-tag">Youth</span></td>
+                    <td><button class="btn-outline font-small" onclick="GSAA.showToast('Downloading manuscript preprint...');">Download</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── TAB 6: BILLING & DUES ─── -->
+      <section id="tabBilling" class="tab-content">
+        <div class="billing-header">
+          <h2>Membership Billing &amp; Dues</h2>
+          <p>Track your past payments, annual registration fees, and download receipts for tax compliance or institutional reimbursement.</p>
+        </div>
+        
+        <div id="billingHistoryContainer" class="billing-history-container">
+          <div class="table-container" style="overflow-x:auto">
+            <table class="directory-table" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Payment Date</th>
+                  <th>Fee Description</th>
+                  <th>Amount</th>
+                  <th>Receipt Invoice</th>
+                </tr>
+              </thead>
+              <tbody id="billingBody">
+                <tr id="billingAcademicRow">
+                  <td>TXN-GSAA-820492</td>
+                  <td>19 Jul 2026</td>
+                  <td>GSAA Annual Membership Dues - Academic Category</td>
+                  <td style="font-weight:700">GHS 200.00</td>
+                  <td><button class="btn-outline font-small" onclick="viewReceiptDetail('TXN-GSAA-820492', '19 Jul 2026', 'GSAA Annual Membership Dues - Academic Category', 'GHS 200.00')">View Receipt</button></td>
+                </tr>
+                <tr>
+                  <td>TXN-GSAA-194029</td>
+                  <td>14 Sep 2025</td>
+                  <td>9th Annual GSAA Conference Registration Fee (UCC)</td>
+                  <td style="font-weight:700">GHS 150.00</td>
+                  <td><button class="btn-outline font-small" onclick="viewReceiptDetail('TXN-GSAA-194029', '14 Sep 2025', '9th Annual GSAA Conference Registration Fee (UCC)', 'GHS 150.00')">View Receipt</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Shared Javascript Components -->
+  <script src="js/components.js"></script>
+  
+  <script>
+    // Boot general components
+    GSAA.init({ page: 'portal.html' });
+
+    // Check existing auth state on load
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("gsaa_logged_in") === "true") {
+        const email = localStorage.getItem("gsaa_logged_email") || "member@gsaa.org";
+        loadUserData(email);
+        populateCustomDirectory();
+        showDashboard();
+      }
+    });
+
+    // Handle Login
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const pass = document.getElementById("loginPassword").value.trim();
+
+      let authenticated = false;
+      let displayName = "Ama Pokuaa";
+
+      if (email === "member@gsaa.org" && pass === "gsaa2026") {
+        authenticated = true;
+        displayName = "Prof. Ama Pokuaa";
+      } else {
+        const stored = localStorage.getItem(`gsaa_user_${email}`);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed.password === pass) {
+            authenticated = true;
+            displayName = `${parsed.title || ''} ${parsed.firstName} ${parsed.lastName}`;
+          }
+        }
+      }
+
+      if (authenticated) {
+        // Show simulated loading transition overlay
+        const loader = document.createElement("div");
+        loader.className = "auth-loading-overlay";
+        loader.innerHTML = `
+          <div class="auth-spinner"></div>
+          <div class="auth-loading-text">Verifying GSAA Credentials...</div>
+        `;
+        document.body.appendChild(loader);
+
+        setTimeout(() => {
+          loader.remove();
+          localStorage.setItem("gsaa_logged_in", "true");
+          localStorage.setItem("gsaa_logged_email", email);
+          loadUserData(email);
+          populateCustomDirectory();
+          showDashboard();
+          GSAA.showToast(`Signed in successfully as ${displayName}.`, "success");
+        }, 1500);
+      } else {
+        GSAA.showToast("Invalid credentials. Please verify your email and password.", "error");
+      }
+    }
+
+    // Load active user details dynamically
+    function loadUserData(email) {
+      let user = null;
+      if (email === "member@gsaa.org") {
+        user = {
+          title: "Prof.",
+          firstName: "Ama",
+          lastName: "Pokuaa",
+          email: "member@gsaa.org",
+          institution: "University of Ghana",
+          tier: "Academic Member",
+          status: "active",
+          memberId: "GSAA-2026-0842",
+          joinedDate: "12 Jan 2020",
+          initials: "AP"
+        };
+      } else {
+        const data = localStorage.getItem(`gsaa_user_${email.toLowerCase().trim()}`);
+        if (data) {
+          user = JSON.parse(data);
+          user.initials = `${user.firstName ? user.firstName[0] : ''}${user.lastName ? user.lastName[0] : ''}`.toUpperCase();
+        }
+      }
+      
+      if (user) {
+        // Update Welcome Greeting
+        document.getElementById("welcomeGreeting").textContent = `Welcome, ${user.title || ''} ${user.firstName} ${user.lastName}`;
+        document.getElementById("avatarInitials").textContent = user.initials;
+        document.getElementById("badgeName").textContent = `${user.title || ''} ${user.firstName} ${user.lastName}`;
+        
+        // Update Card Renders
+        document.getElementById("cardInitials").textContent = user.initials;
+        document.getElementById("cardName").textContent = `${user.title || ''} ${user.firstName} ${user.lastName}`;
+        document.getElementById("cardInst").textContent = user.institution;
+        document.getElementById("cardTier").textContent = user.tier;
+        document.querySelector(".gsaa-id-card-idnum").textContent = user.memberId;
+        
+        // Update Metadata List
+        const metaList = document.querySelector(".id-card-meta-list");
+        if (metaList) {
+          metaList.innerHTML = `
+            <li>
+              <span>Member ID</span>
+              <span style="font-family: monospace;">${user.memberId}</span>
+            </li>
+            <li>
+              <span>Status</span>
+              <span style="color: ${user.status === 'active' ? '#22c55e' : '#e5b84c'}; font-weight:700">${user.status === 'active' ? 'Active' : 'Dues Pending'}</span>
+            </li>
+            <li>
+              <span>Date Joined</span>
+              <span>${user.joinedDate}</span>
+            </li>
+            <li>
+              <span>Expiry Date</span>
+              <span>December 31, 2026</span>
+            </li>
+          `;
+        }
+        
+        // Update status dot and text on card
+        const statusTextNode = document.querySelector(".gsaa-id-card-status");
+        if (statusTextNode) {
+          if (user.status === 'active') {
+            statusTextNode.style.color = '#22c55e';
+            statusTextNode.style.background = 'rgba(34, 197, 94, 0.15)';
+            statusTextNode.style.borderColor = 'rgba(34, 197, 94, 0.25)';
+            statusTextNode.innerHTML = '<div class="gsaa-id-card-status-dot" style="background:#22c55e"></div>Dues Paid';
+          } else {
+            statusTextNode.style.color = '#e5b84c';
+            statusTextNode.style.background = 'rgba(229, 184, 76, 0.15)';
+            statusTextNode.style.borderColor = 'rgba(229, 184, 76, 0.25)';
+            statusTextNode.innerHTML = '<div class="gsaa-id-card-status-dot" style="background:#e5b84c"></div>Pending';
+          }
+        }
+
+        // Update billing history tab dynamically with active category dues
+        const duesRow = document.getElementById("billingAcademicRow");
+        if (duesRow) {
+          let feeAmount = 'GHS 200.00';
+          if (user.tier.includes('Student')) feeAmount = 'GHS 100.00';
+          else if (user.tier.includes('Non-Academic')) feeAmount = 'GHS 300.00';
+          else if (user.tier.includes('Honorary')) feeAmount = 'GHS 400.00';
+          else if (user.tier.includes('External')) feeAmount = 'USD 50.00';
+          
+          duesRow.innerHTML = `
+            <td>TXN-GSAA-820492</td>
+            <td>${user.joinedDate}</td>
+            <td>GSAA Annual Membership Dues - ${user.tier}</td>
+            <td style="font-weight:700">${feeAmount}</td>
+            <td><button class="btn-outline font-small" onclick="viewReceiptDetail('TXN-GSAA-820492', '${user.joinedDate}', 'GSAA Annual Membership Dues - ${user.tier}', '${feeAmount}')">View Receipt</button></td>
+          `;
+        }
+      }
+    }
+
+    // Populate customized directory dynamically
+    function populateCustomDirectory() {
+      const body = document.getElementById("directoryBody");
+      if (!body) return;
+
+      // Loop over keys to find custom users
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith("gsaa_user_") && key !== "gsaa_user_member@gsaa.org") {
+          const user = JSON.parse(localStorage.getItem(key));
+          const initials = `${user.firstName ? user.firstName[0] : ''}${user.lastName ? user.lastName[0] : ''}`.toUpperCase();
+
+          // Check if already in directory (to prevent duplicate appends)
+          const existingRow = body.querySelector(`tr[data-email="${user.email}"]`);
+          if (existingRow) return;
+
+          const tr = document.createElement("tr");
+          tr.setAttribute('data-email', user.email);
+          tr.innerHTML = `
+            <td>
+              <div class="directory-row-name">
+                <div class="directory-avatar" style="background-color:#1e3a8a">${initials}</div>
+                ${user.title || ''} ${user.firstName} ${user.lastName}
+              </div>
+            </td>
+            <td>${user.institution}</td>
+            <td>${user.discipline || 'Sociology'}</td>
+            <td><span class="directory-tag">Member</span></td>
+          `;
+          body.appendChild(tr);
+        }
+      });
+
+      // Update count
+      const visibleCount = body.querySelectorAll("tr").length;
+      document.getElementById("dirCount").textContent = `Showing ${visibleCount} member${visibleCount === 1 ? '' : 's'}`;
+    }
+
+    // Display Dashboard Screen
+    function showDashboard() {
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("dashboardScreen").style.display = "flex";
+    }
+
+    // Handle Logout
+    function handleLogout() {
+      localStorage.removeItem("gsaa_logged_in");
+      localStorage.removeItem("gsaa_logged_email");
+      GSAA.showToast("Logged out of Member Portal.");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    }
+
+    // Switch Tab Panel
+    function switchTab(tabId) {
+      document.querySelectorAll(".sidebar-item").forEach(item => item.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+
+      const menuEl = document.getElementById(`menu${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`);
+      const tabEl = document.getElementById(`tab${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`);
+
+      if (menuEl && tabEl) {
+        menuEl.classList.add("active");
+        tabEl.classList.add("active");
+      }
+    }
+
+    // Handle Paper Submission
+    function handlePaperSubmit(e) {
+      e.preventDefault();
+      const title = document.getElementById("pubTitle").value.trim();
+      const abstract = document.getElementById("pubAbstract").value.trim();
+      const keywords = document.getElementById("pubKeywords").value.trim();
+
+      const dateStr = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>
+          <strong>${title}</strong><br>
+          <small style="color:var(--portal-text-light)">Preprint • 0 reads</small>
+        </td>
+        <td>${dateStr}</td>
+        <td>${keywords.split(',').map(k => `<span class="directory-tag">${k.trim()}</span>`).join(' ')}</td>
+        <td><button class="btn-outline font-small" onclick="GSAA.showToast('Downloading manuscript preprint...');">Download</button></td>
+      `;
+
+      document.getElementById("publicationsBody").prepend(tr);
+
+      GSAA.showToast("Manuscript preprint successfully uploaded to GSAA repository!", "success");
+      document.getElementById("pubSubmissionForm").reset();
+    }
+
+    // View billing invoice details inside modal
+    function viewReceiptDetail(txnId, date, desc, amount) {
+      const receiptHTML = `
+        <div class="gsaa-receipt-invoice">
+          <div class="gsaa-receipt-header">
+            <span>TRANSACTION RECEIPT</span>
+            <span>#${txnId}</span>
+          </div>
+          <div class="gsaa-receipt-row">
+            <span>Payment Date</span>
+            <span>${date}</span>
+          </div>
+          <div class="gsaa-receipt-row">
+            <span>Description</span>
+            <span>${desc}</span>
+          </div>
+          <div class="gsaa-receipt-row">
+            <span>Payment Gateway</span>
+            <span>Paystack Checkout</span>
+          </div>
+          <div class="gsaa-receipt-row">
+            <span>Status</span>
+            <span style="color:#22c55e;font-weight:bold">Paid</span>
+          </div>
+          <div class="gsaa-receipt-row" style="border-top:1px dashed rgba(0,0,0,0.1);padding-top:0.5rem;margin-top:0.5rem;font-weight:bold">
+            <span>Amount Paid</span>
+            <span>${amount}</span>
+          </div>
+        </div>
+      `;
+      GSAA.showSuccessModal('Payment Receipt', 'Your transaction record is displayed below.', receiptHTML);
+      
+      // Customize action button to Close only, hide Pay
+      const payBtn = document.getElementById('gsaaPayDuesBtn');
+      if (payBtn) payBtn.style.display = 'none';
+      
+      const closeBtn = document.getElementById('gsaaCloseModalBtn');
+      if (closeBtn) {
+        closeBtn.style.display = 'block';
+        closeBtn.textContent = 'Close Receipt';
+        closeBtn.onclick = () => GSAA.closeSuccessModal();
+      }
+    }
+
+    // Filter directory table
+    function filterDirectory() {
+      const query = document.getElementById("dirSearch").value.toLowerCase().trim();
+      const rows = document.querySelectorAll("#directoryBody tr");
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        if (text.includes(query)) {
+          row.style.display = "";
+          visibleCount++;
+        } else {
+          row.style.display = "none";
+        }
+      });
+
+      document.getElementById("dirCount").textContent = `Showing ${visibleCount} member${visibleCount === 1 ? '' : 's'}`;
+    }
+  </script>
+</body>
+</html>

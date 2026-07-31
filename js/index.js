@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   GSAA — Index / Home Page Scripts
+   GSAA - Index / Home Page Scripts
    Ghana Sociological & Anthropological Association
 ══════════════════════════════════════════ */
 
@@ -85,15 +85,15 @@
 
   /* ─── Floating Adinkra background symbols ─── */
   var adinkraPaths = [
-    // Adinkrahene — concentric circles
+    // Adinkrahene - concentric circles
     '<circle cx="30" cy="30" r="26"/><circle cx="30" cy="30" r="16"/><circle cx="30" cy="30" r="6"/>',
-    // Sankofa — stylised spiral
+    // Sankofa - stylised spiral
     '<path d="M30 8 C52 8 56 32 40 42 C26 50 12 38 20 26 C26 20 36 22 30 30"/>',
-    // Nyansapo — nested diamond knot
+    // Nyansapo - nested diamond knot
     '<path d="M30 4 L56 30 L30 56 L4 30 Z"/><path d="M30 16 L44 30 L30 44 L16 30 Z"/>',
-    // Musuyidee — cross with ring
+    // Musuyidee - cross with ring
     '<line x1="30" y1="6" x2="30" y2="54"/><line x1="6" y1="30" x2="54" y2="30"/><circle cx="30" cy="30" r="14"/>',
-    // Aya — fern
+    // Aya - fern
     '<path d="M30 6 L30 54 M18 16 L30 28 M42 16 L30 28 M14 34 L30 44 M46 34 L30 44"/>'
   ];
 
@@ -176,4 +176,15 @@
       card.setAttribute('aria-expanded', 'false');
     }
   });
+
+  /* ─── Hero Carousel Slide Transitions ─── */
+  var slides = document.querySelectorAll('.hero-carousel-slide');
+  if (slides.length > 0) {
+    var currentSlide = 0;
+    setInterval(function () {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 5000);
+  }
 })();
