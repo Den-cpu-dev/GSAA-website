@@ -1737,7 +1737,7 @@ const GSAA = (function () {
 
     const RICH_PROFILES = {
       'rosemond-hiadzi': {
-        name: 'Dr. Rosemond Akpene Hiadzi, PhD',
+        name: 'Dr. Rosemond Akpene Hiadzi',
         role: 'Senior Lecturer in Medical Sociology & Anthropology',
         institution: 'University of Ghana, Legon · Department of Sociology',
         badge: 'GSAA Representative · UG',
@@ -1749,7 +1749,7 @@ const GSAA = (function () {
             label: 'Overview Bio',
             content: `
               <div class="profile-bio-paragraph">
-                <strong>Rosemond Akpene Hiadzi, PhD</strong> is a Senior Lecturer in the Department of Sociology at the University of Ghana, Legon. Trained in medical sociology and anthropology, her research lies at the intersection of medical sociology, reproductive health, and the sociology of family life, with a particular focus on how social and cultural contexts shape reproductive experiences, health-seeking behaviour, and family formation in Ghana and across Africa. Her work has examined infertility, assisted reproductive technologies, surrogacy, male infertility, fertility awareness, and the psychosocial and ethical dimensions of reproductive care.
+                Dr. Rosemond Akpene Hiadzi is a Senior Lecturer in the Department of Sociology at the University of Ghana, Legon. Trained in medical sociology and anthropology, her research lies at the intersection of medical sociology, reproductive health, and the sociology of family life, with a particular focus on how social and cultural contexts shape reproductive experiences, health-seeking behaviour, and family formation in Ghana and across Africa. Her work has examined infertility, assisted reproductive technologies, surrogacy, male infertility, fertility awareness, and the psychosocial and ethical dimensions of reproductive care.
               </div>
               <div class="profile-bio-paragraph">
                 Using predominantly qualitative and community-engaged approaches, Dr. Hiadzi works closely with individuals, families, healthcare providers, and policymakers to generate evidence that informs practice, policy, and public understanding. Her research has been published in leading international journals, including <em>PLOS ONE</em>, <em>Heliyon</em>, <em>Reproductive Health</em>, and the <em>African Journal of Reproductive Health</em>, among others.
