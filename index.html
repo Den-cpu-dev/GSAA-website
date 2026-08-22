@@ -349,46 +349,85 @@
 
 <!-- MEDIA & NEWS -->
 <section class="media-news" id="media-news">
-  <div class="media-news-header reveal">
+  <div class="media-news-header-wrap reveal">
     <div>
       <div class="section-label">Media & Press</div>
       <h2 class="section-title">GSAA in the <em class="text-gold">News</em></h2>
+      <div class="media-news-subtitle">Statements, press coverages, and sociological commentary on public affairs.</div>
     </div>
-    <div class="media-news-subtitle">Statements, press coverages, and sociological commentary on public affairs.</div>
+    <div class="media-slider-nav">
+      <button class="media-nav-btn" id="mediaSliderPrev" aria-label="Previous news item">&larr;</button>
+      <button class="media-nav-btn" id="mediaSliderNext" aria-label="Next news item">&rarr;</button>
+    </div>
   </div>
 
-  <div class="media-news-grid">
+  <div class="media-news-slider" id="mediaNewsSlider">
+    <!-- Card 1 -->
     <div class="media-card reveal">
-      <div class="media-badge">Press Release</div>
-      <h3 class="media-title">Helicopter Crash: GSAA Mourns Victims, Urges Respectful Conduct</h3>
-      <p class="media-desc">The Ghana Sociological and Anthropological Association has expressed deep sorrow over the recent helicopter crash that claimed multiple lives, urging respectful public commentary on social platforms.</p>
-      <div class="media-footer">
-        <span class="media-author">By Abubakar Ibrahim</span>
-        <span class="media-date">August 12, 2025</span>
+      <div class="media-card-img-wrap">
+        <img src="https://www.myjoyonline.com/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-07-at-15.29.32-1.jpeg" alt="Helicopter crash news headline image" onerror="this.src='images/hero_carousel_1.jpg'">
       </div>
-      <a href="https://www.myjoyonline.com/helicopter-crash-ghana-sociological-and-anthropological-association-mourns-victims-urges-respectful-conduct/" target="_blank" rel="noopener" class="media-link">Read on MyJoyOnline →</a>
+      <div class="media-card-body">
+        <div class="media-badge">Press Release</div>
+        <h3 class="media-title">Helicopter Crash: GSAA Mourns Victims, Urges Respectful Conduct</h3>
+        <p class="media-desc">The Ghana Sociological and Anthropological Association has expressed deep sorrow over the recent helicopter crash that claimed multiple lives, urging respectful public commentary on social platforms.</p>
+        <div class="media-footer">
+          <span class="media-author">By Abubakar Ibrahim</span>
+          <span class="media-date">August 12, 2025</span>
+        </div>
+        <a href="https://www.myjoyonline.com/helicopter-crash-ghana-sociological-and-anthropological-association-mourns-victims-urges-respectful-conduct/" target="_blank" rel="noopener" class="media-link">Read on MyJoyOnline &rarr;</a>
+      </div>
     </div>
 
+    <!-- Card 2 -->
     <div class="media-card reveal reveal-delay-1">
-      <div class="media-badge">Statement</div>
-      <h3 class="media-title">Corruption in State Institutions Undermining Public Confidence - GSAA</h3>
-      <p class="media-desc">The GSAA has sounded the alarm on pervasive corruption in public bodies, warning that it systematically erodes civic trust and undermines public confidence in governance structures.</p>
-      <div class="media-footer">
-        <span class="media-author">By Kenneth Darko</span>
-        <span class="media-date">September 24, 2024</span>
+      <div class="media-card-img-wrap">
+        <img src="https://www.myjoyonline.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-24-at-18.32.21.jpeg" alt="State corruption headline image" onerror="this.src='images/hero_carousel_2.jpg'">
       </div>
-      <a href="https://www.myjoyonline.com/corruption-in-state-institutions-undermining-public-confidence-gsaa/" target="_blank" rel="noopener" class="media-link">Read on MyJoyOnline →</a>
+      <div class="media-card-body">
+        <div class="media-badge">Statement</div>
+        <h3 class="media-title">Corruption in State Institutions Undermining Public Confidence - GSAA</h3>
+        <p class="media-desc">The GSAA has sounded the alarm on pervasive corruption in public bodies, warning that it systematically erodes civic trust and undermines public confidence in governance structures.</p>
+        <div class="media-footer">
+          <span class="media-author">By Kenneth Darko</span>
+          <span class="media-date">September 24, 2024</span>
+        </div>
+        <a href="https://www.myjoyonline.com/corruption-in-state-institutions-undermining-public-confidence-gsaa/" target="_blank" rel="noopener" class="media-link">Read on MyJoyOnline &rarr;</a>
+      </div>
     </div>
 
+    <!-- Card 3 -->
     <div class="media-card reveal reveal-delay-2">
-      <div class="media-badge">Feature Insight</div>
-      <h3 class="media-title">Strike a Pose: How Ghanaian Youth are Redefining Birthday Celebrations</h3>
-      <p class="media-desc">An exploration of how modern birthdays in Ghana have evolved from quiet family moments into choreographic, red-carpet style social media productions representing changing youth norms.</p>
-      <div class="media-footer">
-        <span class="media-author">By Prof. Isaac Boafo</span>
-        <span class="media-date">November 6, 2025</span>
+      <div class="media-card-img-wrap">
+        <img src="https://www.myjoyonline.com/wp-content/uploads/2025/11/image-446.png" alt="Ghanaian youth birthday celebrations headline image" onerror="this.src='images/hero_carousel_3.jpg'">
       </div>
-      <a href="https://www.myjoyonline.com/strike-a-pose-how-ghanaian-youth-are-redefining-birthday-celebrations/" target="_blank" rel="noopener" class="media-link">Read on MyJoyOnline →</a>
+      <div class="media-card-body">
+        <div class="media-badge">Feature Insight</div>
+        <h3 class="media-title">Strike a Pose: How Ghanaian Youth are Redefining Birthday Celebrations</h3>
+        <p class="media-desc">An exploration of how modern birthdays in Ghana have evolved from quiet family moments into choreographic, red-carpet style social media productions representing changing youth norms.</p>
+        <div class="media-footer">
+          <span class="media-author">By Prof. Isaac Boafo</span>
+          <span class="media-date">November 6, 2025</span>
+        </div>
+        <a href="https://www.myjoyonline.com/strike-a-pose-how-ghanaian-youth-are-redefining-birthday-celebrations/" target="_blank" rel="noopener" class="media-link">Read on MyJoyOnline &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="media-card reveal reveal-delay-3">
+      <div class="media-card-img-wrap">
+        <img src="images/hero_carousel_4.jpg" alt="10th Annual GSAA Conference header image">
+      </div>
+      <div class="media-card-body">
+        <div class="media-badge">Flagship Conference</div>
+        <h3 class="media-title">10th Annual GSAA Conference: Our Future at Risk</h3>
+        <p class="media-desc">Bringing together scholars, practitioners, and policymakers to discuss social exclusion, resource extraction, and security across contemporary Africa at UCC Cape Coast.</p>
+        <div class="media-footer">
+          <span class="media-author">GSAA Secretariat</span>
+          <span class="media-date">September 17-18, 2026</span>
+        </div>
+        <a href="events.html" class="media-link">View Event Details &rarr;</a>
+      </div>
     </div>
   </div>
 </section>
@@ -421,57 +460,61 @@
 
  <!-- Other Leaders -->
  <div class="profile-grid">
- <!-- Immediate Past Convenor -->
- <div class="profile-card reveal">
- <div class="profile-photo-wrap">
-  <img src="images/leaders/steve-tonah.jpg" alt="Prof. Steve Tonah" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-  <div class="profile-photo-fallback">ST</div>
- </div>
- <div class="profile-info">
-  <div class="profile-role">Immediate Past Convenor</div>
-  <div class="profile-name">Prof. Steve Tonah</div>
-  <p class="profile-bio">Professor Steve Tonah served as the founding convenor who steered the re-launch and growth of GSAA, laying the groundwork for the association's institutional framework.</p>
- </div>
- </div>
+  <!-- Immediate Past Convenor -->
+  <div class="profile-card reveal interactive" data-profile="steve-tonah" tabindex="0" role="button" aria-label="View Prof. Steve Tonah's profile">
+  <div class="profile-photo-wrap">
+   <img src="images/leaders/steve-tonah.jpg" alt="Prof. Steve Tonah" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+   <div class="profile-photo-fallback">ST</div>
+  </div>
+  <div class="profile-info">
+   <div class="profile-role">Immediate Past Convenor</div>
+   <div class="profile-name">Prof. Steve Tonah</div>
+   <p class="profile-bio">Professor of Sociology at UG, Fellow of GAAS &amp; Alexander von Humboldt Foundation, specializing in migration, chieftaincy, and pastoralism.</p>
+   <span class="profile-card-badge-trigger">View Full Bio &amp; Research &rarr;</span>
+  </div>
+  </div>
 
- <!-- UG — Head -->
- <div class="profile-card reveal reveal-delay-1">
- <div class="profile-photo-wrap">
-  <img src="images/leaders/peace-tetteh.jpg" alt="Prof. Peace Mamle Tetteh" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-  <div class="profile-photo-fallback">PT</div>
- </div>
- <div class="profile-info">
-  <div class="profile-role">Head of Department · UG</div>
-  <div class="profile-name">Prof. Peace Mamle Tetteh</div>
-  <p class="profile-bio">Head of the Sociology Department at the University of Ghana, Legon. Prof. Tetteh provides institutional leadership for GSAA's anchor department.</p>
- </div>
- </div>
+  <!-- UG — Head -->
+  <div class="profile-card reveal reveal-delay-1 interactive" data-profile="peace-tetteh" tabindex="0" role="button" aria-label="View Asso. Prof. Peace Mamle Tetteh's profile">
+  <div class="profile-photo-wrap">
+   <img src="images/leaders/peace-tetteh.jpg" alt="Asso. Prof. Peace Mamle Tetteh" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+   <div class="profile-photo-fallback">PT</div>
+  </div>
+  <div class="profile-info">
+   <div class="profile-role">Head of Department · UG</div>
+   <div class="profile-name">Asso. Prof. Peace Mamle Tetteh</div>
+   <p class="profile-bio">Head of Department of Sociology at UG, Associate Professor specializing in Gender, Global Childhoods, Research Ethics, and Social Policy.</p>
+   <span class="profile-card-badge-trigger">View Full Bio &amp; Research &rarr;</span>
+  </div>
+  </div>
 
- <!-- UG — Rep -->
- <div class="profile-card reveal reveal-delay-2">
- <div class="profile-photo-wrap">
-  <img src="images/leaders/rosemond-hiadzi.jpg" alt="Dr. Rosemond Akpene Hiadzi" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-  <div class="profile-photo-fallback">RH</div>
- </div>
- <div class="profile-info">
-  <div class="profile-role">GSAA Representative · UG</div>
-  <div class="profile-name">Dr. Rosemond Akpene Hiadzi</div>
-  <p class="profile-bio">GSAA representative for the University of Ghana, contributing to association governance and promoting social science scholarship at UG.</p>
- </div>
- </div>
+  <!-- UG — Rep -->
+  <div class="profile-card reveal reveal-delay-2 interactive" data-profile="rosemond-hiadzi" tabindex="0" role="button" aria-label="View Dr. Rosemond Akpene Hiadzi's profile">
+  <div class="profile-photo-wrap">
+   <img src="images/leaders/rosemond-hiadzi.jpg" alt="Dr. Rosemond Akpene Hiadzi, PhD" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+   <div class="profile-photo-fallback">RH</div>
+  </div>
+  <div class="profile-info">
+   <div class="profile-role">GSAA Representative · UG</div>
+   <div class="profile-name">Dr. Rosemond Akpene Hiadzi, PhD</div>
+   <p class="profile-bio">Senior Lecturer in Medical Sociology &amp; Anthropology at UG, specializing in reproductive health, family life, and qualitative research.</p>
+   <span class="profile-card-badge-trigger">View Full Bio &amp; Research &rarr;</span>
+  </div>
+  </div>
 
- <!-- UCC — Head -->
- <div class="profile-card reveal reveal-delay-3">
- <div class="profile-photo-wrap">
-  <img src="images/leaders/gina-oduro.jpg" alt="Prof. Georgina Yaa Oduro" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-  <div class="profile-photo-fallback">GO</div>
- </div>
- <div class="profile-info">
-  <div class="profile-role">Head of Department · UCC</div>
-  <div class="profile-name">Prof. Georgina Yaa Oduro</div>
-  <p class="profile-bio">Head of Department at the University of Cape Coast, providing academic leadership and institutional support for GSAA activities.</p>
- </div>
- </div>
+  <!-- UCC — Head -->
+  <div class="profile-card reveal reveal-delay-3 interactive" data-profile="georgina-oduro" tabindex="0" role="button" aria-label="View Prof. Georgina Yaa Oduro's profile">
+  <div class="profile-photo-wrap">
+   <img src="images/leaders/gina-oduro.jpg" alt="Prof. Georgina Yaa Oduro" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+   <div class="profile-photo-fallback">GO</div>
+  </div>
+  <div class="profile-info">
+   <div class="profile-role">Head of Department · UCC</div>
+   <div class="profile-name">Prof. Georgina Yaa Oduro</div>
+   <p class="profile-bio">Head of Department of Sociology &amp; Anthropology at UCC, Associate Professor specializing in Gender Studies, Youth Cultures, and Blue Economy Heritage.</p>
+   <span class="profile-card-badge-trigger">View Full Bio &amp; Research &rarr;</span>
+  </div>
+  </div>
 
  <!-- UCC — Rep -->
  <div class="profile-card reveal">

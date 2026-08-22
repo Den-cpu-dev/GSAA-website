@@ -187,4 +187,37 @@
       slides[currentSlide].classList.add('active');
     }, 5000);
   }
+
+  /* ─── Media & News Marquee Slider ─── */
+  var newsSlider = document.getElementById('mediaNewsSlider');
+  var prevBtn = document.getElementById('mediaSliderPrev');
+  var nextBtn = document.getElementById('mediaSliderNext');
+
+  if (newsSlider) {
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        newsSlider.scrollBy({ left: -390, behavior: 'smooth' });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        newsSlider.scrollBy({ left: 390, behavior: 'smooth' });
+      });
+    }
+
+    // Auto marquee scroll with pause on hover
+    var isHovered = false;
+    newsSlider.addEventListener('mouseenter', function () { isHovered = true; });
+    newsSlider.addEventListener('mouseleave', function () { isHovered = false; });
+
+    setInterval(function () {
+      if (isHovered) return;
+      var maxScroll = newsSlider.scrollWidth - newsSlider.clientWidth;
+      if (newsSlider.scrollLeft >= maxScroll - 10) {
+        newsSlider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        newsSlider.scrollBy({ left: 390, behavior: 'smooth' });
+      }
+    }, 4500);
+  }
 })();

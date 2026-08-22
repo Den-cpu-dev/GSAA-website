@@ -696,12 +696,14 @@ const GSAA = (function () {
   .leader-modal-box {
     background: var(--white);
     border-radius: 16px;
-    border: 1px solid rgba(229, 184, 76, 0.3);
+    border: 1px solid rgba(229, 184, 76, 0.35);
     width: 100%;
-    max-width: 650px;
+    max-width: 880px;
+    max-height: 88vh;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     color: var(--text-dark);
     transform: translateY(20px) scale(0.96);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -746,12 +748,18 @@ const GSAA = (function () {
     display: flex;
     gap: 1.8rem;
     align-items: flex-start;
+    min-width: 0;
+    width: 100%;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    .leader-modal-box {
+      padding: 1.5rem 1.2rem;
+      max-height: 92vh;
+    }
     .leader-modal-content {
       flex-direction: column;
       align-items: center;
-      text-align: center;
+      text-align: left;
     }
   }
   .leader-modal-photo-col {
@@ -806,9 +814,12 @@ const GSAA = (function () {
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     border: 1px solid rgba(229, 184, 76, 0.3);
+    text-align: center;
   }
   .leader-modal-info-col {
     flex-grow: 1;
+    min-width: 0;
+    width: 100%;
   }
   .leader-modal-role {
     font-size: 0.82rem;
@@ -820,7 +831,7 @@ const GSAA = (function () {
   }
   .leader-modal-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
+    font-size: 1.65rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 0.3rem;
@@ -841,17 +852,65 @@ const GSAA = (function () {
     background: linear-gradient(90deg, var(--gold), transparent);
     margin-bottom: 1rem;
   }
-  @media (max-width: 640px) {
-    .leader-modal-divider { margin: 0.8rem auto; }
+  @media (max-width: 768px) {
+    .leader-modal-divider { margin: 0.8rem 0; }
   }
   .leader-modal-bio {
-    font-size: 0.92rem;
-    line-height: 1.65;
-    color: var(--text-light);
+    font-size: 0.94rem;
+    line-height: 1.7;
+    color: var(--text-dark);
     margin-bottom: 1.5rem;
-    max-height: 220px;
-    overflow-y: auto;
-    padding-right: 0.5rem;
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+    width: 100%;
+  }
+  .profile-modal-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    background: rgba(0,0,0,0.03);
+    padding: 0.4rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+    margin-bottom: 1.25rem;
+  }
+  .profile-modal-tab {
+    padding: 0.55rem 0.95rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: normal;
+  }
+  .profile-modal-tab:hover {
+    color: var(--green-deep);
+    background: rgba(0,0,0,0.05);
+  }
+  .profile-modal-tab.active {
+    color: var(--green-deep);
+    background: var(--white);
+    border-color: rgba(229, 184, 76, 0.4);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  [data-theme="dark"] .profile-modal-tabs {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+  }
+  [data-theme="dark"] .profile-modal-tab {
+    color: #94a3b8;
+  }
+  [data-theme="dark"] .profile-modal-tab.active {
+    color: var(--gold);
+    background: #1e293b;
+    border-color: var(--gold);
   }
   .leader-modal-actions {
     display: flex;
@@ -859,7 +918,7 @@ const GSAA = (function () {
     flex-wrap: wrap;
   }
   @media (max-width: 640px) {
-    .leader-modal-actions { justify-content: center; }
+    .leader-modal-actions { justify-content: flex-start; }
   }
 
   /* Lightbox Overlay */
@@ -947,15 +1006,18 @@ const GSAA = (function () {
   .leader-photo-wrap::after,
   .about-photo-wrap::after,
   .member-photo-wrap::after {
-    content: '🔍';
+    content: 'View';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(7, 21, 38, 0.45);
-    color: #fff;
+    background: rgba(7, 21, 38, 0.55);
+    color: var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     border-radius: inherit;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -1673,6 +1735,493 @@ const GSAA = (function () {
     let currentPhotoSrc = '';
     let currentLeaderName = '';
 
+    const RICH_PROFILES = {
+      'rosemond-hiadzi': {
+        name: 'Dr. Rosemond Akpene Hiadzi, PhD',
+        role: 'Senior Lecturer in Medical Sociology & Anthropology',
+        institution: 'University of Ghana, Legon · Department of Sociology',
+        badge: 'GSAA Representative · UG',
+        photo: 'images/leaders/rosemond-hiadzi.jpg',
+        fallback: 'RH',
+        tabs: [
+          {
+            id: 'bio',
+            label: 'Overview Bio',
+            content: `
+              <div class="profile-bio-paragraph">
+                <strong>Rosemond Akpene Hiadzi, PhD</strong> is a Senior Lecturer in the Department of Sociology at the University of Ghana, Legon. Trained in medical sociology and anthropology, her research lies at the intersection of medical sociology, reproductive health, and the sociology of family life, with a particular focus on how social and cultural contexts shape reproductive experiences, health-seeking behaviour, and family formation in Ghana and across Africa. Her work has examined infertility, assisted reproductive technologies, surrogacy, male infertility, fertility awareness, and the psychosocial and ethical dimensions of reproductive care.
+              </div>
+              <div class="profile-bio-paragraph">
+                Using predominantly qualitative and community-engaged approaches, Dr. Hiadzi works closely with individuals, families, healthcare providers, and policymakers to generate evidence that informs practice, policy, and public understanding. Her research has been published in leading international journals, including <em>PLOS ONE</em>, <em>Heliyon</em>, <em>Reproductive Health</em>, and the <em>African Journal of Reproductive Health</em>, among others.
+              </div>
+              <div class="profile-bio-paragraph">
+                Beyond research, she is passionate about teaching and mentoring the next generation of sociologists and social scientists, fostering critical thinking, ethical scholarship, and socially responsive research. She is an active member of several national and international professional associations and collaborates with interdisciplinary research networks advancing reproductive health and social justice.
+              </div>
+            `
+          },
+          {
+            id: 'research',
+            label: 'Research & Focus',
+            content: `
+              <div class="profile-section-heading">Primary Research Specializations</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Medical Sociology & Anthropology</div>
+                  <div class="profile-item-desc">Socio-cultural dynamics of healthcare access, health-seeking trajectories, and patient experiences in West Africa.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Reproductive Health & Family Life</div>
+                  <div class="profile-item-desc">Infertility, assisted reproductive technologies (ART), surrogacy, male infertility, and fertility awareness in Ghana and Africa.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Ethical & Psychosocial Care</div>
+                  <div class="profile-item-desc">Psychosocial impact of reproductive challenges and ethical dimensions surrounding modern reproductive care adoption.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Qualitative & Community-Engaged Methods</div>
+                  <div class="profile-item-desc">Qualitative, ethnographic, and community-based participatory research connecting families, healthcare providers, and policymakers.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'achievements',
+            label: 'Achievements & Leadership',
+            content: `
+              <div class="profile-section-heading">Key Achievements & Institutional Roles</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Senior Lecturer, University of Ghana</div>
+                  <div class="profile-item-desc">Faculty leadership in the Department of Sociology, Legon, instructing undergraduate and postgraduate courses in medical sociology and qualitative research.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">GSAA Representative (UG)</div>
+                  <div class="profile-item-desc">Serving as official institutional representative for the University of Ghana, driving inter-university governance and sociological scholarship.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">International Peer-Reviewed Publications</div>
+                  <div class="profile-item-desc">Author of influential scholarly articles shaping public understanding, clinical practice, and policy frameworks in reproductive health.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Academic Mentorship & Ethics</div>
+                  <div class="profile-item-desc">Championing critical thinking, rigorous ethical research standards, and mentoring emerging sociologists across Ghana.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'publications',
+            label: 'Publications & Journals',
+            content: `
+              <div class="profile-section-heading">Featured Peer-Reviewed Journals</div>
+              <p class="profile-item-desc">Dr. Hiadzi's research has been published in leading international journals advancing global and regional social science knowledge:</p>
+              <div class="journal-pill-list">
+                <span class="journal-pill">PLOS ONE</span>
+                <span class="journal-pill">Heliyon</span>
+                <span class="journal-pill">Reproductive Health</span>
+                <span class="journal-pill">African Journal of Reproductive Health</span>
+              </div>
+              <div class="profile-section-heading">Core Publication Themes</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Infertility Stigma & Surrogacy</div>
+                  <div class="profile-item-desc">Sociological insights into assisted reproductive technologies, surrogacy ethics, and social perceptions in Ghana.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Male Infertility Awareness</div>
+                  <div class="profile-item-desc">Investigating male reproductive experiences, health-seeking behaviors, and gender dynamics in clinical care.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'conferences',
+            label: 'Conferences & Networks',
+            content: `
+              <div class="profile-section-heading">Professional Affiliations & Networks</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Professional Associations</div>
+                  <div class="profile-item-desc">Active member of national and international sociological and anthropological associations promoting social justice.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Interdisciplinary Networks</div>
+                  <div class="profile-item-desc">Collaborates with interdisciplinary research networks advancing reproductive health equity, family life, and ethical care.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Conference Presentations & Policy Engagement</div>
+                  <div class="profile-item-desc">Regular contributor to academic conferences, public health forums, and policy dialogue sessions across Africa and globally.</div>
+                </div>
+              </div>
+            `
+          }
+        ]
+      },
+      'peace-tetteh': {
+        name: 'Asso. Prof. Peace Mamle Tetteh',
+        role: 'Head of Department · Associate Professor of Sociology',
+        institution: 'University of Ghana, Legon · Department of Sociology',
+        badge: 'Head of Department · UG',
+        photo: 'images/leaders/peace-tetteh.jpg',
+        fallback: 'PT',
+        tabs: [
+          {
+            id: 'bio',
+            label: 'Overview Bio',
+            content: `
+              <div class="profile-bio-paragraph">
+                <strong>Peace Mamle Yoko Tetteh</strong> is the Head of the Department of Sociology at the University of Ghana, Legon. She is an Associate Professor of Sociology with specialization in Gender and Global Childhoods Studies. Her fortes also include Advanced Research Methods, Ethics, Social Policy Studies, Community Impact Assessments, and Migration. Her research in childhood studies has focused on early childhood development and education (ECDE), child labor (especially domestic labor), children's rights, child sexual abuse, children's play cultures, child marriage, child rights monitoring, innovative methods in childhood research, and constructions of childhood in contemporary society.
+              </div>
+              <div class="profile-bio-paragraph">
+                She is a passionate educator, researcher, and advocate for gender equality and social justice. With more than two decades of experience in academia, she has dedicated her career to shaping the next generation of scholars, mentoring thousands of students, and conducting meaningful research on gender, childhood studies, and social policy. Prof. Tetteh’s work explores real-world challenges from cumulative impact and sustainability assessments to reproductive health, child rights, and migration.
+              </div>
+              <div class="profile-bio-paragraph">
+                She is a Commonwealth Scholar who has collaborated with leading researchers from the UK, USA, Germany, and Switzerland, producing impactful studies on children’s education, child protection, social policies, makerspaces, and how childhood is shaped in different cultures.
+              </div>
+              <div class="profile-bio-paragraph">
+                Beyond academia, she has worked closely with organizations such as UNICEF, PLAN International, and the International Organization for Migration (IOM), providing expert guidance on gender, social protection, and community development. She has trained government agencies including CHRAJ and local government bodies, and serves as a facilitator for the Office of Research, Innovation and Development (RID) at the University of Ghana.
+              </div>
+              <div class="profile-bio-paragraph">
+                Prof. Tetteh holds high-level advisory positions, including Ethics Advisor for the EU-AU Partnership’s StEPPFoS Project, Chair of the Ethics Advisory Board for the ESRC Modern Marronage Project, and Member of the Institutional Ethics Review Board at Noguchi Memorial Institute for Medical Research (NMIMR). Currently, she serves as a member of the Board of GOIL-PLC, Chair of the Subsidiary Board of Go-Bitumen, and member of the Audit and Risk Committees of GOIL-PLC.
+              </div>
+            `
+          },
+          {
+            id: 'research',
+            label: 'Research & Specializations',
+            content: `
+              <div class="profile-section-heading">Academic Teaching & Mentorship</div>
+              <p class="profile-item-desc">Over 20+ years at the University of Ghana, Prof. Tetteh has taught over 15 undergraduate and 5 postgraduate courses. She has supervised 12 PhD candidates, 10 MPhil candidates, and over 100 undergraduate dissertations, while serving as external examiner across major Ghanaian universities.</p>
+              
+              <div class="profile-section-heading">Primary Research Specializations</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Sociology of Childhoods</div>
+                  <div class="profile-item-desc">Early childhood education, child domestic labor, rights monitoring, play cultures, and child protection frameworks.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Gender & Social Policy Studies</div>
+                  <div class="profile-item-desc">Gender equality, social protection programs, community impact assessments, and gender dynamics in extractive industries.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Sexual & Reproductive Health</div>
+                  <div class="profile-item-desc">Adolescent reproductive health, health-seeking behaviors, assisted reproductive technology adoption, and disease screening.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Research Ethics & Public Policy</div>
+                  <div class="profile-item-desc">Advanced qualitative methods, ethical clearance frameworks, participatory child-focused methodologies, and social governance.</div>
+                </div>
+              </div>
+
+              <div class="profile-section-heading">Major Grants & Research Projects</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">British Academy DEVI Project (281,055 GBP)</div>
+                  <div class="profile-item-desc">Development and Education in the Vernacular for Infants in rural West Africa (2019–2023), with K. Wells and E. Alber.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Washington University in St. Louis Grant ($50,000)</div>
+                  <div class="profile-item-desc">Predictors of sexual risk behaviors in Ghanaian adolescent girls from mother-daughter perspectives (2025–2026).</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">British Academy GCRF Grant (10,000 GBP)</div>
+                  <div class="profile-item-desc">Searching for the everyday in African Childhoods (2019–2020), with A. Twum-Danso and G.Y. Oduro.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Bullying Victimization Research (BVIG)</div>
+                  <div class="profile-item-desc">Ongoing evidence-based research project creating safe, anti-bullying school environments in Ghana aligned with SDGs 3, 4, and 5.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'achievements',
+            label: 'Achievements & Leadership',
+            content: `
+              <div class="profile-section-heading">Key Institutional Leadership Roles</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Head of Department, Sociology (UG)</div>
+                  <div class="profile-item-desc">Providing vision, academic governance, and faculty leadership for the Department of Sociology at the University of Ghana.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Ethics Advisory Leadership</div>
+                  <div class="profile-item-desc">Ethics Advisor for EU-AU StEPPFoS Project, Chair of ESRC Modern Marronage Ethics Board, and Board Member at NMIMR.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Corporate & Governance Directorships</div>
+                  <div class="profile-item-desc">Board Member of GOIL-PLC, Chair of Go-Bitumen Subsidiary Board, and former Presiding Member of Lower Manya Krobo Municipal Assembly.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Commonwealth Scholar & Thought Leader</div>
+                  <div class="profile-item-desc">International scholar driving child protection, gender equity policies, and ethics training for government agencies and CSOs.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'publications',
+            label: 'Publications & Documentary',
+            content: `
+              <div class="profile-section-heading">International Documentary Film</div>
+              <div class="profile-item-card" style="margin-bottom:1rem">
+                <div class="profile-item-title">'DEVI': Weaving Knowledge (2022)</div>
+                <div class="profile-item-desc">Featured in the British Academy Summer Showcase (UK) and featured in Tilda Swinton's documentary 'The Hexagonal Hive and a Mouse in a Maze'. Screened across UK, Ghana, Togo, and Senegal exploring informal early-years learning.</div>
+              </div>
+
+              <div class="profile-section-heading">Featured Peer-Reviewed Journals</div>
+              <div class="journal-pill-list">
+                <span class="journal-pill">PLOS ONE</span>
+                <span class="journal-pill">Journal of the British Academy</span>
+                <span class="journal-pill">Child Abuse Review</span>
+                <span class="journal-pill">Children and Youth Services Review</span>
+                <span class="journal-pill">Children's Geographies</span>
+                <span class="journal-pill">Ghana Social Science Journal</span>
+                <span class="journal-pill">Ghana Medical Journal</span>
+              </div>
+
+              <div class="profile-section-heading">Book Chapters & Selected Articles</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Handbook on Childhood & Global Development</div>
+                  <div class="profile-item-desc">'Children's Play Cultures' (Routledge, 2023, pp 557-568).</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Introduction to Sociology in Ghana</div>
+                  <div class="profile-item-desc">'Social Groups and Organizations' in Social Change in a Global Era (Sub-Saharan Publishers, 2023).</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Assisted Reproductive Technologies in Ghana</div>
+                  <div class="profile-item-desc">Co-authored landmark studies on ART negotiation and prostate cancer screening in PLOS ONE and Ghana Social Science Journal.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'conferences',
+            label: 'Conferences & Extension Services',
+            content: `
+              <div class="profile-section-heading">Professional Memberships</div>
+              <div class="journal-pill-list" style="margin-bottom:1rem">
+                <span class="journal-pill">International Sociological Association (ISA RC53)</span>
+                <span class="journal-pill">British Sociological Association (BSA)</span>
+                <span class="journal-pill">Ghana Sociological & Anthropological Association (GSAA)</span>
+                <span class="journal-pill">International Academy of African Business Development (IAABD)</span>
+              </div>
+
+              <div class="profile-section-heading">Keynote Presentations & Policy Dialogues</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">British Sociological Association (BSA)</div>
+                  <div class="profile-item-desc">Presented papers on Child Rights Monitoring and Vernacularizing SRHR at BSA 70th Anniversary and 2024 Virtual Conferences.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Rutgers University Childism Institute</div>
+                  <div class="profile-item-desc">Panelist on 'Reimagining Childhoods in Low Resource Contexts: Transnational Colloquium Series'.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-desc">National facilitator training human rights officials, MMDAs, CSOs, and NGOs on Child Rights Monitoring.</div>
+                </div>
+              </div>
+            `
+          }
+        ]
+      },
+      'steve-tonah': {
+        name: 'Prof. Steve Tonah',
+        role: 'Immediate Past Convenor · Professor of Sociology',
+        institution: 'University of Ghana, Legon · Department of Sociology',
+        badge: 'Immediate Past Convenor · GSAA',
+        photo: 'images/leaders/steve-tonah.jpg',
+        fallback: 'ST',
+        tabs: [
+          {
+            id: 'bio',
+            label: 'Overview Bio',
+            content: `
+              <div class="profile-bio-paragraph">
+                <strong>Steve Tonah</strong> is Professor of Sociology at the University of Ghana, Legon. He holds a BA degree in Economics and Sociology and a Dip. Ed. from the University of Cape Coast (1982). He earned his MA and PhD degrees in Development Sociology from the University of Bielefeld, Germany (1993). He also studied anthropology at the Pennsylvania State University at State College, USA.
+              </div>
+              <div class="profile-bio-paragraph">
+                His areas of specialisation include migration and displacement in West Africa, chieftaincy and traditional rule, inter-ethnic relations, farmer-herder relations, and Fulani pastoralism. He is currently researching the Tabom Afro-Brazilian returnees of Accra and the memorialisation of slavery in Ghana and Brazil.
+              </div>
+              <div class="profile-bio-paragraph">
+                Prof. Tonah has written and edited 14 academic monographs and more than 180 conference papers, journal articles, book chapters, workshop/consultancy reports, and encyclopaedia entries. He is a fellow of the Ghana Academy of Arts and Sciences and the Alexander von Humboldt Foundation of Germany.
+              </div>
+            `
+          },
+          {
+            id: 'research',
+            label: 'Research Specializations',
+            content: `
+              <div class="profile-section-heading">Core Areas of Specialisation</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Migration & Displacement</div>
+                  <div class="profile-item-desc">Cross-border mobility, forced displacement, and regional migration dynamics across West Africa.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Chieftaincy & Traditional Governance</div>
+                  <div class="profile-item-desc">Traditional political authority, chieftaincy disputes, and institutional governance in contemporary Ghana.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Farmer-Herder Relations & Pastoralism</div>
+                  <div class="profile-item-desc">Conflict resolution, resource access, inter-ethnic relations, and Fulani pastoralist livelihood strategies.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Tabom Afro-Brazilian Returnees & Slavery Memorialisation</div>
+                  <div class="profile-item-desc">Ongoing research into the Tabom community of Accra, historical memory, and transatlantic slavery memorialisation in Ghana and Brazil.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'achievements',
+            label: 'Achievements & Fellowships',
+            content: `
+              <div class="profile-section-heading">Honours, Fellowships & Leadership</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Fellow, Ghana Academy of Arts and Sciences</div>
+                  <div class="profile-item-desc">Elected fellow of Ghana's premier learned society recognizing outstanding scholarly contributions.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Fellow, Alexander von Humboldt Foundation</div>
+                  <div class="profile-item-desc">Prestigious German research fellowship awarded for academic excellence in social sciences.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Immediate Past Convenor, GSAA</div>
+                  <div class="profile-item-desc">Founding convenor who steered the re-launch, expansion, and institutional framework of the association.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Professor of Sociology, University of Ghana</div>
+                  <div class="profile-item-desc">Senior academic leader advancing sociology, development studies, and graduate training at Legon.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'publications',
+            label: 'Publications & Academic Output',
+            content: `
+              <div class="profile-section-heading">Scholarship Summary</div>
+              <p class="profile-item-desc">Prof. Tonah has produced an extensive body of academic research spanning over four decades:</p>
+              <div class="journal-pill-list" style="margin-bottom:1rem">
+                <span class="journal-pill">14 Academic Monographs</span>
+                <span class="journal-pill">180+ Peer-Reviewed Articles & Chapters</span>
+                <span class="journal-pill">Conference Papers & Reports</span>
+              </div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Development Sociology & Pastoralism</div>
+                  <div class="profile-item-desc">Pioneering books and monographs on pastoralism, Fulani migration, and rural development in Ghana.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Chieftaincy in Ghana</div>
+                  <div class="profile-item-desc">Authoritative studies on chieftaincy, land disputes, and traditional authority in West Africa.</div>
+                </div>
+              </div>
+            `
+          }
+        ]
+      },
+      'georgina-oduro': {
+        name: 'Prof. Georgina Yaa Oduro',
+        role: 'Head of Department · UCC | Associate Professor',
+        institution: 'University of Cape Coast · Department of Sociology & Anthropology',
+        badge: 'HOD & Associate Professor · UCC',
+        photo: 'images/leaders/gina-oduro.jpg',
+        fallback: 'GO',
+        tabs: [
+          {
+            id: 'bio',
+            label: 'Overview Bio',
+            content: `
+              <div class="profile-bio-paragraph">
+                <strong>Prof. Georgina Yaa Oduro</strong> is an Associate Professor and the current Head of the Department of Sociology and Anthropology at the University of Cape Coast (UCC), Ghana. She is the immediate past Director (2019–2023) of the Centre for Gender Research, Advocacy and Documentation (CEGRAD) at UCC, and served as Hall Warden of Oguaa Hall in 2024 overseeing welfare support for over 1,300 students.
+              </div>
+              <div class="profile-bio-paragraph">
+                She earned her BA degree in Sociology with Political Science from the University of Ghana, Legon, a Master's degree from the University of Westminster, London, and her PhD from the University of Cambridge, UK. Her doctoral research examined gender relations, sexuality, and HIV/AIDS education from a youth culture perspective.
+              </div>
+              <div class="profile-bio-paragraph">
+                Prof. Oduro's scholarly work spans gender dynamics, violence, sexuality, youth cultures, marginalized populations, popular culture, race and ethnicity, and blue economy heritage. She has served as Lead and Co-Investigator on major international research initiatives including UKRI/GCRF One Ocean Hub, CODESRIA MRI, and Mastercard Foundation creative industry projects.
+              </div>
+            `
+          },
+          {
+            id: 'research',
+            label: 'Research & Grants',
+            content: `
+              <div class="profile-section-heading">Specializations & Major Research Projects</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">UKRI/GCRF One Ocean Hub (OOH)</div>
+                  <div class="profile-item-desc">Co-investigator leading Ghana Research Package 5 on critical perspectives of the blue economy, tangible/intangible ocean heritage, and coastal livelihoods.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Mastercard Foundation & ICRW Project (2024–2026)</div>
+                  <div class="profile-item-desc">Country Lead on multi-country study examining Gender and Creative Industries in African countries.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">CODESRIA Meaning Making Research (MRI)</div>
+                  <div class="profile-item-desc">Principal Investigator exploring lived experiences of mixed-race individuals across Ghana and Canada.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Trans-national Trade & Gender (2024–2026)</div>
+                  <div class="profile-item-desc">Co-researcher analyzing experiences of women in cross-border trade with Laval University and University of Yaounde.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'achievements',
+            label: 'Achievements & Fellowships',
+            content: `
+              <div class="profile-section-heading">Fellowships, Awards & Institutional Leadership</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Harvard Takemi Fellowship (2016–2017)</div>
+                  <div class="profile-item-desc">Takemi Fellow in International Health at Harvard T.H. Chan School of Public Health, conducting research on child prostitution.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Martha Farrell Fellowship (2020/2021)</div>
+                  <div class="profile-item-desc">Awarded by ACU London for excellence in Gender Equality and Anti-Sexual Harassment initiatives.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">MASHAV Fellowship (2023)</div>
+                  <div class="profile-item-desc">Administered by Israel Foreign Affairs for international social leadership and development.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Director of CEGRAD (2019–2023)</div>
+                  <div class="profile-item-desc">Pioneered gender advocacy, research policy, and institutional outreach at UCC's flagship gender center.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'publications',
+            label: 'Publications & Handbooks',
+            content: `
+              <div class="profile-section-heading">Selected Scholarly Contributions</div>
+              <p class="profile-item-desc">Contributor to authoritative international handbooks by Palgrave and Routledge:</p>
+              <div class="journal-pill-list" style="margin-bottom:1rem">
+                <span class="journal-pill">Palgrave Blue Heritage (2022)</span>
+                <span class="journal-pill">Palgrave Sexuality Education (2017)</span>
+                <span class="journal-pill">Routledge Sex Industry Research (2019)</span>
+                <span class="journal-pill">Routledge Queer African Studies (2020)</span>
+              </div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Journal of Gender-Based Violence</div>
+                  <div class="profile-item-desc">Editorial Board Member for the journal published by University of Bristol Press, UK.</div>
+                </div>
+              </div>
+            `
+          }
+        ]
+      }
+    };
+
     const openLeaderModal = (card) => {
       const img = card.querySelector('img');
       const fallback = card.querySelector('.leader-photo-fallback, .profile-photo-fallback, .about-photo-fallback, .member-photo-fallback');
@@ -1687,13 +2236,11 @@ const GSAA = (function () {
       const name = nameEl ? nameEl.textContent.trim() : 'GSAA Executive Member';
       const role = roleEl ? roleEl.textContent.trim() : 'Leadership Committee';
       const inst = instNameEl ? instNameEl.textContent.trim() : '';
-      
-      let bio = bioEl ? bioEl.textContent.trim() : '';
-      if (!bio) {
-        bio = `${name} serves as ${role}${inst ? ' at ' + inst : ''}, contributing to the governance, academic research, and institutional leadership of the Ghana Sociological and Anthropological Association (GSAA).`;
-      }
 
-      currentLeaderName = name;
+      const profileKey = card.getAttribute('data-profile') || (name.toLowerCase().includes('hiadzi') ? 'rosemond-hiadzi' : (name.toLowerCase().includes('tetteh') ? 'peace-tetteh' : (name.toLowerCase().includes('tonah') ? 'steve-tonah' : (name.toLowerCase().includes('oduro') ? 'georgina-oduro' : null))));
+      const richProfile = profileKey ? RICH_PROFILES[profileKey] : null;
+
+      currentLeaderName = richProfile ? richProfile.name : name;
       
       const modalImg = document.getElementById('leaderModalImg');
       const modalFallback = document.getElementById('leaderModalFallback');
@@ -1701,7 +2248,14 @@ const GSAA = (function () {
       if (img && img.complete && img.naturalWidth > 0 && img.style.display !== 'none') {
         currentPhotoSrc = img.src;
         modalImg.src = img.src;
-        modalImg.alt = name;
+        modalImg.alt = currentLeaderName;
+        modalImg.style.display = 'block';
+        modalFallback.style.display = 'none';
+        zoomBtn.style.display = 'inline-block';
+      } else if (richProfile && richProfile.photo) {
+        currentPhotoSrc = richProfile.photo;
+        modalImg.src = richProfile.photo;
+        modalImg.alt = richProfile.name;
         modalImg.style.display = 'block';
         modalFallback.style.display = 'none';
         zoomBtn.style.display = 'inline-block';
@@ -1713,18 +2267,63 @@ const GSAA = (function () {
         zoomBtn.style.display = 'none';
       }
 
-      document.getElementById('leaderModalRole').textContent = role;
-      document.getElementById('leaderModalName').textContent = name;
+      document.getElementById('leaderModalRole').textContent = richProfile ? richProfile.role : role;
+      document.getElementById('leaderModalName').textContent = richProfile ? richProfile.name : name;
       
       const instEl = document.getElementById('leaderModalInstitution');
-      if (inst) {
-        instEl.textContent = inst;
+      const finalInst = richProfile ? richProfile.institution : inst;
+      if (finalInst) {
+        instEl.textContent = finalInst;
         instEl.style.display = 'block';
       } else {
         instEl.style.display = 'none';
       }
 
-      document.getElementById('leaderModalBio').textContent = bio;
+      const modalBadgeEl = document.getElementById('leaderModalBadge');
+      if (modalBadgeEl && richProfile && richProfile.badge) {
+        modalBadgeEl.textContent = richProfile.badge;
+      } else if (modalBadgeEl) {
+        modalBadgeEl.textContent = 'GSAA Leadership';
+      }
+
+      const bioContainer = document.getElementById('leaderModalBio');
+      if (richProfile && richProfile.tabs && richProfile.tabs.length) {
+        let tabsNavHTML = `<div class="profile-modal-tabs" id="richProfileTabs" style="margin-bottom:1rem">`;
+        richProfile.tabs.forEach((tab, index) => {
+          tabsNavHTML += `<button class="profile-modal-tab ${index === 0 ? 'active' : ''}" data-tab-id="${tab.id}">${tab.label}</button>`;
+        });
+        tabsNavHTML += `</div><div class="profile-modal-tab-body" id="richProfileTabBody" style="min-height:180px"></div>`;
+        
+        bioContainer.innerHTML = tabsNavHTML;
+
+        const renderTabContent = (tabId) => {
+          const tabObj = richProfile.tabs.find(t => t.id === tabId) || richProfile.tabs[0];
+          const bodyEl = document.getElementById('richProfileTabBody');
+          if (bodyEl) {
+            bodyEl.innerHTML = tabObj.content;
+          }
+          const tabBtns = bioContainer.querySelectorAll('.profile-modal-tab');
+          tabBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-tab-id') === tabObj.id);
+          });
+        };
+
+        renderTabContent(richProfile.tabs[0].id);
+
+        bioContainer.querySelectorAll('.profile-modal-tab').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const tabId = btn.getAttribute('data-tab-id');
+            renderTabContent(tabId);
+          });
+        });
+      } else {
+        let bio = bioEl ? bioEl.textContent.trim() : '';
+        if (!bio) {
+          bio = `${name} serves as ${role}${inst ? ' at ' + inst : ''}, contributing to the governance, academic research, and institutional leadership of the Ghana Sociological and Anthropological Association (GSAA).`;
+        }
+        bioContainer.textContent = bio;
+      }
 
       modalOverlay.classList.add('open');
       modalOverlay.setAttribute('aria-hidden', 'false');
