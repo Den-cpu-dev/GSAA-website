@@ -1749,21 +1749,32 @@ const GSAA = (function () {
             label: 'Overview Bio',
             content: `
               <div class="profile-bio-paragraph">
-                Dr. Rosemond Akpene Hiadzi is a Senior Lecturer in the Department of Sociology at the University of Ghana, Legon. Trained in medical sociology and anthropology, her research lies at the intersection of medical sociology, reproductive health, and the sociology of family life, with a particular focus on how social and cultural contexts shape reproductive experiences, health-seeking behaviour, and family formation in Ghana and across Africa. Her work has examined infertility, assisted reproductive technologies, surrogacy, male infertility, fertility awareness, and the psychosocial and ethical dimensions of reproductive care.
+                <strong>Dr. Rosemond Akpene Hiadzi</strong> is a Senior Lecturer in the Department of Sociology at the University of Ghana, Legon. Trained in medical sociology and anthropology, her research lies at the intersection of medical sociology, reproductive health, and the sociology of family life, with a particular focus on how social and cultural contexts shape reproductive experiences, health-seeking behaviour, and family formation in Ghana and across Africa. Her work has examined infertility, assisted reproductive technologies, surrogacy, male infertility, fertility awareness, and the psychosocial and ethical dimensions of reproductive care.
               </div>
               <div class="profile-bio-paragraph">
                 Using predominantly qualitative and community-engaged approaches, Dr. Hiadzi works closely with individuals, families, healthcare providers, and policymakers to generate evidence that informs practice, policy, and public understanding. Her research has been published in leading international journals, including <em>PLOS ONE</em>, <em>Heliyon</em>, <em>Reproductive Health</em>, and the <em>African Journal of Reproductive Health</em>, among others.
               </div>
               <div class="profile-bio-paragraph">
-                Beyond research, she is passionate about teaching and mentoring the next generation of sociologists and social scientists, fostering critical thinking, ethical scholarship, and socially responsive research. She is an active member of several national and international professional associations and collaborates with interdisciplinary research networks advancing reproductive health and social justice.
+                Beyond research, she is a Queen Elizabeth Scholar (QES) at Concordia University, Canada, an Erasmus+ Mobility Scholar at the University of Sheffield, UK, and has served as Guest Lecturer at the University of Zurich, Switzerland, Visiting Lecturer at the University of York, UK, and Guest Lecturer at the University of Ghana Law School.
+              </div>
+              <div class="journal-pill-list" style="margin-top:1.25rem">
+                <a href="https://scholar.google.com/citations?user=oz_hr28AAAAJ&hl=en&oe=GB&oi=ao" target="_blank" rel="noopener" class="journal-pill" style="background:var(--green-deep); color:var(--gold); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.85rem; border-radius:20px; font-weight:600; font-size:0.8rem">Google Scholar Profile &rarr;</a>
+                <a href="https://www.linkedin.com/in/rosemond-akpene-hiadzi-ph-d-931811b1/" target="_blank" rel="noopener" class="journal-pill" style="background:#0a66c2; color:#fff; text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; padding:0.4rem 0.85rem; border-radius:20px; font-weight:600; font-size:0.8rem">LinkedIn Profile &rarr;</a>
               </div>
             `
           },
           {
             id: 'research',
-            label: 'Research & Focus',
+            label: 'Research & Funding',
             content: `
-              <div class="profile-section-heading">Primary Research Specializations</div>
+              <div class="profile-section-heading">Major Research Grants & Projects</div>
+              <div class="profile-list-grid" style="margin-bottom:1.5rem">
+                <div class="profile-item-card" style="border-left:3px solid var(--gold)">
+                  <div class="profile-item-title">WHO & University of Sheffield Funded Study (2022–2026)</div>
+                  <div class="profile-item-desc"><strong>Co-Principal Investigator</strong>: <em>“Men and infertility in Ghana: Beliefs, Perceptions and Perspectives on the (non) participation of men in fertility care”</em> (&pound;17,147.97). Research funded jointly by the World Health Organization (WHO) and the University of Sheffield, UK.</div>
+                </div>
+              </div>
+              <div class="profile-section-heading">Primary Specializations</div>
               <div class="profile-list-grid">
                 <div class="profile-item-card">
                   <div class="profile-item-title">Medical Sociology & Anthropology</div>
@@ -1786,25 +1797,25 @@ const GSAA = (function () {
           },
           {
             id: 'achievements',
-            label: 'Achievements & Leadership',
+            label: 'Scholarships & Visiting Appointments',
             content: `
-              <div class="profile-section-heading">Key Achievements & Institutional Roles</div>
+              <div class="profile-section-heading">Fellowships, Visiting Posts & International Awards</div>
               <div class="profile-list-grid">
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Senior Lecturer, University of Ghana</div>
-                  <div class="profile-item-desc">Faculty leadership in the Department of Sociology, Legon, instructing undergraduate and postgraduate courses in medical sociology and qualitative research.</div>
+                  <div class="profile-item-title">Queen Elizabeth Scholar (QES)</div>
+                  <div class="profile-item-desc">Concordia University, Canada — Awarded prestigious Queen Elizabeth Scholarship for advanced research in global health and social development.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">GSAA Representative (UG)</div>
-                  <div class="profile-item-desc">Serving as official institutional representative for the University of Ghana, driving inter-university governance and sociological scholarship.</div>
+                  <div class="profile-item-title">Erasmus+ Mobility Scholar</div>
+                  <div class="profile-item-desc">University of Sheffield, UK — Ghana-Sheffield Mobility Scholarship supporting collaborative research and academic exchange.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">International Peer-Reviewed Publications</div>
-                  <div class="profile-item-desc">Author of influential scholarly articles shaping public understanding, clinical practice, and policy frameworks in reproductive health.</div>
+                  <div class="profile-item-title">Guest Lecturer, University of Zurich</div>
+                  <div class="profile-item-desc">Invited guest lecturer at University of Zurich, Switzerland, delivering specialist lectures in medical anthropology and global health.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Academic Mentorship & Ethics</div>
-                  <div class="profile-item-desc">Championing critical thinking, rigorous ethical research standards, and mentoring emerging sociologists across Ghana.</div>
+                  <div class="profile-item-title">Visiting Lecturer, University of York</div>
+                  <div class="profile-item-desc">University of York, UK — Visiting academic lecturing on reproductive technologies, gender, and African family systems.</div>
                 </div>
               </div>
             `
@@ -1828,30 +1839,32 @@ const GSAA = (function () {
                   <div class="profile-item-desc">Sociological insights into assisted reproductive technologies, surrogacy ethics, and social perceptions in Ghana.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Male Infertility Awareness</div>
-                  <div class="profile-item-desc">Investigating male reproductive experiences, health-seeking behaviors, and gender dynamics in clinical care.</div>
+                  <div class="profile-item-title">Male Infertility & Male Participation</div>
+                  <div class="profile-item-desc">Investigating male reproductive experiences, health-seeking behaviors, and male non-participation in clinical fertility care.</div>
                 </div>
               </div>
             `
           },
           {
-            id: 'conferences',
-            label: 'Conferences & Networks',
+            id: 'associations',
+            label: 'Associations & Extension Services',
             content: `
-              <div class="profile-section-heading">Professional Affiliations & Networks</div>
-              <div class="profile-list-grid">
+              <div class="profile-section-heading">Public Policy & Technical Advisory Roles</div>
+              <div class="profile-list-grid" style="margin-bottom:1.5rem">
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Professional Associations</div>
-                  <div class="profile-item-desc">Active member of national and international sociological and anthropological associations promoting social justice.</div>
+                  <div class="profile-item-title">FDA Technical Advisory Committee (TAC-CT)</div>
+                  <div class="profile-item-desc">Serving as Social Scientist on the Food and Drugs Authority (FDA) Technical Advisory Committee for Clinical Trials in Ghana.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Interdisciplinary Networks</div>
-                  <div class="profile-item-desc">Collaborates with interdisciplinary research networks advancing reproductive health equity, family life, and ethical care.</div>
+                  <div class="profile-item-title">University of Ghana Law School</div>
+                  <div class="profile-item-desc">Guest Lecturer providing interdisciplinary lectures on medical sociology, reproductive ethics, and bio-law.</div>
                 </div>
-                <div class="profile-item-card">
-                  <div class="profile-item-title">Conference Presentations & Policy Engagement</div>
-                  <div class="profile-item-desc">Regular contributor to academic conferences, public health forums, and policy dialogue sessions across Africa and globally.</div>
-                </div>
+              </div>
+              <div class="profile-section-heading">Membership of Professional Associations</div>
+              <div class="journal-pill-list">
+                <span class="journal-pill">International Sociological Association (ISA RC15 - Sociology of Health)</span>
+                <span class="journal-pill">Fertility Society of Ghana (FERSOG)</span>
+                <span class="journal-pill">Ghana Sociological & Anthropological Association (GSAA)</span>
               </div>
             `
           }
