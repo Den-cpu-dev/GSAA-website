@@ -238,93 +238,133 @@
  .calendar-sidebar { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 2rem; }
 }
 
-/* ── SUBTHEMES & ABSTRACT CALL ── */
-.conf-details-grid {
- display: grid;
- grid-template-columns: 2fr 1fr;
- gap: 2.5rem;
- margin-top: 3rem;
- margin-bottom: 4rem;
+/* ── SCHOLARLY ARTICLE PROSPECTUS STYLES ── */
+.conf-article-container {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  align-items: start;
 }
-.subthemes-container {
- background: var(--white);
- border: 1px solid rgba(0,0,0,0.08);
- border-radius: 6px;
- padding: 2.5rem;
+.conf-article-body {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 3.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
-.subthemes-title {
- font-family: 'Playfair Display', serif;
- font-size: 1.6rem;
- font-weight: 700;
- color: var(--text-dark);
- margin-bottom: 2rem;
- border-bottom: 2px solid var(--gold);
- padding-bottom: 0.5rem;
- display: inline-block;
+.conf-article-header {
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
-.subthemes-grid {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 2rem;
+.conf-article-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  background: rgba(229,184,76,0.12);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 0.85rem;
 }
-.subtheme-card {
- background: var(--cream);
- border-radius: 4px;
- padding: 1.5rem;
- border-top: 3px solid var(--green-mid);
+.conf-article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.95rem;
+  font-weight: 900;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
 }
-.subtheme-card.blue-accent { border-top-color: var(--green-deep); }
-.subtheme-card.gold-accent { border-top-color: var(--gold); }
-.subtheme-card.red-accent { border-top-color: var(--red-kente); }
+.conf-article-meta {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  font-style: italic;
+}
+.conf-article-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--green-deep);
+  font-weight: 600;
+  background: var(--cream);
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem 1.8rem;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 2.5rem;
+}
+.conf-article-section {
+  margin-bottom: 2.5rem;
+}
+.conf-article-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding-bottom: 0.5rem;
+}
+.conf-article-section p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-light);
+  margin-bottom: 1.25rem;
+}
+.conf-article-subtrack {
+  background: rgba(0,0,0,0.02);
+  border-radius: 6px;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.5rem;
+  border-top: 3px solid var(--green-mid);
+}
+.conf-article-subtrack:nth-child(even) {
+  border-top-color: var(--gold);
+}
+.conf-article-subtrack h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.65rem;
+}
+.conf-article-subtrack p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  margin-bottom: 0;
+}
 
-.subtheme-header {
- display: flex;
- align-items: center;
- gap: 0.75rem;
- margin-bottom: 1rem;
+[data-theme="dark"] .conf-article-body {
+  background: #0f172a;
+  border-color: rgba(255,255,255,0.08);
 }
-.subtheme-icon {
- width: 32px;
- height: 32px;
- border-radius: 50%;
- background: rgba(201,168,76,0.1);
- color: var(--gold);
- display: flex;
- align-items: center;
- justify-content: center;
- font-weight: bold;
- font-size: 0.9rem;
+[data-theme="dark"] .conf-article-title {
+  color: #f8fafc;
 }
-.subtheme-name {
- font-family: 'Playfair Display', serif;
- font-size: 1rem;
- font-weight: 700;
- color: var(--text-dark);
- line-height: 1.3;
+[data-theme="dark"] .conf-article-lead {
+  background: #1e293b;
+  color: var(--gold);
 }
-.subtheme-list {
- list-style: none;
- padding: 0;
- margin: 0;
- display: flex;
- flex-direction: column;
- gap: 0.6rem;
+[data-theme="dark"] .conf-article-section h3,
+[data-theme="dark"] .conf-article-subtrack h4 {
+  color: #f8fafc;
 }
-.subtheme-list li {
- font-size: 0.82rem;
- line-height: 1.4;
- color: var(--text-light);
- position: relative;
- padding-left: 1.2rem;
+[data-theme="dark"] .conf-article-subtrack {
+  background: rgba(255,255,255,0.03);
 }
-.subtheme-list li::before {
- content: "•";
- color: var(--gold);
- font-weight: bold;
- font-size: 1rem;
- position: absolute;
- left: 0;
- top: -2px;
+
+@media (max-width: 900px) {
+  .conf-article-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .conf-article-body {
+    padding: 2rem 1.5rem;
+  }
 }
 
 .abstract-callout-box {
@@ -439,89 +479,85 @@
  </div>
  </div>
 
- <!-- CONFERENCE DETAIL SECTION: SUBTHEMES & ABSTRACT CALL -->
- <div class="conf-details-grid reveal">
- <div class="subthemes-container">
- <h3 class="subthemes-title">Conference Sub-Themes</h3>
- <div class="subthemes-grid">
- <div class="subtheme-card">
- <div class="subtheme-header">
- <span class="subtheme-icon">1</span>
- <h4 class="subtheme-name">Sociological & Anthropological Perspectives</h4>
- </div>
- <ul class="subtheme-list">
- <li>Political Ecology & Environmental Change</li>
- <li>Social Movements & Community Resistance</li>
- <li>Digital Technologies & Social Transformation</li>
- <li>Decolonizing Development & Knowledge Production</li>
- </ul>
- </div>
+ <!-- CONFERENCE DETAIL SECTION: SCHOLARLY CALL & PROSPECTUS ARTICLE -->
+  <div class="conf-article-container reveal" id="conference-prospectus">
+    <article class="conf-article-body">
+      <header class="conf-article-header">
+        <span class="conf-article-badge">Decennial Call for Papers &amp; Scholarly Prospectus</span>
+        <h2 class="conf-article-title">Our Future at Risk: Social Exclusion, Resource Extraction, and Security in Contemporary Africa</h2>
+        <div class="conf-article-meta">
+          <span>Organized by GSAA National Executive &amp; UCC Department of Sociology</span> &bull; 
+          <span>Location: University of Cape Coast, Ghana</span> &bull; 
+          <span>17th – 18th September 2026</span>
+        </div>
+      </header>
 
- <div class="subtheme-card blue-accent">
- <div class="subtheme-header">
- <span class="subtheme-icon">2</span>
- <h4 class="subtheme-name">Social Exclusion</h4>
- </div>
- <ul class="subtheme-list">
- <li>Poverty, Marginalization & Vulnerability</li>
- <li>Youth Exclusion & Unemployment</li>
- <li>Gender Inequality & Social Justice</li>
- <li>Migration & Social Integration</li>
- </ul>
- </div>
+      <div class="conf-article-lead">
+        The Ghana Sociological and Anthropological Association (GSAA), in collaboration with the Department of Sociology and Anthropology at the University of Cape Coast, announces the landmark 10th Annual National Conference. This decennial gathering convenes social scientists, anthropologists, policy analysts, and community leaders across Africa to address the converging challenges of social exclusion, natural resource extraction, and regional insecurity.
+      </div>
 
- <div class="subtheme-card gold-accent">
- <div class="subtheme-header">
- <span class="subtheme-icon">3</span>
- <h4 class="subtheme-name">Security</h4>
- </div>
- <ul class="subtheme-list">
- <li>Human Security & Sustainable Development</li>
- <li>Resource Conflicts & Community Violence</li>
- <li>Food Security & Livelihood Insecurity</li>
- <li>Health, Sanitation & Environmental Risks</li>
- </ul>
- </div>
+      <div class="conf-article-section">
+        <h3>1. Decennial Context &amp; Scholarly Imperative</h3>
+        <p>Across contemporary Africa, rapid economic transformations, resource exploitation, and shifting geopolitical realities have generated complex social dynamics. While natural resource reserves continue to drive global economic interest, local communities often bear the structural burden of environmental degradation, dispossession, and socio-economic displacement. The 10th Decennial Conference provides a critical empirical and theoretical forum to examine how state institutions, traditional authorities, and civil society navigate these systemic vulnerabilities.</p>
+        <p>By bringing together scholars from across Ghana, the West African sub-region, and the international academic community, the conference aims to re-examine conventional development paradigms, foster decolonial methodologies, and formulate evidence-based policy frameworks that safeguard community livelihoods and national security.</p>
+      </div>
 
- <div class="subtheme-card red-accent">
- <div class="subtheme-header">
- <span class="subtheme-icon">4</span>
- <h4 class="subtheme-name">Resource Extraction</h4>
- </div>
- <ul class="subtheme-list">
- <li>Mining, Oil & Gas Extraction</li>
- <li>Resource Governance & Local Development</li>
- <li>Land Dispossession & Community Displacement</li>
- <li>Environmental Impacts of Extractive Industries</li>
- </ul>
- </div>
- </div>
- </div>
+      <div class="conf-article-section">
+        <h3>2. Core Conference Thematic Tracks</h3>
 
- <div class="abstract-callout-box">
- <h3 class="callout-title">Call for Abstracts</h3>
- <div class="callout-info-item">
- <div class="callout-info-label">Submission Deadline</div>
- <div class="callout-info-val highlight">20th August 2026</div>
- </div>
- <div class="callout-info-item">
- <div class="callout-info-label">Send Abstracts To</div>
- <div class="callout-info-val"><a href="mailto:gsaaucc1@gmail.com">gsaaucc1@gmail.com</a></div>
- </div>
- <div class="callout-info-item">
- <div class="callout-info-label">Conference Type</div>
- <div class="callout-info-val">In-Person (UCC Campus)</div>
- </div>
- <div class="callout-contacts">
- <div class="callout-info-label">Enquiries & Contacts</div>
- <div class="callout-contacts-list">
- 📞 020 480 9441<br>
- 📞 024 924 0186<br>
- 📞 054 928 0375
- </div>
- </div>
- </div>
- </div>
+        <div class="conf-article-subtrack">
+          <h4>Track A: Sociological &amp; Anthropological Perspectives on Transformation</h4>
+          <p>This thematic stream examines how indigenous social structures, political ecology, and community resistance movements respond to global environmental change. Scholars are invited to present empirical research on digital technologies, virtual fieldwork ethics, social movements, and the decolonization of social science knowledge systems across African academic institutions.</p>
+        </div>
+
+        <div class="conf-article-subtrack">
+          <h4>Track B: Social Exclusion &amp; Structural Marginalization</h4>
+          <p>Focusing on the socio-economic fault lines across African societies, this track investigates the mechanisms that perpetuate youth unemployment, gender inequality, and rural-urban disparities. Contributions explore how marginalized populations—including internal migrants, informal workers, and persons with disabilities—navigate institutional barriers and advocate for social justice.</p>
+        </div>
+
+        <div class="conf-article-subtrack">
+          <h4>Track C: Resource Extraction, Land Rights &amp; Environmental Governance</h4>
+          <p>Extractive industries, including artisanal and small-scale gold mining (galamsey), large-scale oil and gas operations, and commercial forestry, present profound socio-ecological challenges. This track addresses land tenure disputes, corporate governance, environmental degradation, and the socio-economic impacts of resource dispossession on rural agrarian communities.</p>
+        </div>
+
+        <div class="conf-article-subtrack">
+          <h4>Track D: Human Security, Peacebuilding &amp; Livelihood Resilience</h4>
+          <p>Moving beyond state-centric security definitions, this stream focuses on human security, food sovereignty, climate vulnerability, and community-level violence. Submissions will explore conflict resolution mechanisms, health governance risks, and strategies for building resilient communities amidst regional insecurity and economic uncertainty.</p>
+        </div>
+      </div>
+
+      <div class="conf-article-section">
+        <h3>3. Abstract Submission Guidelines &amp; Deadlines</h3>
+        <p>The GSAA Conference Organizing Committee invites abstracts for individual paper presentations, panel sessions, and poster displays. Abstracts must not exceed <strong>300 words</strong> and should clearly state the study's background, theoretical framework, methodology, key findings, and policy implications. Submissions should specify the intended thematic track and include 4–5 keywords alongside author affiliations and contact details.</p>
+        <p>All abstracts should be submitted electronically to the conference secretariat via <a href="mailto:gsaaucc1@gmail.com" class="text-gold" style="font-weight:600">gsaaucc1@gmail.com</a> no later than <strong>20th August 2026</strong>. Notification of acceptance will be issued by 30th August 2026, followed by full paper submission guidelines for publication in conference proceedings and selected special journal issues.</p>
+      </div>
+    </article>
+
+    <!-- SIDEBAR CALLOUT -->
+    <aside class="abstract-callout-box">
+      <h3 class="callout-title">Call for Abstracts</h3>
+      <div class="callout-info-item">
+        <div class="callout-info-label">Submission Deadline</div>
+        <div class="callout-info-val highlight">20th August 2026</div>
+      </div>
+      <div class="callout-info-item">
+        <div class="callout-info-label">Send Abstracts To</div>
+        <div class="callout-info-val"><a href="mailto:gsaaucc1@gmail.com">gsaaucc1@gmail.com</a></div>
+      </div>
+      <div class="callout-info-item">
+        <div class="callout-info-label">Conference Type</div>
+        <div class="callout-info-val">In-Person (UCC Campus)</div>
+      </div>
+      <div class="callout-contacts">
+        <div class="callout-info-label">Enquiries &amp; Contacts</div>
+        <div class="callout-contacts-list">
+          Tel: +233 20 480 9441<br>
+          Tel: +233 24 924 0186<br>
+          Tel: +233 54 928 0375
+        </div>
+      </div>
+    </aside>
+  </div>
 
 
  <!-- CALENDAR VIEW -->
