@@ -1734,6 +1734,115 @@ const GSAA = (function () {
     let currentLeaderName = '';
 
     const RICH_PROFILES = {
+      'william-boateng': {
+        name: 'Prof. William Boateng',
+        role: 'National Convenor · GSAA | Associate Professor of Sociology',
+        institution: 'University of Cape Coast · Department of Sociology & Anthropology',
+        badge: 'National Convenor · GSAA',
+        photo: 'images/leaders/william-boateng.jpg',
+        fallback: 'WB',
+        tabs: [
+          {
+            id: 'bio',
+            label: 'Overview Bio',
+            content: `
+              <div class="profile-bio-paragraph">
+                <strong>Prof. William Boateng</strong> is the National Convenor of the Ghana Sociological and Anthropological Association (GSAA) and an Associate Professor in the Department of Sociology and Anthropology at the University of Cape Coast (UCC), Ghana. As National Convenor, he leads the association's governance, strategic expansion, institutional chapters across Ghanaian universities, and international collaborations.
+              </div>
+              <div class="profile-bio-paragraph">
+                A distinguished scholar in Medical Sociology and Social Policy Analysis, Prof. Boateng's research focuses on knowledge management frameworks in health decision-making, qualitative research methodologies, health systems equity, social policy, and community development. His scholarly contributions are widely recognized internationally, accumulating over <strong>640+ citations</strong> on Google Scholar.
+              </div>
+              <div class="profile-bio-paragraph">
+                Prof. Boateng actively leads national workshops, inter-university research initiatives, and international publication seminars—including the GSAA-ISA joint publishing workshop with the International Sociological Association.
+              </div>
+            `
+          },
+          {
+            id: 'research',
+            label: 'Research Specializations',
+            content: `
+              <div class="profile-section-heading">Core Areas of Specialisation</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Medical Sociology & Healthcare Decision-Making</div>
+                  <div class="profile-item-desc">Macro-level health decision-making, knowledge management in evidence-based medical practice, self-care post-surgery at Central Regional Teaching Hospital, and public health dynamics.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Knowledge Management & Policy Analysis</div>
+                  <div class="profile-item-desc">Knowledge management tools for agricultural extension, regionalized healthcare strategy models, knowledge production in African universities, and educational governance.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Qualitative Social Research Efficacy & Methodology</div>
+                  <div class="profile-item-desc">Evaluating the efficacy and validity of Focus Group Discussions (FGDs) and qualitative social research methods in West African development contexts.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Social Determinants, Family Stress & Reintegration</div>
+                  <div class="profile-item-desc">Lived experiences of ex-convicts (family acceptance, economic situation, faith communities), family stress dynamics, domestic violence, and family caregiving in mental health landscapes.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'publications',
+            label: 'Scholarship & Publications',
+            content: `
+              <div class="profile-section-heading">Citation Metrics & Impact</div>
+              <p class="profile-item-desc">Indexed on Google Scholar (642+ citations, h-index 8+) and ResearchGate, Prof. Boateng has published extensively across international journals:</p>
+              <div class="journal-pill-list" style="margin-bottom:1rem">
+                <span class="journal-pill">640+ Google Scholar Citations</span>
+                <span class="journal-pill">Ghana Journal of Development Studies</span>
+                <span class="journal-pill">Journal of Sociological Research</span>
+                <span class="journal-pill">AFRREV IJAH</span>
+                <span class="journal-pill">Gender and Behaviour</span>
+              </div>
+              <div class="profile-section-heading">Selected Publications & Monographic Contributions</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Focus Group Discussion Efficacy (Scholar Benchmark)</div>
+                  <div class="profile-item-desc"><em>Evaluating the efficacy of focus group discussion (FGD) in qualitative social research</em> — A widely cited benchmark study on qualitative methodology.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Mental Health Caregiving in Ghana (2025)</div>
+                  <div class="profile-item-desc"><em>Unsung Heroes: The Private And Public Troubles Of Family Caregivers In Ghana’s Mental Health Landscape</em> — Co-authored article on mental health policy and family caregiving.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Knowledge Management in Agriculture & Health</div>
+                  <div class="profile-item-desc">Pioneering studies on agricultural extension tools and knowledge management in evidence-based medical practice.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Post-Surgical Determinants & Health Status</div>
+                  <div class="profile-item-desc">Empirical investigations into surgical self-care at Central Regional Teaching Hospital and family stress impacts on women's health status.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'leadership',
+            label: 'Leadership & Academic Roles',
+            content: `
+              <div class="profile-section-heading">National & Institutional Leadership</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">National Convenor, GSAA</div>
+                  <div class="profile-item-desc">Leading the association's executive committee, national scientific conferences, membership growth, and institutional alignment across Ghanaian universities.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Chair, GSAA-ISA International Publishing Workshop</div>
+                  <div class="profile-item-desc">Chaired the joint GSAA-International Sociological Association workshop guiding early-career scholars on manuscript preparation and peer review.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Principal Investigator (PI), NHIS Rural Equity Study</div>
+                  <div class="profile-item-desc">Lead PI evaluating equity impacts of Ghana's National Health Insurance Scheme across five rural districts.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Associate Professor, University of Cape Coast</div>
+                  <div class="profile-item-desc">Department of Sociology & Anthropology, mentoring postgraduate researchers and advancing social science curricula.</div>
+                </div>
+              </div>
+            `
+          }
+        ]
+      },
       'rosemond-hiadzi': {
         name: 'Dr. Rosemond Akpene Hiadzi',
         role: 'Senior Lecturer in Medical Sociology & Anthropology',
@@ -2248,7 +2357,7 @@ const GSAA = (function () {
       const role = roleEl ? roleEl.textContent.trim() : 'Leadership Committee';
       const inst = instNameEl ? instNameEl.textContent.trim() : '';
 
-      const profileKey = card.getAttribute('data-profile') || (name.toLowerCase().includes('hiadzi') ? 'rosemond-hiadzi' : (name.toLowerCase().includes('tetteh') ? 'peace-tetteh' : (name.toLowerCase().includes('tonah') ? 'steve-tonah' : (name.toLowerCase().includes('oduro') ? 'georgina-oduro' : null))));
+      const profileKey = card.getAttribute('data-profile') || (name.toLowerCase().includes('boateng') ? 'william-boateng' : (name.toLowerCase().includes('hiadzi') ? 'rosemond-hiadzi' : (name.toLowerCase().includes('tetteh') ? 'peace-tetteh' : (name.toLowerCase().includes('tonah') ? 'steve-tonah' : (name.toLowerCase().includes('oduro') ? 'georgina-oduro' : null)))));
       const richProfile = profileKey ? RICH_PROFILES[profileKey] : null;
 
       currentLeaderName = richProfile ? richProfile.name : name;
