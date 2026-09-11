@@ -1744,40 +1744,110 @@ const GSAA = (function () {
         tabs: [
           {
             id: 'bio',
-            label: 'Overview Bio',
+            label: 'Overview & Education',
             content: `
               <div class="profile-bio-paragraph">
-                <strong>Prof. William Boateng</strong> is the National Convenor of the Ghana Sociological and Anthropological Association (GSAA) and an Associate Professor in the Department of Sociology and Anthropology at the University of Cape Coast (UCC), Ghana. As National Convenor, he leads the association's governance, strategic expansion, institutional chapters across Ghanaian universities, and international collaborations.
+                <strong>Prof. William Boateng</strong> is an Associate Professor of Sociology in the Department of Sociology and Anthropology at the University of Cape Coast (UCC), Ghana, and the National Convenor of the Ghana Sociological and Anthropological Association (GSAA). He also serves internationally as a Member of the Nominations Committee of the International Sociological Association (ISA).
               </div>
               <div class="profile-bio-paragraph">
-                A distinguished scholar in Medical Sociology and Social Policy Analysis, Prof. Boateng's research focuses on knowledge management frameworks in health decision-making, qualitative research methodologies, health systems equity, social policy, and community development. His scholarly contributions are widely recognized internationally, accumulating over <strong>640+ citations</strong> on Google Scholar.
+                With about thirty years of university-level teaching and research experience across Ghana (University of Cape Coast) and Canada (University of Saskatchewan), Prof. Boateng has contributed extensively to academic leadership, higher education governance, graduate mentoring, and policy engagement. His core teaching and research specializations include Medical Sociology, Knowledge Management, Social Planning, Development Sociology, and Penology.
               </div>
-              <div class="profile-bio-paragraph">
-                Prof. Boateng actively leads national workshops, inter-university research initiatives, and international publication seminars—including the GSAA-ISA joint publishing workshop with the International Sociological Association.
+              <div class="profile-section-heading">Academic Qualifications & Education</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">PhD in Sociology</div>
+                  <div class="profile-item-desc">University of Saskatchewan, Canada</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">MPhil in Development Studies</div>
+                  <div class="profile-item-desc">University of Cape Coast, Ghana</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">BA (Hons) in Sociology and Economics</div>
+                  <div class="profile-item-desc">University of Cape Coast, Ghana</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Diploma in Education (Dip. Ed.)</div>
+                  <div class="profile-item-desc">University of Cape Coast, Ghana</div>
+                </div>
               </div>
             `
           },
           {
             id: 'research',
-            label: 'Research Specializations',
+            label: 'Research & Funded Projects',
             content: `
+              <div class="profile-section-heading">Funded Research Projects & Grants</div>
+              <p class="profile-item-desc">Prof. Boateng has undertaken major research projects funded by leading international, continental, and national development organizations, resulting in numerous technical reports and impactful publications:</p>
+              <div class="profile-list-grid" style="margin-bottom:1.5rem">
+                <div class="profile-item-card" style="border-left:3px solid var(--gold)">
+                  <div class="profile-item-title">CODESRIA Funded Projects</div>
+                  <div class="profile-item-desc">Council for the Development of Social Science Research in Africa (CODESRIA) — Sponsored research initiatives advancing African social sciences, policy analysis, and technical reporting.</div>
+                </div>
+                <div class="profile-item-card" style="border-left:3px solid var(--gold)">
+                  <div class="profile-item-title">ISODEC Projects & Studies</div>
+                  <div class="profile-item-desc">Integrated Social Development Centre (ISODEC) — Commissioned studies on social planning, equitable resource access, and community development.</div>
+                </div>
+                <div class="profile-item-card" style="border-left:3px solid var(--gold)">
+                  <div class="profile-item-title">ERNWACA Regional Initiatives</div>
+                  <div class="profile-item-desc">Educational Research Network for West and Central Africa (ERNWACA) — Regional investigations into educational structures, social development, and institutional governance.</div>
+                </div>
+                <div class="profile-item-card" style="border-left:3px solid var(--gold)">
+                  <div class="profile-item-title">Kennesaw State University (USA)</div>
+                  <div class="profile-item-desc">Kennesaw State University, Georgia, USA — Collaborative transnational research projects leading to technical reports and cross-institutional publications.</div>
+                </div>
+              </div>
               <div class="profile-section-heading">Core Areas of Specialisation</div>
               <div class="profile-list-grid">
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Medical Sociology & Healthcare Decision-Making</div>
-                  <div class="profile-item-desc">Macro-level health decision-making, knowledge management in evidence-based medical practice, self-care post-surgery at Central Regional Teaching Hospital, and public health dynamics.</div>
+                  <div class="profile-item-title">Medical Sociology & Healthcare Systems</div>
+                  <div class="profile-item-desc">Macro-level healthcare decision-making, knowledge management in evidence-based clinical practice, and post-surgical self-care dynamics at Central Regional Teaching Hospital.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Knowledge Management & Policy Analysis</div>
-                  <div class="profile-item-desc">Knowledge management tools for agricultural extension, regionalized healthcare strategy models, knowledge production in African universities, and educational governance.</div>
+                  <div class="profile-item-title">Knowledge Management & Social Planning</div>
+                  <div class="profile-item-desc">Knowledge management tools for agricultural extension, regionalized healthcare strategy models, knowledge production in universities, and strategic social planning.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Qualitative Social Research Efficacy & Methodology</div>
-                  <div class="profile-item-desc">Evaluating the efficacy and validity of Focus Group Discussions (FGDs) and qualitative social research methods in West African development contexts.</div>
+                  <div class="profile-item-title">Development Sociology & Policy Analysis</div>
+                  <div class="profile-item-desc">Socio-economic transformation, community development, qualitative research efficacy, and social policy evaluation across West Africa.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Social Determinants, Family Stress & Reintegration</div>
-                  <div class="profile-item-desc">Lived experiences of ex-convicts (family acceptance, economic situation, faith communities), family stress dynamics, domestic violence, and family caregiving in mental health landscapes.</div>
+                  <div class="profile-item-title">Penology, Reintegration & Family Stress</div>
+                  <div class="profile-item-desc">Lived experiences of ex-convicts (family acceptance, economic conditions, faith communities), family stress dynamics, domestic violence, and mental health caregiving.</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'teaching',
+            label: 'Teaching & Mentorship',
+            content: `
+              <div class="profile-section-heading">University-Level Teaching & Supervision</div>
+              <p class="profile-item-desc">With about thirty years of teaching experience across premier universities in Ghana and Canada, Prof. Boateng has mentored generations of undergraduate and postgraduate scholars:</p>
+              <div class="journal-pill-list" style="margin-bottom:1.5rem">
+                <span class="journal-pill">~30 Years Teaching Experience</span>
+                <span class="journal-pill">~20 PhD Theses Supervised</span>
+                <span class="journal-pill">~40 MPhil Theses Supervised</span>
+                <span class="journal-pill">University of Cape Coast, Ghana</span>
+                <span class="journal-pill">University of Saskatchewan, Canada</span>
+              </div>
+              <div class="profile-section-heading">Academic Mentorship & Pedagogical Highlights</div>
+              <div class="profile-list-grid">
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Postgraduate Theses Supervision</div>
+                  <div class="profile-item-desc">Successfully supervised approximately 20 PhD dissertations and 40 MPhil theses in sociology, development studies, medical sociology, and social planning.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Transnational Academic Experience</div>
+                  <div class="profile-item-desc">Extensive teaching and pedagogical engagement at the University of Saskatchewan (Canada) and the University of Cape Coast (Ghana).</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Curricular Design & Instructional Modules</div>
+                  <div class="profile-item-desc">Authored academic modules, distance learning curricula, and graduate training courses across the social sciences and penological studies.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Methodological Training & Seminars</div>
+                  <div class="profile-item-desc">Regularly leads capacity-building seminars on qualitative social research methodologies, Focus Group Discussions (FGDs), and manuscript preparation for early-career scholars.</div>
                 </div>
               </div>
             `
@@ -1786,16 +1856,20 @@ const GSAA = (function () {
             id: 'publications',
             label: 'Scholarship & Publications',
             content: `
-              <div class="profile-section-heading">Citation Metrics & Impact</div>
-              <p class="profile-item-desc">Indexed on Google Scholar (642+ citations, h-index 8+) and ResearchGate, Prof. Boateng has published extensively across international journals:</p>
-              <div class="journal-pill-list" style="margin-bottom:1rem">
+              <div class="profile-section-heading">Citation Metrics & Scholarly Output</div>
+              <p class="profile-item-desc">Prof. Boateng has authored over 50 peer-reviewed articles in internationally recognized indexed journals, alongside an academic book, a book chapter, technical reports, and instructional modules. Indexed on Google Scholar (640+ citations, h-index 8+) and ResearchGate:</p>
+              <div class="journal-pill-list" style="margin-bottom:1.25rem">
+                <span class="journal-pill">50+ Peer-Reviewed Articles</span>
+                <span class="journal-pill">Academic Book & Book Chapter</span>
+                <span class="journal-pill">Technical Reports & Modules</span>
                 <span class="journal-pill">640+ Google Scholar Citations</span>
-                <span class="journal-pill">Ghana Journal of Development Studies</span>
-                <span class="journal-pill">Journal of Sociological Research</span>
-                <span class="journal-pill">AFRREV IJAH</span>
-                <span class="journal-pill">Gender and Behaviour</span>
               </div>
-              <div class="profile-section-heading">Selected Publications & Monographic Contributions</div>
+              <div class="profile-section-heading">Keynote Addresses & Conferences</div>
+              <div class="profile-item-card" style="margin-bottom:1.5rem">
+                <div class="profile-item-title">Keynotes & Conference Presentations</div>
+                <div class="profile-item-desc">Presented papers and delivered keynote addresses at numerous prestigious local, regional, and international conferences across Africa, North America, and Europe.</div>
+              </div>
+              <div class="profile-section-heading">Selected Benchmark Publications & Monographic Works</div>
               <div class="profile-list-grid">
                 <div class="profile-item-card">
                   <div class="profile-item-title">Focus Group Discussion Efficacy (Scholar Benchmark)</div>
@@ -1818,25 +1892,33 @@ const GSAA = (function () {
           },
           {
             id: 'leadership',
-            label: 'Leadership & Academic Roles',
+            label: 'Leadership & Governance',
             content: `
-              <div class="profile-section-heading">National & Institutional Leadership</div>
+              <div class="profile-section-heading">National & International Leadership Roles</div>
               <div class="profile-list-grid">
                 <div class="profile-item-card">
                   <div class="profile-item-title">National Convenor, GSAA</div>
-                  <div class="profile-item-desc">Leading the association's executive committee, national scientific conferences, membership growth, and institutional alignment across Ghanaian universities.</div>
+                  <div class="profile-item-desc">Leading the Ghana Sociological and Anthropological Association's governance, strategic expansion, institutional chapters across Ghanaian universities, and international partnerships.</div>
                 </div>
                 <div class="profile-item-card">
-                  <div class="profile-item-title">Chair, GSAA-ISA International Publishing Workshop</div>
-                  <div class="profile-item-desc">Chaired the joint GSAA-International Sociological Association workshop guiding early-career scholars on manuscript preparation and peer review.</div>
+                  <div class="profile-item-title">Nominations Committee Member, ISA</div>
+                  <div class="profile-item-desc">Member of the Nominations Committee of the International Sociological Association (ISA), contributing to global sociological leadership and governance.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Head of Department (Two Terms), UCC</div>
+                  <div class="profile-item-desc">Served two terms as Head of the Department of Sociology and Anthropology at the University of Cape Coast, Ghana.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Head of Arts & Social Sciences Programmes, CoDE (UCC)</div>
+                  <div class="profile-item-desc">Served as Head of Arts and Social Sciences Programmes at the College of Distance Education, University of Cape Coast, Ghana.</div>
+                </div>
+                <div class="profile-item-card">
+                  <div class="profile-item-title">Chair, GSAA-ISA Joint Publishing Workshop</div>
+                  <div class="profile-item-desc">Chaired the joint GSAA-International Sociological Association workshop guiding early-career scholars and faculty on peer-reviewed publishing.</div>
                 </div>
                 <div class="profile-item-card">
                   <div class="profile-item-title">Principal Investigator (PI), NHIS Rural Equity Study</div>
                   <div class="profile-item-desc">Lead PI evaluating equity impacts of Ghana's National Health Insurance Scheme across five rural districts.</div>
-                </div>
-                <div class="profile-item-card">
-                  <div class="profile-item-title">Associate Professor, University of Cape Coast</div>
-                  <div class="profile-item-desc">Department of Sociology & Anthropology, mentoring postgraduate researchers and advancing social science curricula.</div>
                 </div>
               </div>
             `
